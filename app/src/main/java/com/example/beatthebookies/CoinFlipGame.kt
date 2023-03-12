@@ -41,7 +41,7 @@ class CoinFlipGame : AppCompatActivity() {
 
         iv_coin.setOnClickListener {
             val result = (1..2).random()  // try && IF HEADS.ischecked()
-            if (result == 1) {
+            if (result == 1 && headbox.isChecked) {
 
                 val newHeads = CoinFlipHistory(-1,"Heads")
                 val mydatabase = DataBaseHelper(this)
@@ -61,6 +61,8 @@ class CoinFlipGame : AppCompatActivity() {
 
                 val balanceTxt = findViewById<TextView>(R.id.balancetxt)
                 balanceTxt.setText("Balance : " + Integer.toString(balancE))
+
+                balancE = balancE //testpush
 
 
                 flipCoin(R.drawable.heads, "heads")
