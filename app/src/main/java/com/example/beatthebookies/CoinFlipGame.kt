@@ -26,8 +26,6 @@ class CoinFlipGame : AppCompatActivity() {
     private var HNextChance : Int = 2
     private var TNextChance : Int = 2
 
-    val headbox = findViewById<RadioButton>(R.id.HeadsBtn)
-    val tailbox = findViewById<RadioButton>(R.id.TailsBtn)
 
     fun GoToCFHistory(view: View){
         val intent = Intent(this, CoinFlipHistoryPage::class.java)
@@ -41,7 +39,7 @@ class CoinFlipGame : AppCompatActivity() {
 
         iv_coin.setOnClickListener {
             val result = (1..2).random()  // try && IF HEADS.ischecked()
-            if (result == 1 && headbox.isChecked) {
+            if (result == 1) {
 
                 val newHeads = CoinFlipHistory(-1,"Heads")
                 val mydatabase = DataBaseHelper(this)
@@ -59,11 +57,9 @@ class CoinFlipGame : AppCompatActivity() {
                 val NextChance = findViewById<TextView>(R.id.NextChance)
                 NextChance.setText("The chances of it hitting Heads " + (HeadStreak + 1) + " times in a row is 1 in " + Integer.toString(HNextChance))
 
+
                 val balanceTxt = findViewById<TextView>(R.id.balancetxt)
                 balanceTxt.setText("Balance : " + Integer.toString(balancE))
-
-                balancE = balancE //testpush
-
 
                 flipCoin(R.drawable.heads, "heads")
 

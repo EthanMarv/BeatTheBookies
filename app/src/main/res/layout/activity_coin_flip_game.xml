@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CoinFlipGame">
+    tools:context=".CoinFlipGame"
+    android:background="@drawable/wp4999477">
 
 
     <LinearLayout
@@ -36,35 +37,20 @@
                 android:textSize="34sp" />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="110dp"
-            android:orientation="vertical">
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/ViewHistory"
-                android:layout_width="match_parent"
-                android:layout_height="83dp"
-                android:backgroundTint="@color/white"
-                android:onClick="GoToCFHistory"
-                android:padding="10dp"
-                android:paddingBottom="10dp"
-                android:text="View all previous results" />
-
-        </LinearLayout>
-
         <TextView
             android:id="@+id/streaktxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="10dp"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textAlignment="center"/>
 
         <TextView
             android:id="@+id/NextChance"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="10dp" />
+            android:paddingTop="10dp"
+            android:textAlignment="center"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -127,11 +113,28 @@
                         android:layout_height="wrap_content"
                         android:text="Tails"
                         android:textSize="20dp"/>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/ViewHistory"
+                        android:layout_width="match_parent"
+                        android:layout_height="83dp"
+                        android:backgroundTint="@color/white"
+                        android:onClick="GoToCFHistory"
+                        android:padding="10dp"
+                        android:paddingBottom="10dp"
+                        android:text="View all previous results" />
                 </RadioGroup>
             </LinearLayout>
 
         </LinearLayout>
 
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:orientation="vertical">
 
     </LinearLayout>
 
