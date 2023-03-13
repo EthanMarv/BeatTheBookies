@@ -1,9 +1,11 @@
 package com.example.beatthebookies
 
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.WindowManager
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
@@ -29,6 +31,10 @@ class MainActivity : AppCompatActivity() {
         val messagE = findViewById<TextView>(R.id.textViewMessage)
         val emaiL = findViewById<EditText>(R.id.editTextEmail).text.toString()
         val passworD = findViewById<EditText>(R.id.editTextPassword).text.toString()
+
+
+
+
 
         if(emaiL.isEmpty() || passworD.isEmpty())
             Toast.makeText(this,"Please insert Username and Password",Toast.LENGTH_LONG).show()

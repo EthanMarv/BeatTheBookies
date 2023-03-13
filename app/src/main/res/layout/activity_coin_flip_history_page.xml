@@ -5,7 +5,8 @@
     android:id="@+id/maintxt"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CoinFlipHistoryPage">
+    tools:context=".CoinFlipHistoryPage"
+    android:background="@drawable/wp4999477">
 
     <LinearLayout
         android:layout_width="409dp"

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GuestHome">
+    tools:context=".GuestHome"
+    android:background="@drawable/wp4999477">
 
     <LinearLayout
         android:layout_width="409dp"
@@ -23,7 +24,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                app:srcCompat="@drawable/logo" />
+                app:srcCompat="@drawable/untitled" />
 
         </LinearLayout>
 

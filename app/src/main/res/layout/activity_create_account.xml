@@ -5,7 +5,8 @@
     android:id="@+id/Cre"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CreateAccount">
+    tools:context=".CreateAccount"
+    android:background="@drawable/wp4999477">
 
     <LinearLayout
         android:layout_width="409dp"
@@ -24,7 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                app:srcCompat="@drawable/logo" />
+                app:srcCompat="@drawable/untitled" />
 
         </LinearLayout>
 
@@ -97,13 +98,14 @@
             android:padding="10dp">
 
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/CreateAccountBtn"
                 android:layout_width="match_parent"
                 android:layout_height="128dp"
                 android:onClick="CreateNewUser"
                 android:padding="10dp"
-                android:text="Create account" />
+                android:text="Create account"
+                android:backgroundTint="@color/white"/>
 
             <TextView
                 android:id="@+id/Messagetxt"
