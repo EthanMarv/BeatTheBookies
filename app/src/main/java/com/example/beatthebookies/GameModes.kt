@@ -16,4 +16,9 @@ class GameModes : AppCompatActivity() {
         startActivity(intent)
     }
 
+    fun roulette(view : View){
+        val intent = Intent(this, RouletteGame::class.java)
+        startActivity(intent)
+    }
+
 }
