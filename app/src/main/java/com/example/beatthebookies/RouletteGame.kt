@@ -2,6 +2,10 @@ package com.example.beatthebookies
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.animation.Animation
+import android.view.animation.AnimationSet
+import android.view.animation.LinearInterpolator
+import android.view.animation.RotateAnimation
 import android.widget.*
 import kotlin.random.Random
 
@@ -13,6 +17,15 @@ class RouletteGame : AppCompatActivity() {
         val mImageView = findViewById<ImageView>(R.id.image_view_1)
         val mButton = findViewById<Button>(R.id.button_1)
 
+        val animationSet = AnimationSet(true)
+
+        val rotateAnimation = RotateAnimation(0f, 1080F, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f)
+        rotateAnimation.duration = 2000 // 2 seconds
+        rotateAnimation.repeatCount = 0 // Repeat indefinitely
+        rotateAnimation.interpolator = LinearInterpolator()
+
+        animationSet.addAnimation(rotateAnimation)
+
         // When button is clicked
         mButton.setOnClickListener {
 
@@ -20,58 +33,71 @@ class RouletteGame : AppCompatActivity() {
 
 
 
-            val result = (1..37).random()
+            val result = (1..13).random()
 
             when(result) {
                 1 -> { //32 red
+                    mImageView.startAnimation(animationSet)
                     degrees *= 1
                     mImageView.rotation = degrees
                 }
                 2 -> { //15 black
+                    mImageView.startAnimation(animationSet)
                     degrees *= 2
                     mImageView.rotation = degrees
                 }
                 3 -> { //19 red
+                    mImageView.startAnimation(animationSet)
                     degrees *= 3
                     mImageView.rotation = degrees
                 }
                 4 -> { //4 black
+                    mImageView.startAnimation(animationSet)
                     degrees *= 4
                     mImageView.rotation = degrees
                 }
                 5 -> { //21 red
+                    mImageView.startAnimation(animationSet)
                     degrees *= 5
                     mImageView.rotation = degrees
                 }
                 6 -> { //2 black
+                    mImageView.startAnimation(animationSet)
                     degrees *= 6
                     mImageView.rotation = degrees
                 }
                 7 -> { //25 red
+                    mImageView.startAnimation(animationSet)
                     degrees *= 7
                     mImageView.rotation = degrees
                 }
                 8 -> { //17 black
+                    mImageView.startAnimation(animationSet)
                     degrees *= 8
                     mImageView.rotation = degrees
                 }
                 9 -> { //34 red
+                    mImageView.startAnimation(animationSet)
                     degrees *= 9
                     mImageView.rotation = degrees
                 }
                 10 -> { //6 black
+                    mImageView.startAnimation(animationSet)
                     degrees *= 10
                     mImageView.rotation = degrees
                 }
                 11 -> { //27 red
+                    mImageView.startAnimation(animationSet)
                     degrees *= 11
                     mImageView.rotation = degrees
                 }
                 12 -> { //13 black
+                    mImageView.startAnimation(animationSet)
                     degrees *= 12
                     mImageView.rotation = degrees
                 }
                 13 -> { //36 red
+                    mImageView.startAnimation(animationSet)
                     degrees *= 13
                     mImageView.rotation = degrees
                 }

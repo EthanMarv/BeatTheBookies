@@ -34,6 +34,57 @@ class CoinFlipGame : AppCompatActivity() {
         startActivity(intent)
     }
 
+    fun HalfStake(view: View) {
+        val editText = findViewById<EditText>(R.id.betAmountInput)
+
+        val currentValue = editText.text.toString().toIntOrNull()
+
+        if (currentValue == null) {
+            // Handle invalid input
+        } else {
+            val doubledValue = currentValue / 2
+            editText.setText(doubledValue.toString())
+        }
+    }
+
+    fun DoubleStake(view: View) {
+        val editText = findViewById<EditText>(R.id.betAmountInput)
+
+        val currentValue = editText.text.toString().toIntOrNull()
+
+        if (currentValue == null) {
+            // Handle invalid input
+        } else {
+            val doubledValue = currentValue * 2
+            editText.setText(doubledValue.toString())
+        }
+    }
+
+    fun MaxStake(view: View) {
+        val editText = findViewById<EditText>(R.id.betAmountInput)
+
+        val currentValue = editText.text.toString().toIntOrNull()
+
+        if (currentValue == null) {
+            // Handle invalid input
+        } else {
+            val doubledValue = balancE
+            editText.setText(doubledValue.toString())
+        }
+    }
+
+    fun ClearStake(view: View) {
+        val editText = findViewById<EditText>(R.id.betAmountInput)
+
+        val currentValue = editText.text.toString().toIntOrNull()
+
+        if (currentValue == null) {
+            // Handle invalid input
+        } else {
+            val doubledValue = 0
+            editText.setText(doubledValue.toString())
+        }
+    }
 
     private fun onTap() {
 
@@ -147,7 +198,5 @@ class CoinFlipGame : AppCompatActivity() {
             Toast.makeText(this, resultText, Toast.LENGTH_SHORT).show()
             imageView.isClickable = true
         }
-
-
     }
 }

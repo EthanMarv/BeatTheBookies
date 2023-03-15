@@ -114,6 +114,50 @@
                         android:text="Tails"
                         android:textSize="20dp"/>
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="78dp"
+                        android:orientation="horizontal"
+                        >
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/doublestakebtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:background="@color/white"
+                            android:onClick="DoubleStake"
+                            android:text="2x Stake"
+                            android:layout_margin="7dp"/>
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/halfstakebtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:background="@color/white"
+                            android:onClick="HalfStake"
+                            android:text="1/2 Stake"
+                            android:layout_margin="7dp"/>
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/maxStakebtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:background="@color/white"
+                            android:onClick="MaxStake"
+                            android:text="Max Stake"
+                            android:layout_margin="7dp"/>
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/clearStakeBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:background="@color/white"
+                            android:onClick="ClearStake"
+                            android:text="Clear Stake"
+                            android:layout_margin="7dp"/>
+
+                    </LinearLayout>
+
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/ViewHistory"
                         android:layout_width="match_parent"
@@ -123,6 +167,8 @@
                         android:padding="10dp"
                         android:paddingBottom="10dp"
                         android:text="View all previous results" />
+
+
 
                 </RadioGroup>
             </LinearLayout>
