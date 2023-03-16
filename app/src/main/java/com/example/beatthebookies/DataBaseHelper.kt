@@ -24,6 +24,12 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, DataBaseName,
     private val CFRESULT = "Result"
     private val CFID = "Id"
 
+    private val ROULETTE_TABLE = "RouletteResults"
+    private val ROULETTE_ID = "Id"
+    private val ROULETTE_RESULT = "Result"
+    private val ROULETTE_COLOUR = "Colour"
+
+
     override fun onCreate(db: SQLiteDatabase?) {
         try {
 
@@ -113,7 +119,23 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, DataBaseName,
         else return 1
     }
 
-        private fun checkEmail(registeredUser: RegisteredUser): Int {
+    fun addRouletteResult(rouletteResults: RouletteResults) : Int{
+
+        val db: SQLiteDatabase = this.writableDatabase
+        val cv: ContentValues = ContentValues()
+
+        cv.put(ROULETTE_RESULT, rouletteResults.Result)
+        cv.put(ROULETTE_COLOUR, rouletteResults.Colour)
+
+        val success = db.insert(ROULETTE_TABLE, null, cv)
+
+        db.close()
+        if(success.toInt() == -1) return success.toInt()
+        else return 1
+    }
+
+
+    private fun checkEmail(registeredUser: RegisteredUser): Int{
 
         val db: SQLiteDatabase
         try {
