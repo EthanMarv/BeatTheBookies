@@ -22,7 +22,6 @@ class RouletteHistoryPage : AppCompatActivity() {
         val tvResult = findViewById<TextView>(R.id.tvResult)
 
 
-
         var data = db.getRouletteResults()
 
         tvResult.text = ""
