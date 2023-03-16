@@ -70,6 +70,30 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, DataBaseName,
         return ResultsList
     }
 
+    fun getRouletteResults() : ArrayList<RouletteResults> {
+
+        val ResultsList = ArrayList<RouletteResults>()
+        val db: SQLiteDatabase = this.readableDatabase
+        val sqlStatement = "SELECT * FROM $ROULETTE_TABLE"
+
+        val cursor : Cursor = db.rawQuery(sqlStatement,null)
+
+        if(cursor.moveToFirst())
+            do{
+                val Id : Int = cursor.getInt(0)
+                val result : String = cursor.getString(1)
+                val colour : String = cursor.getString(2)
+
+                val hstry = RouletteResults(Id,result,colour)
+                ResultsList.add(hstry)
+            }while (cursor.moveToNext())
+
+        cursor.close()
+        db.close()
+
+        return ResultsList
+    }
+
     fun updateBalance(registeredUser: RegisteredUser):Int {
 
         val db: SQLiteDatabase = this.writableDatabase

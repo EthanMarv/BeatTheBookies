@@ -12,7 +12,6 @@ class CoinFlipHistoryPage : AppCompatActivity() {
         setContentView(R.layout.activity_coin_flip_history_page)
 
     }
-
            fun update(view: View) {
 
                val context = this
