@@ -11,7 +11,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="470dp"
         android:orientation="vertical">
 
         <ImageView
@@ -32,17 +32,10 @@
             android:id="@+id/button_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20sp"
-            android:text="rotate"
             android:layout_gravity="center"
-            />
+            android:layout_marginTop="20sp"
+            android:text="Spin" />
 
-        <EditText
-            android:id="@+id/editTextDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="date" />
     </LinearLayout>
 
 

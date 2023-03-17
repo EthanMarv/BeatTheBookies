@@ -5,19 +5,19 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 
-class HomeScreen : AppCompatActivity() {
+class HistorySelectionPage : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home_screen)
+        setContentView(R.layout.activity_history_selection_page)
     }
 
-    fun GameModes(view: View){
-        val intent = Intent(this, GameModes::class.java)
+    fun RouletteHistoryPage(view: View){
+        val intent = Intent(this, RouletteHistoryPage::class.java)
         startActivity(intent)
     }
 
-    fun HistorySelectionPage(view: View){
-        val intent = Intent(this, HistorySelectionPage::class.java)
+    fun CoinFlipHistoryPage(view: View){
+        val intent = Intent(this, CoinFlipHistoryPage::class.java)
         startActivity(intent)
     }
 }

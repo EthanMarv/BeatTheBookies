@@ -20,6 +20,12 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, DataBaseName,
     private val RUColumn_Password = "Password"
     private val RUColumn_Balance = "Balance"
 
+    private val LITable = "LoggedInUser"
+    private val lIID = "Id"
+    private val LIEMAIL = "Email"
+    private val LIPASSWORD = "Password"
+    private val LIBALANCE = "Balance"
+
     private val CFTABLE = "CoinFlip"
     private val CFRESULT = "Result"
     private val CFID = "Id"
@@ -28,6 +34,8 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, DataBaseName,
     private val ROULETTE_ID = "Id"
     private val ROULETTE_RESULT = "Result"
     private val ROULETTE_COLOUR = "Colour"
+
+
 
 
     override fun onCreate(db: SQLiteDatabase?) {
@@ -123,6 +131,23 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, DataBaseName,
         cv.put(RUColumn_Balance, registeredUser.Balance)
 
         val success = db.insert(RUTable, null, cv)
+
+        db.close()
+        if (success.toInt() == -1) return success.toInt()
+        else return 1
+    }
+
+    fun addLoggedInUser(loggedInUser: LoggedInUser): Int{
+
+        val db: SQLiteDatabase = this.writableDatabase
+        val cv: ContentValues = ContentValues()
+
+
+        cv.put(LIEMAIL, loggedInUser.email)
+        cv.put(LIPASSWORD, loggedInUser.PassWord)
+        cv.put(LIBALANCE, loggedInUser.Balance)
+
+        val success = db.insert(LITable, null, cv)
 
         db.close()
         if (success.toInt() == -1) return success.toInt()

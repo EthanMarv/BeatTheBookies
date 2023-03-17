@@ -62,7 +62,7 @@ class CoinFlipGame : AppCompatActivity() {
                 val NextChance = findViewById<TextView>(R.id.NextChance)
                 NextChance.setText("The chances of it hitting Heads " + (HeadStreak + 1) + " times in a row is 1 in " + Integer.toString(HNextChance))
 
-                if(headsbox.isChecked && betamount > 0 && betamount < balancE){
+                if(headsbox.isChecked && betamount > 0 && betamount <= balancE){
 
                     balancE = (balancE + betamount)
 
@@ -70,7 +70,7 @@ class CoinFlipGame : AppCompatActivity() {
                     balanceTxt.setText("Balance : " + Integer.toString(balancE))
                 }
 
-                if(tailsbox.isChecked && betamount > 0 && betamount < balancE){
+                if(tailsbox.isChecked && betamount > 0 && betamount <= balancE){
 
                     balancE = (balancE - betamount)
 
@@ -107,7 +107,7 @@ class CoinFlipGame : AppCompatActivity() {
                 val NextChance = findViewById<TextView>(R.id.NextChance)
                 NextChance.setText("The chances of it hitting Tails " + (TailStreak + 1) + " times in a row is 1 in " + Integer.toString(TNextChance))
 
-                if(headsbox.isChecked && betamount > 0 && betamount < balancE){
+                if(headsbox.isChecked && betamount > 0 && betamount <= balancE){
 
                     balancE = (balancE - betamount)
 
@@ -115,7 +115,7 @@ class CoinFlipGame : AppCompatActivity() {
                     balanceTxt.setText("Balance : " + Integer.toString(balancE))
                 }
 
-                if(tailsbox.isChecked && betamount > 0 && betamount < balancE){
+                if(tailsbox.isChecked && betamount > 0 && betamount <= balancE){
 
                     balancE = (balancE + betamount)
 

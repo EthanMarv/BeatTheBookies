@@ -12,6 +12,9 @@
         android:theme="@style/Theme.BeatTheBookies"
         tools:targetApi="31">
         <activity
+            android:name=".HistorySelectionPage"
+            android:exported="false" />
+        <activity
             android:name=".RouletteHistoryPage"
             android:exported="false" />
         <activity

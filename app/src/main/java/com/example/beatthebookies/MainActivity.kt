@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun continueasguestbtn(view: View){
-        val intent = Intent(this, GuestHome::class.java)
+        val intent = Intent(this, HomeScreen::class.java)
         startActivity(intent)
     }
 
@@ -32,15 +32,16 @@ class MainActivity : AppCompatActivity() {
         val emaiL = findViewById<EditText>(R.id.editTextEmail).text.toString()
         val passworD = findViewById<EditText>(R.id.editTextPassword).text.toString()
 
-
-
-
+        val newloggedinUSER = LoggedInUser(1,emaiL,passworD,1000)
 
         if(emaiL.isEmpty() || passworD.isEmpty())
             Toast.makeText(this,"Please insert Username and Password",Toast.LENGTH_LONG).show()
         else {
             val myDataBase = DataBaseHelper(this)
             val result = myDataBase.getRegisteredUser(RegisteredUser(-1, emaiL, passworD,-1))
+
+            myDataBase.addLoggedInUser(newloggedinUSER)
+
             if( result == -1)
                 messagE.text = "User Not Found, Please try again"
             else if( result == -2)

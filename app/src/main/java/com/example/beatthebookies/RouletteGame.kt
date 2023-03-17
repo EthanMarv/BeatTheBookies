@@ -32,12 +32,6 @@ class RouletteGame : AppCompatActivity() {
 
             var degrees : Float = -9.729729F  // 360 degrees of a circle divided by the 37 sections
 
-            val textViewDate = findViewById<TextView>(R.id.editTextDate)
-            val currentDate = Date()
-
-            val dateFormat = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
-            val dateString = dateFormat.format(currentDate)
-
             val result = (1..37).random()
 
             when(result) {

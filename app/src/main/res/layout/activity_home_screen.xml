@@ -104,9 +104,9 @@
                 android:layout_height="65dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:text="View your Bet History"
+                android:onClick="HistorySelectionPage"
 
-                />
+                android:text="View Casino History" />
         </LinearLayout>
 
     </LinearLayout>
