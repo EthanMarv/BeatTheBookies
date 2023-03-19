@@ -6,7 +6,6 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
 import android.database.sqlite.SQLiteOpenHelper
-import android.widget.Toast
 
 private val DataBaseName = "AppDataBase.db"
 private val ver : Int = 1
@@ -102,20 +101,19 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, DataBaseName,
         return ResultsList
     }
 
-    fun updateBalance(registeredUser: RegisteredUser):Int {
 
-        val db: SQLiteDatabase = this.writableDatabase
-        val cv: ContentValues = ContentValues()
+    fun updateBalance(loggedInUser: Int): Int{
+        val db = this.writableDatabase
+        val cv = ContentValues()
 
-        cv.put(RUColumn_Balance, registeredUser.Balance)
+        cv.put(LIBALANCE, loggedInUser)
 
-        val success = db.insert(RUTable, null, cv)
+        val result = db.update(LITable, cv, LIBALANCE, arrayOf())
 
         db.close()
-        if (success.toInt() == -1) return success.toInt()
+        if(result.toInt() == -1) return result.toInt()
         else return 1
     }
-
 
     fun addRegisteredUser(registeredUser: RegisteredUser): Int{
 

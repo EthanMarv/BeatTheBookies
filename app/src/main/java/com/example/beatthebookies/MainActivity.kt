@@ -1,11 +1,9 @@
 package com.example.beatthebookies
 
 import android.content.Intent
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.view.WindowManager
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
@@ -31,8 +29,7 @@ class MainActivity : AppCompatActivity() {
         val messagE = findViewById<TextView>(R.id.textViewMessage)
         val emaiL = findViewById<EditText>(R.id.editTextEmail).text.toString()
         val passworD = findViewById<EditText>(R.id.editTextPassword).text.toString()
-
-        val newloggedinUSER = LoggedInUser(1,emaiL,passworD,1000)
+        val balance = 101010;
 
         if(emaiL.isEmpty() || passworD.isEmpty())
             Toast.makeText(this,"Please insert Username and Password",Toast.LENGTH_LONG).show()
@@ -40,7 +37,7 @@ class MainActivity : AppCompatActivity() {
             val myDataBase = DataBaseHelper(this)
             val result = myDataBase.getRegisteredUser(RegisteredUser(-1, emaiL, passworD,-1))
 
-            myDataBase.addLoggedInUser(newloggedinUSER)
+            myDataBase.updateBalance(99999999)
 
             if( result == -1)
                 messagE.text = "User Not Found, Please try again"
