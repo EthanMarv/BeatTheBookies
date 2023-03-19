@@ -35,8 +35,6 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, DataBaseName,
     private val ROULETTE_COLOUR = "Colour"
 
 
-
-
     override fun onCreate(db: SQLiteDatabase?) {
         try {
 
@@ -47,53 +45,54 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, DataBaseName,
 
             db?.execSQL(sqlCreateStatementRegisteredUser)
 
-        } catch (e: SQLiteException) {}
+        } catch (e: SQLiteException) {
+        }
     }
 
     override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {
         TODO("Not yet implemented")
     }
 
-    fun getCFResults() : ArrayList<CoinFlipHistory> {
+    fun getCFResults(): ArrayList<CoinFlipHistory> {
 
         val ResultsList = ArrayList<CoinFlipHistory>()
         val db: SQLiteDatabase = this.readableDatabase
         val sqlStatement = "SELECT * FROM $CFTABLE"
 
-        val cursor : Cursor = db.rawQuery(sqlStatement,null)
+        val cursor: Cursor = db.rawQuery(sqlStatement, null)
 
-            if(cursor.moveToFirst())
-            do{
-                val id : Int = cursor.getInt(0)
-                val result : String = cursor.getString(1)
+        if (cursor.moveToFirst())
+            do {
+                val id: Int = cursor.getInt(0)
+                val result: String = cursor.getString(1)
 
-                val hstry = CoinFlipHistory(id,result)
+                val hstry = CoinFlipHistory(id, result)
                 ResultsList.add(hstry)
-            }while (cursor.moveToNext())
+            } while (cursor.moveToNext())
 
-            cursor.close()
+        cursor.close()
         db.close()
 
         return ResultsList
     }
 
-    fun getRouletteResults() : ArrayList<RouletteResults> {
+    fun getRouletteResults(): ArrayList<RouletteResults> {
 
         val ResultsList = ArrayList<RouletteResults>()
         val db: SQLiteDatabase = this.readableDatabase
         val sqlStatement = "SELECT * FROM $ROULETTE_TABLE"
 
-        val cursor : Cursor = db.rawQuery(sqlStatement,null)
+        val cursor: Cursor = db.rawQuery(sqlStatement, null)
 
-        if(cursor.moveToFirst())
-            do{
-                val Id : Int = cursor.getInt(0)
-                val result : String = cursor.getString(1)
-                val colour : String = cursor.getString(2)
+        if (cursor.moveToFirst())
+            do {
+                val Id: Int = cursor.getInt(0)
+                val result: String = cursor.getString(1)
+                val colour: String = cursor.getString(2)
 
-                val hstry = RouletteResults(Id,result,colour)
+                val hstry = RouletteResults(Id, result, colour)
                 ResultsList.add(hstry)
-            }while (cursor.moveToNext())
+            } while (cursor.moveToNext())
 
         cursor.close()
         db.close()
@@ -117,6 +116,18 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, DataBaseName,
         return balanceList
     }
 
+    fun getBalance2(): Int {
+        var balance = 0
+        val db = readableDatabase
+        val sqlStatement = "SELECT $LIBALANCE FROM $LITable"
+        val cursor = db.rawQuery(sqlStatement, null)
+        if (cursor.moveToFirst()) {
+            balance = cursor.getInt(0)
+        }
+        cursor.close()
+        db.close()
+        return balance
+    }
 
     fun updateBalance(loggedInUser: Int): Int{
         val db = this.writableDatabase

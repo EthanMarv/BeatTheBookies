@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun continueasguestbtn(view: View){
-        val intent = Intent(this, Balancetest::class.java)
+        val intent = Intent(this, HomeScreen::class.java)
         startActivity(intent)
     }
 
