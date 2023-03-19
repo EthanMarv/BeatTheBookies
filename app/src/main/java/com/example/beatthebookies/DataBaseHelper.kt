@@ -20,7 +20,7 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, DataBaseName,
     private val RUColumn_Balance = "Balance"
 
     private val LITable = "LoggedInUser"
-    private val lIID = "Id"
+    private val LIID = "Id"
     private val LIEMAIL = "Email"
     private val LIPASSWORD = "Password"
     private val LIBALANCE = "Balance"
@@ -101,6 +101,22 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, DataBaseName,
         return ResultsList
     }
 
+    fun getBalanceList(): List<Int> {
+        val balanceList = mutableListOf<Int>()
+        val db = readableDatabase
+        val sqlStatement = "SELECT $LIBALANCE FROM $LITable"
+        val cursor = db.rawQuery(sqlStatement, null)
+        if (cursor.moveToFirst()) {
+            do {
+                val balance = cursor.getInt(0)
+                balanceList.add(balance)
+            } while (cursor.moveToNext())
+        }
+        cursor.close()
+        db.close()
+        return balanceList
+    }
+
 
     fun updateBalance(loggedInUser: Int): Int{
         val db = this.writableDatabase
@@ -114,6 +130,7 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, DataBaseName,
         if(result.toInt() == -1) return result.toInt()
         else return 1
     }
+
 
     fun addRegisteredUser(registeredUser: RegisteredUser): Int{
 
@@ -135,22 +152,7 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, DataBaseName,
         else return 1
     }
 
-    fun addLoggedInUser(loggedInUser: LoggedInUser): Int{
 
-        val db: SQLiteDatabase = this.writableDatabase
-        val cv: ContentValues = ContentValues()
-
-
-        cv.put(LIEMAIL, loggedInUser.email)
-        cv.put(LIPASSWORD, loggedInUser.PassWord)
-        cv.put(LIBALANCE, loggedInUser.Balance)
-
-        val success = db.insert(LITable, null, cv)
-
-        db.close()
-        if (success.toInt() == -1) return success.toInt()
-        else return 1
-    }
 
     fun addCoinFlipResult(coinFlipHistory: CoinFlipHistory) : Int{
 
@@ -243,4 +245,5 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, DataBaseName,
         db.close()
         return -1 //User not found
     }
+
 }

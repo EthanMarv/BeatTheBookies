@@ -20,24 +20,25 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun continueasguestbtn(view: View){
-        val intent = Intent(this, HomeScreen::class.java)
+        val intent = Intent(this, Balancetest::class.java)
         startActivity(intent)
     }
 
     fun loginButton(view: View) {
 
         val messagE = findViewById<TextView>(R.id.textViewMessage)
+
         val emaiL = findViewById<EditText>(R.id.editTextEmail).text.toString()
         val passworD = findViewById<EditText>(R.id.editTextPassword).text.toString()
-        val balance = 101010;
+
+        val balance = 12304;
+
 
         if(emaiL.isEmpty() || passworD.isEmpty())
             Toast.makeText(this,"Please insert Username and Password",Toast.LENGTH_LONG).show()
         else {
             val myDataBase = DataBaseHelper(this)
             val result = myDataBase.getRegisteredUser(RegisteredUser(-1, emaiL, passworD,-1))
-
-            myDataBase.updateBalance(99999999)
 
             if( result == -1)
                 messagE.text = "User Not Found, Please try again"

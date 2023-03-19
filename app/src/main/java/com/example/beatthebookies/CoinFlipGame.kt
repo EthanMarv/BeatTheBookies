@@ -20,6 +20,7 @@ class CoinFlipGame : AppCompatActivity() {
         setContentView(R.layout.activity_coin_flip_game)
 
         onTap()
+
     }
 
     private var balancE : Int = 1000 //temporary
@@ -50,6 +51,16 @@ class CoinFlipGame : AppCompatActivity() {
                 val headsbox = findViewById<RadioButton>(R.id.HeadsBtn)
                 val tailsbox = findViewById<RadioButton>(R.id.TailsBtn)
 
+                val context = this
+                var db = DataBaseHelper(context)
+
+                val tvResult = findViewById<TextView>(R.id.textView3)
+
+                val dbHelper = DataBaseHelper(this) // Replace "this" with your activity or fragment context
+                val balanceList = dbHelper.getBalanceList()
+
+                val balanceText = balanceList.joinToString(", ")
+
                 HeadStreak = HeadStreak + 1
                 TailStreak = 0
 
@@ -67,7 +78,7 @@ class CoinFlipGame : AppCompatActivity() {
                     balancE = (balancE + betamount)
 
                     val balanceTxt = findViewById<TextView>(R.id.balancetxt)
-                    balanceTxt.setText("Balance : " + Integer.toString(balancE))
+                    balanceTxt.text = balanceText
                 }
 
                 if(tailsbox.isChecked && betamount > 0 && betamount <= balancE){
@@ -75,7 +86,7 @@ class CoinFlipGame : AppCompatActivity() {
                     balancE = (balancE - betamount)
 
                     val balanceTxt = findViewById<TextView>(R.id.balancetxt)
-                    balanceTxt.setText("Balance : " + Integer.toString(balancE))
+                    balanceTxt.text = balanceText
                 }
 
                 if(betamount > balancE || betamount < 0){
@@ -95,6 +106,16 @@ class CoinFlipGame : AppCompatActivity() {
                 val headsbox = findViewById<RadioButton>(R.id.HeadsBtn)
                 val tailsbox = findViewById<RadioButton>(R.id.TailsBtn)
 
+                val context = this
+                var db = DataBaseHelper(context)
+
+                val tvResult = findViewById<TextView>(R.id.textView3)
+
+                val dbHelper = DataBaseHelper(this) // Replace "this" with your activity or fragment context
+                val balanceList = dbHelper.getBalanceList()
+
+                val balanceText = balanceList.joinToString(", ")
+
                 TailStreak = TailStreak + 1
                 HeadStreak = 0
 
@@ -112,7 +133,7 @@ class CoinFlipGame : AppCompatActivity() {
                     balancE = (balancE - betamount)
 
                     val balanceTxt = findViewById<TextView>(R.id.balancetxt)
-                    balanceTxt.setText("Balance : " + Integer.toString(balancE))
+                    balanceTxt.text = balanceText
                 }
 
                 if(tailsbox.isChecked && betamount > 0 && betamount <= balancE){
@@ -120,7 +141,7 @@ class CoinFlipGame : AppCompatActivity() {
                     balancE = (balancE + betamount)
 
                     val balanceTxt = findViewById<TextView>(R.id.balancetxt)
-                    balanceTxt.setText("Balance : " + Integer.toString(balancE))
+                    balanceTxt.text = balanceText
                 }
 
                 if(betamount > balancE || betamount < 0){
