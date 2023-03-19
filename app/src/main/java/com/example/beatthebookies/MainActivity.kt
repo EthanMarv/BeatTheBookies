@@ -1,5 +1,6 @@
 package com.example.beatthebookies
 
+import android.content.ContentValues
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -14,9 +15,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
-        fun CreateAccountBtn(view : View){
-            val intent = Intent(this, CreateAccount::class.java)
-            startActivity(intent)
+    fun CreateAccountBtn(view : View){
+        val intent = Intent(this, CreateAccount::class.java)
+        startActivity(intent)
     }
 
     fun continueasguestbtn(view: View){
@@ -39,6 +40,10 @@ class MainActivity : AppCompatActivity() {
         else {
             val myDataBase = DataBaseHelper(this)
             val result = myDataBase.getRegisteredUser(RegisteredUser(-1, emaiL, passworD,-1))
+
+            //val updateemail = myDataBase.updateEmail(columnIndex,emaiL)
+
+            val updateemail = myDataBase.updateEmailAndPassword(emaiL,passworD)
 
             if( result == -1)
                 messagE.text = "User Not Found, Please try again"

@@ -53,52 +53,6 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, DataBaseName,
         TODO("Not yet implemented")
     }
 
-    fun getCFResults(): ArrayList<CoinFlipHistory> {
-
-        val ResultsList = ArrayList<CoinFlipHistory>()
-        val db: SQLiteDatabase = this.readableDatabase
-        val sqlStatement = "SELECT * FROM $CFTABLE"
-
-        val cursor: Cursor = db.rawQuery(sqlStatement, null)
-
-        if (cursor.moveToFirst())
-            do {
-                val id: Int = cursor.getInt(0)
-                val result: String = cursor.getString(1)
-
-                val hstry = CoinFlipHistory(id, result)
-                ResultsList.add(hstry)
-            } while (cursor.moveToNext())
-
-        cursor.close()
-        db.close()
-
-        return ResultsList
-    }
-
-    fun getRouletteResults(): ArrayList<RouletteResults> {
-
-        val ResultsList = ArrayList<RouletteResults>()
-        val db: SQLiteDatabase = this.readableDatabase
-        val sqlStatement = "SELECT * FROM $ROULETTE_TABLE"
-
-        val cursor: Cursor = db.rawQuery(sqlStatement, null)
-
-        if (cursor.moveToFirst())
-            do {
-                val Id: Int = cursor.getInt(0)
-                val result: String = cursor.getString(1)
-                val colour: String = cursor.getString(2)
-
-                val hstry = RouletteResults(Id, result, colour)
-                ResultsList.add(hstry)
-            } while (cursor.moveToNext())
-
-        cursor.close()
-        db.close()
-
-        return ResultsList
-    }
 
 
     fun getBalance(): Int {
@@ -114,6 +68,33 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, DataBaseName,
         return balance
     }
 
+    //fun updateEmail(id: Int, newValue: String) {
+  //      val db = this.writableDatabase
+     //   val cv = ContentValues()
+
+    //    cv.put("Email", newValue)
+
+    //    val whereClause = "id = ?"
+    //    val whereArgs = arrayOf(id.toString())
+
+       // val result = db.update("LoggedInUser", cv, whereClause, whereArgs)
+//
+    //////    db.close()
+  //  }
+
+    fun updateEmailAndPassword(email : String, password : String) {
+
+        val db = this.writableDatabase
+        val cv = ContentValues()
+
+        cv.put("Email", email)
+        cv.put("Password",password)
+
+        db.update("LoggedInUser", cv, null, null)
+    }
+
+
+
     fun updateBalance(loggedInUser: Int): Int{
         val db = this.writableDatabase
         val cv = ContentValues()
@@ -126,7 +107,6 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, DataBaseName,
         if(result.toInt() == -1) return result.toInt()
         else return 1
     }
-
 
     fun addRegisteredUser(registeredUser: RegisteredUser): Int{
 
@@ -242,4 +222,50 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, DataBaseName,
         return -1 //User not found
     }
 
+    fun getCFResults(): ArrayList<CoinFlipHistory> {
+
+        val ResultsList = ArrayList<CoinFlipHistory>()
+        val db: SQLiteDatabase = this.readableDatabase
+        val sqlStatement = "SELECT * FROM $CFTABLE"
+
+        val cursor: Cursor = db.rawQuery(sqlStatement, null)
+
+        if (cursor.moveToFirst())
+            do {
+                val id: Int = cursor.getInt(0)
+                val result: String = cursor.getString(1)
+
+                val hstry = CoinFlipHistory(id, result)
+                ResultsList.add(hstry)
+            } while (cursor.moveToNext())
+
+        cursor.close()
+        db.close()
+
+        return ResultsList
+    }
+
+    fun getRouletteResults(): ArrayList<RouletteResults> {
+
+        val ResultsList = ArrayList<RouletteResults>()
+        val db: SQLiteDatabase = this.readableDatabase
+        val sqlStatement = "SELECT * FROM $ROULETTE_TABLE"
+
+        val cursor: Cursor = db.rawQuery(sqlStatement, null)
+
+        if (cursor.moveToFirst())
+            do {
+                val Id: Int = cursor.getInt(0)
+                val result: String = cursor.getString(1)
+                val colour: String = cursor.getString(2)
+
+                val hstry = RouletteResults(Id, result, colour)
+                ResultsList.add(hstry)
+            } while (cursor.moveToNext())
+
+        cursor.close()
+        db.close()
+
+        return ResultsList
+    }
 }

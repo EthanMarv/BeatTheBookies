@@ -33,13 +33,11 @@ class Balancetest : AppCompatActivity() {
         val tvResult = findViewById<TextView>(R.id.textView3)
 
         val dbHelper = DataBaseHelper(this) // Replace "this" with your activity or fragment context
-        var balanceList = dbHelper.getBalance()
 
-        balanceList = balanceList - 1999
+      //  var balanceList =
 
-        val updatedatabase = mydatabase.updateBalance(balanceList)
 
-        tvResult.text = balanceList.toString()
+        //tvResult.text = balanceList.toString()
 
     }
 }
