@@ -100,23 +100,8 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, DataBaseName,
         return ResultsList
     }
 
-    fun getBalanceList(): List<Int> {
-        val balanceList = mutableListOf<Int>()
-        val db = readableDatabase
-        val sqlStatement = "SELECT $LIBALANCE FROM $LITable"
-        val cursor = db.rawQuery(sqlStatement, null)
-        if (cursor.moveToFirst()) {
-            do {
-                val balance = cursor.getInt(0)
-                balanceList.add(balance)
-            } while (cursor.moveToNext())
-        }
-        cursor.close()
-        db.close()
-        return balanceList
-    }
 
-    fun getBalance2(): Int {
+    fun getBalance(): Int {
         var balance = 0
         val db = readableDatabase
         val sqlStatement = "SELECT $LIBALANCE FROM $LITable"

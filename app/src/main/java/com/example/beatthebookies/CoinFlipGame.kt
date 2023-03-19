@@ -23,8 +23,6 @@ class CoinFlipGame : AppCompatActivity() {
 
     }
 
-    private var balancE : Int = 1000 //temporary
-
     private var HeadStreak : Int = 0
     private var TailStreak : Int = 0
     private var HNextChance : Int = 2
@@ -36,12 +34,27 @@ class CoinFlipGame : AppCompatActivity() {
     }
     private fun onTap() {
 
-        val iv_coin = findViewById<ImageView>(R.id.iv_coin)
+        val context = this
+        var db = DataBaseHelper(context)
 
+        val dbHelper = DataBaseHelper(this) // Replace "this" with your activity or fragment context
+        var balance = dbHelper.getBalance()
+
+        val iv_coin = findViewById<ImageView>(R.id.iv_coin)
+        val balanceText = findViewById<TextView>(R.id.balancetxt)
+
+        balanceText.setText("Balance : " + balance)
 
         iv_coin.setOnClickListener {
             val result = (1..2).random()
             if (result == 1) {
+
+
+                val context = this
+                var db = DataBaseHelper(context)
+
+                val dbHelper = DataBaseHelper(this) // Replace "this" with your activity or fragment context
+                var balance = dbHelper.getBalance()
 
                 val newHeads = CoinFlipHistory(-1,"Heads")
                 val mydatabase = DataBaseHelper(this)
@@ -51,15 +64,6 @@ class CoinFlipGame : AppCompatActivity() {
                 val headsbox = findViewById<RadioButton>(R.id.HeadsBtn)
                 val tailsbox = findViewById<RadioButton>(R.id.TailsBtn)
 
-                val context = this
-                var db = DataBaseHelper(context)
-
-                val tvResult = findViewById<TextView>(R.id.textView3)
-
-                val dbHelper = DataBaseHelper(this) // Replace "this" with your activity or fragment context
-                val balanceList = dbHelper.getBalanceList()
-
-                val balanceText = balanceList.joinToString(", ")
 
                 HeadStreak = HeadStreak + 1
                 TailStreak = 0
@@ -73,23 +77,25 @@ class CoinFlipGame : AppCompatActivity() {
                 val NextChance = findViewById<TextView>(R.id.NextChance)
                 NextChance.setText("The chances of it hitting Heads " + (HeadStreak + 1) + " times in a row is 1 in " + Integer.toString(HNextChance))
 
-                if(headsbox.isChecked && betamount > 0 && betamount <= balancE){
+                if(headsbox.isChecked && betamount > 0 && betamount <= balance){
 
-                    balancE = (balancE + betamount)
-
-                    val balanceTxt = findViewById<TextView>(R.id.balancetxt)
-                    balanceTxt.text = balanceText
-                }
-
-                if(tailsbox.isChecked && betamount > 0 && betamount <= balancE){
-
-                    balancE = (balancE - betamount)
+                    balance = (balance + betamount)
+                    val updatebalance = dbHelper.updateBalance(balance)
 
                     val balanceTxt = findViewById<TextView>(R.id.balancetxt)
-                    balanceTxt.text = balanceText
+                    balanceTxt.setText("Balance : " + balance.toString())
                 }
 
-                if(betamount > balancE || betamount < 0){
+                if(tailsbox.isChecked && betamount > 0 && betamount <= balance){
+
+                    balance = (balance - betamount)
+                    val updatebalance = dbHelper.updateBalance(balance)
+
+                    val balanceTxt = findViewById<TextView>(R.id.balancetxt)
+                    balanceTxt.setText("Balance : " + balance.toString())
+                }
+
+                if(betamount > balance || betamount < 0){
                     Toast.makeText(this, "Invalid Bet Amount", Toast.LENGTH_SHORT).show()
                 }
 
@@ -97,24 +103,19 @@ class CoinFlipGame : AppCompatActivity() {
 
             } else {
 
+                val context = this
+                var db = DataBaseHelper(context)
+                val dbHelper = DataBaseHelper(this) // Replace "this" with your activity or fragment context
+                var balance = dbHelper.getBalance()
+
                 val newTails = CoinFlipHistory(-1,"Tails")
                 val mydatabase = DataBaseHelper(this)
                 val result = mydatabase.addCoinFlipResult(newTails)
-
                 val betamount = findViewById<EditText>(R.id.betAmountInput).text.toString().toInt()
 
                 val headsbox = findViewById<RadioButton>(R.id.HeadsBtn)
                 val tailsbox = findViewById<RadioButton>(R.id.TailsBtn)
 
-                val context = this
-                var db = DataBaseHelper(context)
-
-                val tvResult = findViewById<TextView>(R.id.textView3)
-
-                val dbHelper = DataBaseHelper(this) // Replace "this" with your activity or fragment context
-                val balanceList = dbHelper.getBalanceList()
-
-                val balanceText = balanceList.joinToString(", ")
 
                 TailStreak = TailStreak + 1
                 HeadStreak = 0
@@ -128,23 +129,25 @@ class CoinFlipGame : AppCompatActivity() {
                 val NextChance = findViewById<TextView>(R.id.NextChance)
                 NextChance.setText("The chances of it hitting Tails " + (TailStreak + 1) + " times in a row is 1 in " + Integer.toString(TNextChance))
 
-                if(headsbox.isChecked && betamount > 0 && betamount <= balancE){
+                if(headsbox.isChecked && betamount > 0 && betamount <= balance){
 
-                    balancE = (balancE - betamount)
-
-                    val balanceTxt = findViewById<TextView>(R.id.balancetxt)
-                    balanceTxt.text = balanceText
-                }
-
-                if(tailsbox.isChecked && betamount > 0 && betamount <= balancE){
-
-                    balancE = (balancE + betamount)
+                    balance = (balance - betamount)
+                    val updatebalance = dbHelper.updateBalance(balance)
 
                     val balanceTxt = findViewById<TextView>(R.id.balancetxt)
-                    balanceTxt.text = balanceText
+                    balanceTxt.setText("Balance : " + balance.toString())
                 }
 
-                if(betamount > balancE || betamount < 0){
+                if(tailsbox.isChecked && betamount > 0 && betamount <= balance){
+
+                    balance = (balance + betamount)
+                    val updatebalance = dbHelper.updateBalance(balance)
+
+                    val balanceTxt = findViewById<TextView>(R.id.balancetxt)
+                    balanceTxt.setText("Balance : " + balance.toString())
+                }
+
+                if(betamount > balance || betamount < 0){
                     Toast.makeText(this, "Invalid Bet Amount", Toast.LENGTH_SHORT).show()
                 }
 
@@ -174,7 +177,7 @@ class CoinFlipGame : AppCompatActivity() {
         val currentValue = editText.text.toString().toIntOrNull()
 
         if (currentValue == null) {
-            // Handle invalid input
+
         } else {
             val doubledValue = currentValue / 2
             editText.setText(doubledValue.toString())
@@ -195,6 +198,15 @@ class CoinFlipGame : AppCompatActivity() {
     }
 
     fun MaxStake(view: View) {
+
+        val context = this
+        var db = DataBaseHelper(context)
+
+        val tvResult = findViewById<TextView>(R.id.textView3)
+
+        val dbHelper = DataBaseHelper(this) // Replace "this" with your activity or fragment context
+        val balance = dbHelper.getBalance()
+
         val editText = findViewById<EditText>(R.id.betAmountInput)
 
         val currentValue = editText.text.toString().toIntOrNull()
@@ -202,7 +214,7 @@ class CoinFlipGame : AppCompatActivity() {
         if (currentValue == null) {
             // Handle invalid input
         } else {
-            val doubledValue = balancE
+            val doubledValue = balance
             editText.setText(doubledValue.toString())
         }
     }
