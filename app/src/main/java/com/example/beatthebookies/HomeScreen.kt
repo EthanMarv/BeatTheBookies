@@ -17,7 +17,13 @@ class HomeScreen : AppCompatActivity() {
     }
 
     fun HistorySelectionPage(view: View){
-        val intent = Intent(this, HistorySelectionPage::class.java)
+        val intent = Intent(this, Balancetest::class.java)
         startActivity(intent)
     }
+
+    fun addfunds(view: View){
+        val intent = Intent(this, AddFunds::class.java)
+        startActivity(intent)
+    }
+
 }

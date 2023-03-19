@@ -53,7 +53,7 @@ class CoinFlipGame : AppCompatActivity() {
                 val context = this
                 var db = DataBaseHelper(context)
 
-                val dbHelper = DataBaseHelper(this) // Replace "this" with your activity or fragment context
+                val dbHelper = DataBaseHelper(this)
                 var balance = dbHelper.getBalance()
 
                 val newHeads = CoinFlipHistory(-1,"Heads")
@@ -105,7 +105,7 @@ class CoinFlipGame : AppCompatActivity() {
 
                 val context = this
                 var db = DataBaseHelper(context)
-                val dbHelper = DataBaseHelper(this) // Replace "this" with your activity or fragment context
+                val dbHelper = DataBaseHelper(this)
                 var balance = dbHelper.getBalance()
 
                 val newTails = CoinFlipHistory(-1,"Tails")

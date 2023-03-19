@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddFunds"
+    android:background="@drawable/wp4999477">
+
+    <LinearLayout
+        android:layout_width="409dp"
+        android:layout_height="729dp"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="153dp"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/HomeBtn"
+                android:layout_width="35dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/baseline_home_24"
+                android:onClick="ReturnHome"/>
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="354dp"
+                android:layout_height="156dp"
+                app:srcCompat="@drawable/untitled" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Its Ok to run out of credits, thats what we're here for, Please add more credits to your account using the input below"
+                android:textSize="24sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:orientation="horizontal"></LinearLayout>
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Max Credits : 10,000"
+                android:textSize="24sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="96dp"
+                android:orientation="vertical"></LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="165dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|right"
+                    android:text="Credits : "
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/CreditInput"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:text="0" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="66dp">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/LoginButton"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:backgroundTint="@color/white"
+                    android:onClick="addFunds"
+                    android:text="Add Credits" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/LoginButton"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:backgroundTint="@color/white"
+                    android:onClick="viewbalanace"
+                    android:text="View Current balance
+" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/oldbalancetxt"
+                    android:layout_width="348dp"
+                    android:layout_height="35dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="Old balance : "
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/newbalancetxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="46dp"
+                    android:text="New Balance : "
+                    android:textSize="34sp"
+                    android:visibility="invisible" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

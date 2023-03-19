@@ -21,6 +21,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun continueasguestbtn(view: View){
+        val myDataBase = DataBaseHelper(this)
+
+        val updateemail = myDataBase.updateEmailAndPassword("Guest","Guest")
+        val updatebalance = myDataBase.updateBalance(0)
+
+
         val intent = Intent(this, HomeScreen::class.java)
         startActivity(intent)
     }
@@ -41,9 +47,9 @@ class MainActivity : AppCompatActivity() {
             val myDataBase = DataBaseHelper(this)
             val result = myDataBase.getRegisteredUser(RegisteredUser(-1, emaiL, passworD,-1))
 
-            //val updateemail = myDataBase.updateEmail(columnIndex,emaiL)
 
             val updateemail = myDataBase.updateEmailAndPassword(emaiL,passworD)
+            val updatebalance = myDataBase.updateBalance(balance)
 
             if( result == -1)
                 messagE.text = "User Not Found, Please try again"

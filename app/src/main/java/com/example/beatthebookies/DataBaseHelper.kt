@@ -68,19 +68,6 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, DataBaseName,
         return balance
     }
 
-    //fun updateEmail(id: Int, newValue: String) {
-  //      val db = this.writableDatabase
-     //   val cv = ContentValues()
-
-    //    cv.put("Email", newValue)
-
-    //    val whereClause = "id = ?"
-    //    val whereArgs = arrayOf(id.toString())
-
-       // val result = db.update("LoggedInUser", cv, whereClause, whereArgs)
-//
-    //////    db.close()
-  //  }
 
     fun updateEmailAndPassword(email : String, password : String) {
 
@@ -93,20 +80,28 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, DataBaseName,
         db.update("LoggedInUser", cv, null, null)
     }
 
+    fun updateBalance(balance : Int) {
 
-
-    fun updateBalance(loggedInUser: Int): Int{
         val db = this.writableDatabase
         val cv = ContentValues()
 
-        cv.put(LIBALANCE, loggedInUser)
+        cv.put("Balance", balance)
 
-        val result = db.update(LITable, cv, LIBALANCE, arrayOf())
-
-        db.close()
-        if(result.toInt() == -1) return result.toInt()
-        else return 1
+        db.update("LoggedInUser", cv, null, null)
     }
+
+   // fun updateBalance(loggedInUser: Int): Int{
+    //    val db = this.writableDatabase
+    //    val cv = ContentValues()
+
+   //     cv.put(LIBALANCE, loggedInUser)
+
+     //   val result = db.update(LITable, cv, LIBALANCE, arrayOf())
+
+    //    db.close()
+    //    if(result.toInt() == -1) return result.toInt()
+     //   else return 1
+   // }
 
     fun addRegisteredUser(registeredUser: RegisteredUser): Int{
 
