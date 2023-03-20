@@ -35,8 +35,10 @@ class AddFunds : AppCompatActivity() {
 
             balance = (balance + creditamount)
 
-            val updatedbalance = dbHelper.updateBalance(balance)
+            val id = dbHelper.getLoggedInId()
 
+            val updatedbalance = dbHelper.updateBalance(balance)
+            val transferbalance = dbHelper.transferbalancewhereId()
 
             oldbetamount.text = ("New Balance :" + balance.toString())
 

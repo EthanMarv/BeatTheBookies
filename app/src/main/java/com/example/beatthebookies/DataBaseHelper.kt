@@ -147,6 +147,23 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, DataBaseName,
         return Balance
     }
 
+    fun transferbalancewhereId() {
+
+        val db = writableDatabase
+
+        val cursor = db.rawQuery("SELECT Id, Balance FROM LoggedInUser", null)
+
+        while (cursor.moveToNext()) {
+            val id = cursor.getInt(0)
+            val balance = cursor.getInt(1)
+
+            db.execSQL("UPDATE RegisteredUser SET Balance = ? WHERE Id = ?", arrayOf(balance, id))
+        }
+
+        cursor.close()
+        db.close()
+    }
+
 
     fun addRegisteredUser(registeredUser: RegisteredUser): Int{
 
