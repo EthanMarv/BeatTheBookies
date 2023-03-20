@@ -12,6 +12,15 @@
         android:theme="@style/Theme.BeatTheBookies"
         tools:targetApi="31">
         <activity
+            android:name=".RouletteAdvicePage"
+            android:exported="false" />
+        <activity
+            android:name=".CoinFlipAdviceHome"
+            android:exported="false" />
+        <activity
+            android:name=".AdviceSelectionScreen"
+            android:exported="false" />
+        <activity
             android:name=".AddFunds"
             android:exported="false" />
         <activity

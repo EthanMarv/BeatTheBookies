@@ -22,6 +22,11 @@ class HomeScreen : AppCompatActivity() {
         startActivity(intent)
     }
 
+    fun AdviceSelectionPage(view: View){
+        val intent = Intent(this, AdviceSelectionScreen::class.java)
+        startActivity(intent)
+    }
+
     fun addfunds(view: View){
         val myDataBase = DataBaseHelper(this)
 

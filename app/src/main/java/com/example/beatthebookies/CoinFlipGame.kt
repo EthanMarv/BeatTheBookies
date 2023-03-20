@@ -81,6 +81,7 @@ class CoinFlipGame : AppCompatActivity() {
 
                     balance = (balance + betamount)
                     val updatebalance = dbHelper.updateBalance(balance)
+                    val transferbalance = dbHelper.transferbalancewhereId()
 
                     val balanceTxt = findViewById<TextView>(R.id.balancetxt)
                     balanceTxt.setText("Balance : " + balance.toString())
@@ -90,6 +91,7 @@ class CoinFlipGame : AppCompatActivity() {
 
                     balance = (balance - betamount)
                     val updatebalance = dbHelper.updateBalance(balance)
+                    val transferbalance = dbHelper.transferbalancewhereId()
 
                     val balanceTxt = findViewById<TextView>(R.id.balancetxt)
                     balanceTxt.setText("Balance : " + balance.toString())
@@ -133,6 +135,7 @@ class CoinFlipGame : AppCompatActivity() {
 
                     balance = (balance - betamount)
                     val updatebalance = dbHelper.updateBalance(balance)
+                    val transferbalance = dbHelper.transferbalancewhereId()
 
                     val balanceTxt = findViewById<TextView>(R.id.balancetxt)
                     balanceTxt.setText("Balance : " + balance.toString())
@@ -142,6 +145,7 @@ class CoinFlipGame : AppCompatActivity() {
 
                     balance = (balance + betamount)
                     val updatebalance = dbHelper.updateBalance(balance)
+                    val transferbalance = dbHelper.transferbalancewhereId()
 
                     val balanceTxt = findViewById<TextView>(R.id.balancetxt)
                     balanceTxt.setText("Balance : " + balance.toString())

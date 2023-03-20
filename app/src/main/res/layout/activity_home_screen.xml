@@ -83,7 +83,8 @@
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:text="Advice / Stratergy"
-                android:background="@color/white"/>
+                android:background="@color/white"
+                android:onClick="AdviceSelectionPage"/>
         </LinearLayout>
 
         <LinearLayout
