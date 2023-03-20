@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
 
         val updateemail = myDataBase.updateEmailAndPassword("Guest","Guest")
         val updatebalance = myDataBase.updateBalance(0)
+        val updateId = myDataBase.updateId(999)
 
 
         val intent = Intent(this, HomeScreen::class.java)
@@ -38,7 +39,6 @@ class MainActivity : AppCompatActivity() {
         val emaiL = findViewById<EditText>(R.id.editTextEmail).text.toString()
         val passworD = findViewById<EditText>(R.id.editTextPassword).text.toString()
 
-        val balance = 12304;
 
 
         if(emaiL.isEmpty() || passworD.isEmpty())
@@ -47,9 +47,14 @@ class MainActivity : AppCompatActivity() {
             val myDataBase = DataBaseHelper(this)
             val result = myDataBase.getRegisteredUser(RegisteredUser(-1, emaiL, passworD,-1))
 
+            val id = myDataBase.getUserIdByEmailAndPassword(emaiL,passworD)
+            val balance = myDataBase.getLoggedInUserBalance(emaiL,passworD)
 
             val updateemail = myDataBase.updateEmailAndPassword(emaiL,passworD)
-            val updatebalance = myDataBase.updateBalance(balance)
+            val updatebalance = balance?.let { myDataBase.updateBalance(it) }
+            val updateId = id?.let { myDataBase.updateId(it) }
+
+
 
             if( result == -1)
                 messagE.text = "User Not Found, Please try again"

@@ -1,11 +1,13 @@
 package com.example.beatthebookies
 
+import android.app.DownloadManager.COLUMN_ID
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
 import android.database.sqlite.SQLiteOpenHelper
+import java.sql.Connection
 
 private val DataBaseName = "AppDataBase.db"
 private val ver : Int = 1
@@ -90,18 +92,61 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, DataBaseName,
         db.update("LoggedInUser", cv, null, null)
     }
 
-   // fun updateBalance(loggedInUser: Int): Int{
-    //    val db = this.writableDatabase
-    //    val cv = ContentValues()
+    fun updateId(Id : Int) {
 
-   //     cv.put(LIBALANCE, loggedInUser)
+        val db = this.writableDatabase
+        val cv = ContentValues()
 
-     //   val result = db.update(LITable, cv, LIBALANCE, arrayOf())
+        cv.put("Id", Id)
 
-    //    db.close()
-    //    if(result.toInt() == -1) return result.toInt()
-     //   else return 1
-   // }
+        db.update("LoggedInUser", cv, null, null)
+    }
+
+    fun getLoggedInId(): Int {
+        var Id = 0
+        val db = readableDatabase
+        val sqlStatement = "SELECT $LIID FROM $LITable"
+        val cursor = db.rawQuery(sqlStatement, null)
+        if (cursor.moveToFirst()) {
+            Id = cursor.getInt(0)
+        }
+        cursor.close()
+        db.close()
+        return Id
+    }
+
+    fun getUserIdByEmailAndPassword(email: String, password: String): Int? {
+
+        val queryString = "SELECT $RUColumn_Id FROM $RUTable WHERE $RUColumn_Email = ? AND $RUColumn_Password = ?"
+        val db = readableDatabase
+        val cursor = db.rawQuery(queryString, arrayOf(email, password))
+
+        val userId: Int? = if (cursor.moveToFirst()) {
+            cursor.getInt(0)
+        } else {
+            null
+        }
+        cursor.close()
+        db.close()
+        return userId
+    }
+
+    fun getLoggedInUserBalance(email: String, password: String): Int? {
+
+        val queryString = "SELECT $RUColumn_Balance FROM $RUTable WHERE $RUColumn_Email = ? AND $RUColumn_Password = ?"
+        val db = readableDatabase
+        val cursor = db.rawQuery(queryString, arrayOf(email, password))
+
+        val Balance: Int? = if (cursor.moveToFirst()) {
+            cursor.getInt(0)
+        } else {
+            null
+        }
+        cursor.close()
+        db.close()
+        return Balance
+    }
+
 
     fun addRegisteredUser(registeredUser: RegisteredUser): Int{
 

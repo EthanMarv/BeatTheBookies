@@ -37,10 +37,11 @@ class AddFunds : AppCompatActivity() {
 
             val updatedbalance = dbHelper.updateBalance(balance)
 
+
             oldbetamount.text = ("New Balance :" + balance.toString())
 
         }else{
-         oldbetamount.text = "bitch"
+         oldbetamount.text = "Balanace cannot exceed 10,000 credits"
         }
     }
 

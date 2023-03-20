@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 
 class HomeScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,13 +18,23 @@ class HomeScreen : AppCompatActivity() {
     }
 
     fun HistorySelectionPage(view: View){
-        val intent = Intent(this, Balancetest::class.java)
+        val intent = Intent(this, HistorySelectionPage::class.java)
         startActivity(intent)
     }
 
     fun addfunds(view: View){
-        val intent = Intent(this, AddFunds::class.java)
-        startActivity(intent)
+        val myDataBase = DataBaseHelper(this)
+
+        val id = myDataBase.getLoggedInId()
+
+        if(id == 999){
+        Toast.makeText(this,"Please create an account or Log in to add funds",Toast.LENGTH_LONG).show()
+
+        } else{
+            val intent = Intent(this, AddFunds::class.java)
+            startActivity(intent)
+        }
+
     }
 
 }
