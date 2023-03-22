@@ -15,19 +15,19 @@ class RouletteGame : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_roulette_game)
 
+
         val mImageView = findViewById<ImageView>(R.id.image_view_1)
         val mButton = findViewById<Button>(R.id.button_1)
 
         val animationSet = AnimationSet(true)
 
         val rotateAnimation = RotateAnimation(0f, 720F, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f)
-        rotateAnimation.duration = 750 //
-        rotateAnimation.repeatCount = 0 // Repeat indefinitely
+        rotateAnimation.duration = 750
+        rotateAnimation.repeatCount = 0
         rotateAnimation.interpolator = LinearInterpolator()
 
         animationSet.addAnimation(rotateAnimation)
 
-        // When button is clicked
         mButton.setOnClickListener {
 
             var degrees : Float = -9.729729F  // 360 degrees of a circle divided by the 37 sections
@@ -365,14 +365,10 @@ class RouletteGame : AppCompatActivity() {
                     val mydatabase = DataBaseHelper(this)
                     val databaseInput = mydatabase.addRouletteResult(endNum)
 
-
                     mImageView.startAnimation(animationSet)
                     degrees *= 37
                     mImageView.rotation = degrees
                 }
-
-
-
                 }
             }
         }

@@ -36,13 +36,12 @@
 
             <TextView
                 android:id="@+id/textView2"
-                android:layout_width="426dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Please enter your details below, continue as a guest or create an account"
-                android:textSize="20sp"
                 android:gravity="center"
-                />
+                android:text="Please enter your details below, continue as a guest or create an account"
+                android:textSize="20sp" />
         </LinearLayout>
 
         <LinearLayout

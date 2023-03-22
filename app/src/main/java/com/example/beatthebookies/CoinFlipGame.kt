@@ -206,7 +206,7 @@ class CoinFlipGame : AppCompatActivity() {
         val context = this
         var db = DataBaseHelper(context)
 
-        val tvResult = findViewById<TextView>(R.id.textView3)
+        val tvResult = findViewById<TextView>(R.id.betAmountInput)
 
         val dbHelper = DataBaseHelper(this) // Replace "this" with your activity or fragment context
         val balance = dbHelper.getBalance()
