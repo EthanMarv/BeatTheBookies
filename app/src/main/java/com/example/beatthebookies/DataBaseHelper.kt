@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
 import android.database.sqlite.SQLiteOpenHelper
 import java.sql.Connection
+import java.time.temporal.TemporalAmount
 
 private val DataBaseName = "AppDataBase.db"
 private val ver : Int = 1
@@ -35,6 +36,10 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, DataBaseName,
     private val ROULETTE_ID = "Id"
     private val ROULETTE_RESULT = "Result"
     private val ROULETTE_COLOUR = "Colour"
+
+    private val BetAmount_Table ="BetAmount"
+    private val BetAmount_Id = "Id"
+    private val BetAmount_Amount = "Amount"
 
 
     override fun onCreate(db: SQLiteDatabase?) {
@@ -81,6 +86,31 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, DataBaseName,
 
         db.update("LoggedInUser", cv, null, null)
     }
+
+    fun updateBalanceBetAmount(id: Int, amount: Int) {
+        val db = this.writableDatabase
+        val cv = ContentValues()
+
+        cv.put("Amount", amount)
+        val selection = "Id = ?"
+        val selectionArgs = arrayOf(id.toString())
+        db.update("BetAmount", cv, selection, selectionArgs)
+    }
+
+
+    fun getBetAmountSum(): Int {
+        val db = readableDatabase
+        val cursor = db.rawQuery("SELECT SUM(Amount) FROM BetAmount", null)
+        var sum = 0
+        if (cursor.moveToFirst()) {
+            sum = cursor.getInt(0)
+        }
+        cursor.close()
+        return sum
+    }
+
+
+
 
     fun updateBalance(balance : Int) {
 
