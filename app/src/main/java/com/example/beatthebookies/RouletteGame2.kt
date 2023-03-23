@@ -84,9 +84,25 @@ class RouletteGame2 : AppCompatActivity() {
             R.id.btn14, R.id.btn15, R.id.btn16, R.id.btn17, R.id.btn18, R.id.btn19, R.id.btn20,
             R.id.btn21, R.id.btn22, R.id.btn23, R.id.btn24, R.id.btn25, R.id.btn26, R.id.btn27,
             R.id.btn28, R.id.btn29, R.id.btn30, R.id.btn31, R.id.btn32, R.id.btn33, R.id.btn34,
-            R.id.btn35, R.id.btn36
+            R.id.btn35, R.id.btn36, R.id.btn1to12, R.id.btn13to24, R.id.btn25to36, R.id.btnTopRow,
+            R.id.btnMiddleRow, R.id.btnBottomRow, R.id.btn1to18, R.id.btneven, R.id.btnred,
+            R.id.btnblack, R.id.btnodd, R.id.btn19to36
         )
         val buttons = Array(buttonIds.size) { i -> findViewById<Button>(buttonIds[i]) }
+
+        //id38 = 1-12
+        //id39 = 13-24
+        //id40 = 25-36
+        //id41 = 2/1top
+        //id42 = 2/1mid
+        //id43 = 2/1bottom
+        //id44 = 1-18
+        //id45 = even
+        //id46 = red
+        //id47 = black
+        //id48 = odd
+        //id50 = 19-36
+
 
 
         buttons[0].setOnClickListener {//green 0
@@ -104,6 +120,78 @@ class RouletteGame2 : AppCompatActivity() {
                 val currentbalance = findViewById<TextView>(R.id.Balancetxt)
                 currentbalance.setText("Balance : " + balance.toString())
                 Toast.makeText(this, "Bet on 0 Confirmed", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        buttons[1].setOnClickListener {
+            var balance = mydatabase.getBalance()
+            amount1 += betamount
+            var total = 0
+            if (betamount > balance) {
+                Toast.makeText(this, "Bet Amount too large", Toast.LENGTH_SHORT).show()
+            } else {
+                balance -= betamount
+                total += amount1
+                mydatabase.updateBalanceBetAmount(1, total)
+
+                val updatedbal = mydatabase.updateBalance(balance)
+                val currentbalance = findViewById<TextView>(R.id.Balancetxt)
+                currentbalance.setText("Balance : " + balance.toString())
+                Toast.makeText(this, "Bet on 1 Confirmed", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        buttons[2].setOnClickListener {
+            var balance = mydatabase.getBalance()
+            amount2 += betamount
+            var total = 2
+            if (betamount > balance) {
+                Toast.makeText(this, "Bet Amount too large", Toast.LENGTH_SHORT).show()
+            } else {
+                balance -= betamount
+                total += amount2
+                mydatabase.updateBalanceBetAmount(2, total)
+
+                val updatedbal = mydatabase.updateBalance(balance)
+                val currentbalance = findViewById<TextView>(R.id.Balancetxt)
+                currentbalance.setText("Balance : " + balance.toString())
+                Toast.makeText(this, "Bet on 2 Confirmed", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        buttons[3].setOnClickListener {
+            var balance = mydatabase.getBalance()
+            amount3 += betamount
+            var total = 0
+            if (betamount > balance) {
+                Toast.makeText(this, "Bet Amount too large", Toast.LENGTH_SHORT).show()
+            } else {
+                balance -= betamount
+                total += amount3
+                mydatabase.updateBalanceBetAmount(3, total)
+
+                val updatedbal = mydatabase.updateBalance(balance)
+                val currentbalance = findViewById<TextView>(R.id.Balancetxt)
+                currentbalance.setText("Balance : " + balance.toString())
+                Toast.makeText(this, "Bet on 3 Confirmed", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        buttons[4].setOnClickListener {
+            var balance = mydatabase.getBalance()
+            amount4 += betamount
+            var total = 0
+            if (betamount > balance) {
+                Toast.makeText(this, "Bet Amount too large", Toast.LENGTH_SHORT).show()
+            } else {
+                balance -= betamount
+                total += amount4
+                mydatabase.updateBalanceBetAmount(4, total)
+
+                val updatedbal = mydatabase.updateBalance(balance)
+                val currentbalance = findViewById<TextView>(R.id.Balancetxt)
+                currentbalance.setText("Balance : " + balance.toString())
+                Toast.makeText(this, "Bet on 4 Confirmed", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -162,7 +250,7 @@ class RouletteGame2 : AppCompatActivity() {
             val betamount = findViewById<EditText>(R.id.betAmountInput).text.toString().toInt()
 
 
-            when ((36..37).random()) {
+            when ((1..37).random()) {
                 1 -> {
                     val endNum = RouletteResults(-1, "1", "Red")
                     val mydatabase = DataBaseHelper(this)
@@ -172,6 +260,21 @@ class RouletteGame2 : AppCompatActivity() {
                     degrees *= 23
                     mImageView.rotation = degrees
 
+                    var balance = mydatabase.getBalance()
+                    var sum = mydatabase.getBetAmountSum()
+                    var amount1 = mydatabase.getBetAmount(1)
+
+                    if (amount1 != null) {
+                        balance += (amount1 * 36)
+                        balance -= (sum - amount1)
+                        val update = mydatabase.updateBalance(balance)
+                        val transfer = mydatabase.transferbalancewhereId()
+
+                        val currentbalance = findViewById<TextView>(R.id.Balancetxt)
+                        currentbalance.setText("Balance : " + balance.toString())
+                        Toast.makeText(this, "1", Toast.LENGTH_SHORT).show()
+                        resetAllAmounts()
+                    }
 
                 }
                 2 -> {
@@ -499,18 +602,20 @@ class RouletteGame2 : AppCompatActivity() {
                     mImageView.rotation = degrees
 
                     var balance = mydatabase.getBalance()
+                    var sum = mydatabase.getBetAmountSum()
+                    var amount0 = mydatabase.getBetAmount(37)
 
-                    //balance += (amount0 * 36)
-                   // balance =- amount1 + amount2 + amount3 + amount4 + amount5 + amount6 + amount7 + amount8 + amount9 + amount10 + amount11 + amount12 + amount13 + amount14 + amount15 + amount16 + amount17 + amount18 + amount19 + amount20 + amount21 + amount22 + amount23 + amount24 + amount25 + amount26 + amount27 + amount28 + amount29 + amount30 + amount31 + amount32 + amount33 + amount34 + amount35 + amount36
+                    if (amount0 != null) {
+                            balance += (amount0 * 36)
+                            balance -= (sum - amount0)
+                            val update = mydatabase.updateBalance(balance)
+                            val transfer = mydatabase.transferbalancewhereId()
 
-                    val update = mydatabase.updateBalance(balance)
-                    val transfer = mydatabase.transferbalancewhereId()
-
-                    val currentbalance = findViewById<TextView>(R.id.Balancetxt)
-                    resetAllAmounts()
-                    currentbalance.setText("Balance : " + balance.toString())
-                    Toast.makeText(this, "0", Toast.LENGTH_SHORT).show()
-
+                            val currentbalance = findViewById<TextView>(R.id.Balancetxt)
+                            currentbalance.setText("Balance : " + balance.toString())
+                            Toast.makeText(this, "0", Toast.LENGTH_SHORT).show()
+                            resetAllAmounts()
+                    }
                 }
             }
         }

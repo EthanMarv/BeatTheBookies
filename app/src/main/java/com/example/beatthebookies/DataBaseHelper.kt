@@ -98,6 +98,7 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, DataBaseName,
     }
 
 
+
     fun getBetAmountSum(): Int {
         val db = readableDatabase
         val cursor = db.rawQuery("SELECT SUM(Amount) FROM BetAmount", null)
@@ -108,6 +109,25 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, DataBaseName,
         cursor.close()
         return sum
     }
+
+    fun getBetAmount(id: Int): Int? {
+        val db = readableDatabase
+        val query = "SELECT Amount FROM BetAmount WHERE Id = ?"
+        val cursor = db.rawQuery(query, arrayOf(id.toString()))
+
+        var amount: Int? = null
+        if (cursor.moveToFirst()) {
+            val amountIndex = cursor.getColumnIndex("Amount")
+            if (amountIndex >= 0) {
+                amount = cursor.getInt(amountIndex)
+            }
+        }
+
+        cursor.close()
+        db.close()
+        return amount
+    }
+
 
 
 
