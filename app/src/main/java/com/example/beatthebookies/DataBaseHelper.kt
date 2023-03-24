@@ -40,6 +40,7 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, DataBaseName,
     private val BetAmount_Table ="BetAmount"
     private val BetAmount_Id = "Id"
     private val BetAmount_Amount = "Amount"
+    private val BetAmount_TempAmount = "TempAmount"
 
 
     override fun onCreate(db: SQLiteDatabase?) {
@@ -128,9 +129,33 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, DataBaseName,
         return amount
     }
 
+    fun updateTempBetAmount(id: Int, amount: Int) {
+        val db = this.writableDatabase
+        val cv = ContentValues()
 
+        cv.put("TempAmount", amount)
+        val selection = "Id = ?"
+        val selectionArgs = arrayOf(id.toString())
+        db.update("BetAmount", cv, selection, selectionArgs)
+    }
 
+    fun getTempBetAmount(id: Int): Int? {
+        val db = readableDatabase
+        val query = "SELECT TempAmount FROM BetAmount WHERE Id = ?"
+        val cursor = db.rawQuery(query, arrayOf(id.toString()))
 
+        var amount: Int? = 0
+        if (cursor.moveToFirst()) {
+            val amountIndex = cursor.getColumnIndex("TempAmount")
+            if (amountIndex >= 0) {
+                amount = cursor.getInt(amountIndex)
+            }
+        }
+
+        cursor.close()
+        db.close()
+        return amount
+    }
 
     fun updateBalance(balance : Int) {
 
