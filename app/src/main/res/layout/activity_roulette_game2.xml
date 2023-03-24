@@ -20,7 +20,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="208dp"
+            android:layout_height="240dp"
             android:orientation="vertical">
 
             <ImageView
@@ -42,7 +42,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="46dp"
             android:orientation="vertical">
 
             <androidx.appcompat.widget.AppCompatButton
@@ -554,7 +554,7 @@
                 android:layout_gravity="center"
                 android:layout_margin="2dp"
                 android:background="#010001"
-                android:text="33"
+                android:text="31"
                 android:textColor="@color/white"
                 android:onClick="buttonclick"/>
 

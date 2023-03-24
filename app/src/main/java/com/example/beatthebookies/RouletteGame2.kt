@@ -218,7 +218,7 @@ class RouletteGame2 : AppCompatActivity() {
                 Animation.RELATIVE_TO_SELF,
                 0.5f
             )
-            rotateAnimation.duration = 750
+            rotateAnimation.duration = 1500
             rotateAnimation.repeatCount = 0
             rotateAnimation.interpolator = LinearInterpolator()
 
@@ -230,7 +230,7 @@ class RouletteGame2 : AppCompatActivity() {
             var degrees: Float = -9.729729F  // 360 degrees of a circle divided by the 37 sections
 
 
-            when ((6..6).random()) {
+            when ((1..37).random()) {
                 1 -> {
                     val endNum = RouletteResults(-1, "1", "Red")
                     val mydatabase = DataBaseHelper(this)
@@ -494,7 +494,6 @@ class RouletteGame2 : AppCompatActivity() {
                     mImageView.rotation = degrees
 
                     var balance = mydatabase.getBalance()
-
                     var amount8 = mydatabase.getTempBetAmount(8) //2
                     var amount37 = mydatabase.getTempBetAmount(37) //1-12
                     var amount41 = mydatabase.getTempBetAmount(41) //bottom row
@@ -671,6 +670,32 @@ class RouletteGame2 : AppCompatActivity() {
                     mImageView.startAnimation(animationSet)
                     degrees *= 12
                     mImageView.rotation = degrees
+
+                    var balance = mydatabase.getBalance()
+                    var amount13 = mydatabase.getTempBetAmount(13) //13
+                    var amount38 = mydatabase.getTempBetAmount(38) //13-24
+                    var amount42 = mydatabase.getTempBetAmount(42) //bottom row
+                    var amount43 = mydatabase.getTempBetAmount(43) //1-18
+                    var amount46 = mydatabase.getTempBetAmount(46) //black
+                    var amount47 = mydatabase.getTempBetAmount(47) //odd
+
+                    if (amount13 != null && amount38 != null && amount42 != null && amount43 != null && amount46 != null && amount47 != null) {
+
+                        balance += (amount13 * 36) //13
+                        balance += (amount38 * 3) //13-24
+                        balance += (amount42 * 3) //bottom row
+                        balance += (amount43 * 2) // 1-18
+                        balance += (amount46 * 2) // black
+                        balance += (amount47 * 2) //odd
+
+                        val update = mydatabase.updateBalance(balance)
+                        val transfer = mydatabase.transferbalancewhereId()
+                        val currentbalance = findViewById<TextView>(R.id.Balancetxt)
+                        currentbalance.setText("Balance : " + balance.toString())
+                        Toast.makeText(this, "13", Toast.LENGTH_SHORT).show()
+                        resetAllAmounts()
+                        resetAllTamounts()
+                    }
                 }
                 14 -> {
                     val endNum = RouletteResults(-1, "14", "Red")
@@ -680,6 +705,33 @@ class RouletteGame2 : AppCompatActivity() {
                     mImageView.startAnimation(animationSet)
                     degrees *= 25
                     mImageView.rotation = degrees
+
+
+                    var balance = mydatabase.getBalance()
+                    var amount14 = mydatabase.getTempBetAmount(14) //14
+                    var amount38 = mydatabase.getTempBetAmount(38) //13-24
+                    var amount41 = mydatabase.getTempBetAmount(41) //middle row
+                    var amount43 = mydatabase.getTempBetAmount(43) //1-18
+                    var amount45 = mydatabase.getTempBetAmount(45) //red
+                    var amount44 = mydatabase.getTempBetAmount(44) //odd
+
+                    if (amount14 != null && amount38 != null && amount41 != null && amount43 != null && amount45 != null && amount44 != null) {
+
+                        balance += (amount14 * 36) //14
+                        balance += (amount38 * 3) //13-24
+                        balance += (amount41 * 3) //middle row
+                        balance += (amount43 * 2) // 1-18
+                        balance += (amount45 * 2) // red
+                        balance += (amount44 * 2) //even
+
+                        val update = mydatabase.updateBalance(balance)
+                        val transfer = mydatabase.transferbalancewhereId()
+                        val currentbalance = findViewById<TextView>(R.id.Balancetxt)
+                        currentbalance.setText("Balance : " + balance.toString())
+                        Toast.makeText(this, "14", Toast.LENGTH_SHORT).show()
+                        resetAllAmounts()
+                        resetAllTamounts()
+                    }
                 }
                 15 -> {
                     val endNum = RouletteResults(-1, "15", "Black")
@@ -689,6 +741,33 @@ class RouletteGame2 : AppCompatActivity() {
                     mImageView.startAnimation(animationSet)
                     degrees *= 2
                     mImageView.rotation = degrees
+
+                    var balance = mydatabase.getBalance()
+
+                    var amount15 = mydatabase.getTempBetAmount(15) //15
+                    var amount38 = mydatabase.getTempBetAmount(38) //25-36
+                    var amount40 = mydatabase.getTempBetAmount(40) //top row
+                    var amount43 = mydatabase.getTempBetAmount(43) //1-18
+                    var amount46 = mydatabase.getTempBetAmount(46) //black
+                    var amount47 = mydatabase.getTempBetAmount(47) //odd
+
+                    if (amount15 != null && amount38 != null && amount40 != null && amount43 != null && amount46 != null && amount47 != null) {
+
+                        balance += (amount15 * 36) //15
+                        balance += (amount38 * 3) //13-24
+                        balance += (amount40 * 3) //top row
+                        balance += (amount43 * 2) // 19-36
+                        balance += (amount46 * 2) // black
+                        balance += (amount47 * 2) //odd
+
+                        val update = mydatabase.updateBalance(balance)
+                        val transfer = mydatabase.transferbalancewhereId()
+                        val currentbalance = findViewById<TextView>(R.id.Balancetxt)
+                        currentbalance.setText("Balance : " + balance.toString())
+                        Toast.makeText(this, "15", Toast.LENGTH_SHORT).show()
+                        resetAllAmounts()
+                        resetAllTamounts()
+                    }
                 }
                 16 -> {
                     val endNum = RouletteResults(-1, "16", "Red")
@@ -698,6 +777,32 @@ class RouletteGame2 : AppCompatActivity() {
                     mImageView.startAnimation(animationSet)
                     degrees *= 21
                     mImageView.rotation = degrees
+
+                    var balance = mydatabase.getBalance()
+                    var amount16 = mydatabase.getTempBetAmount(16) //16
+                    var amount38 = mydatabase.getTempBetAmount(38) //13-24
+                    var amount42 = mydatabase.getTempBetAmount(42) //bottom row
+                    var amount43 = mydatabase.getTempBetAmount(43) //1-18
+                    var amount45 = mydatabase.getTempBetAmount(45) //red
+                    var amount44 = mydatabase.getTempBetAmount(44) //even
+
+                    if (amount16 != null && amount38 != null && amount42 != null && amount43 != null && amount45 != null && amount44 != null) {
+
+                        balance += (amount16 * 36) //14
+                        balance += (amount38 * 3) //13-24
+                        balance += (amount42 * 3) //bottom row
+                        balance += (amount43 * 2) // 1-18
+                        balance += (amount45 * 2) // red
+                        balance += (amount44 * 2) //even
+
+                        val update = mydatabase.updateBalance(balance)
+                        val transfer = mydatabase.transferbalancewhereId()
+                        val currentbalance = findViewById<TextView>(R.id.Balancetxt)
+                        currentbalance.setText("Balance : " + balance.toString())
+                        Toast.makeText(this, "16", Toast.LENGTH_SHORT).show()
+                        resetAllAmounts()
+                        resetAllTamounts()
+                    }
                 }
                 17 -> {
                     val endNum = RouletteResults(-1, "17", "Black")
@@ -707,6 +812,33 @@ class RouletteGame2 : AppCompatActivity() {
                     mImageView.startAnimation(animationSet)
                     degrees *= 8
                     mImageView.rotation = degrees
+
+                    var balance = mydatabase.getBalance()
+
+                    var amount17 = mydatabase.getTempBetAmount(17) //17
+                    var amount38 = mydatabase.getTempBetAmount(38) //13-24
+                    var amount41 = mydatabase.getTempBetAmount(41) //middle row
+                    var amount43 = mydatabase.getTempBetAmount(43) //1-18
+                    var amount46 = mydatabase.getTempBetAmount(46) //black
+                    var amount47 = mydatabase.getTempBetAmount(47) //odd
+
+                    if (amount17 != null && amount38 != null && amount41 != null && amount43 != null && amount46 != null && amount47 != null) {
+
+                        balance += (amount17 * 36) // 17
+                        balance += (amount38 * 3) //  1-12
+                        balance += (amount41 * 3) //middle row
+                        balance += (amount43 * 2) // 1-18
+                        balance += (amount46 * 2) // black
+                        balance += (amount47 * 2) //odd
+
+                        val update = mydatabase.updateBalance(balance)
+                        val transfer = mydatabase.transferbalancewhereId()
+                        val currentbalance = findViewById<TextView>(R.id.Balancetxt)
+                        currentbalance.setText("Balance : " + balance.toString())
+                        Toast.makeText(this, "17", Toast.LENGTH_SHORT).show()
+                        resetAllAmounts()
+                        resetAllTamounts()
+                    }
                 }
                 18 -> {
                     val endNum = RouletteResults(-1, "18", "Red")
@@ -716,6 +848,32 @@ class RouletteGame2 : AppCompatActivity() {
                     mImageView.startAnimation(animationSet)
                     degrees *= 29
                     mImageView.rotation = degrees
+
+                    var balance = mydatabase.getBalance()
+                    var amount18 = mydatabase.getTempBetAmount(18) //18
+                    var amount38 = mydatabase.getTempBetAmount(38) //13-24
+                    var amount40 = mydatabase.getTempBetAmount(40) //top row
+                    var amount43 = mydatabase.getTempBetAmount(43) //1-18
+                    var amount45 = mydatabase.getTempBetAmount(45) //red
+                    var amount44 = mydatabase.getTempBetAmount(44) //even
+
+                    if (amount18 != null && amount38 != null && amount40 != null && amount43 != null && amount45 != null && amount44 != null) {
+
+                        balance += (amount18 * 36) //14
+                        balance += (amount38 * 3) //13-24
+                        balance += (amount40 * 3) //top row
+                        balance += (amount43 * 2) // 1-18
+                        balance += (amount45 * 2) // red
+                        balance += (amount44 * 2) //even
+
+                        val update = mydatabase.updateBalance(balance)
+                        val transfer = mydatabase.transferbalancewhereId()
+                        val currentbalance = findViewById<TextView>(R.id.Balancetxt)
+                        currentbalance.setText("Balance : " + balance.toString())
+                        Toast.makeText(this, "18", Toast.LENGTH_SHORT).show()
+                        resetAllAmounts()
+                        resetAllTamounts()
+                    }
                 }
                 19 -> {
                     val endNum = RouletteResults(-1, "19", "Red")
@@ -725,6 +883,32 @@ class RouletteGame2 : AppCompatActivity() {
                     mImageView.startAnimation(animationSet)
                     degrees *= 3
                     mImageView.rotation = degrees
+
+                    var balance = mydatabase.getBalance()
+                    var amount19 = mydatabase.getTempBetAmount(19) //19
+                    var amount38 = mydatabase.getTempBetAmount(38) //13-24
+                    var amount42 = mydatabase.getTempBetAmount(42) //bottom row
+                    var amount48 = mydatabase.getTempBetAmount(48) //18-36
+                    var amount45 = mydatabase.getTempBetAmount(45) //red
+                    var amount47 = mydatabase.getTempBetAmount(47) //odd
+
+                    if (amount19 != null && amount38 != null && amount42 != null && amount48 != null && amount45 != null && amount47 != null) {
+
+                        balance += (amount19 * 36) //19
+                        balance += (amount38 * 3) //13-24
+                        balance += (amount42 * 3) //bottom row
+                        balance += (amount48 * 2) // 18-36
+                        balance += (amount45 * 2) // red
+                        balance += (amount47 * 2) //odd
+
+                        val update = mydatabase.updateBalance(balance)
+                        val transfer = mydatabase.transferbalancewhereId()
+                        val currentbalance = findViewById<TextView>(R.id.Balancetxt)
+                        currentbalance.setText("Balance : " + balance.toString())
+                        Toast.makeText(this, "19", Toast.LENGTH_SHORT).show()
+                        resetAllAmounts()
+                        resetAllTamounts()
+                    }
                 }
                 20 -> {
                     val endNum = RouletteResults(-1, "20", "Black")
@@ -734,6 +918,32 @@ class RouletteGame2 : AppCompatActivity() {
                     mImageView.startAnimation(animationSet)
                     degrees *= 24
                     mImageView.rotation = degrees
+
+                    var balance = mydatabase.getBalance()
+                    var amount20 = mydatabase.getTempBetAmount(20) //20
+                    var amount38 = mydatabase.getTempBetAmount(38) //13-24
+                    var amount41 = mydatabase.getTempBetAmount(41) //middle row
+                    var amount48 = mydatabase.getTempBetAmount(48) //19-36
+                    var amount46 = mydatabase.getTempBetAmount(46) //black
+                    var amount44 = mydatabase.getTempBetAmount(44) //even
+
+                    if (amount20 != null && amount38 != null && amount41 != null && amount48 != null && amount46 != null && amount44 != null) {
+
+                        balance += (amount20 * 36) // 20
+                        balance += (amount38 * 3) //  13-24
+                        balance += (amount41 * 3) //middle row
+                        balance += (amount48 * 2) // 19-36
+                        balance += (amount46 * 2) // black
+                        balance += (amount44 * 2) //even
+
+                        val update = mydatabase.updateBalance(balance)
+                        val transfer = mydatabase.transferbalancewhereId()
+                        val currentbalance = findViewById<TextView>(R.id.Balancetxt)
+                        currentbalance.setText("Balance : " + balance.toString())
+                        Toast.makeText(this, "20", Toast.LENGTH_SHORT).show()
+                        resetAllAmounts()
+                        resetAllTamounts()
+                    }
                 }
                 21 -> {
                     val endNum = RouletteResults(-1, "21", "Red")
@@ -743,6 +953,32 @@ class RouletteGame2 : AppCompatActivity() {
                     mImageView.startAnimation(animationSet)
                     degrees *= 5
                     mImageView.rotation = degrees
+
+                    var balance = mydatabase.getBalance()
+                    var amount21 = mydatabase.getTempBetAmount(21) //21
+                    var amount38 = mydatabase.getTempBetAmount(38) //13-24
+                    var amount40 = mydatabase.getTempBetAmount(40) //top row
+                    var amount48 = mydatabase.getTempBetAmount(48) //19-36
+                    var amount45 = mydatabase.getTempBetAmount(45) //red
+                    var amount47 = mydatabase.getTempBetAmount(47) //odd
+
+                    if (amount21 != null && amount38 != null && amount40 != null && amount48 != null && amount45 != null && amount47 != null) {
+
+                        balance += (amount21 * 36) //21
+                        balance += (amount38 * 3) //13-24
+                        balance += (amount40 * 3) //top row
+                        balance += (amount48 * 2) // 19-36
+                        balance += (amount45 * 2) // red
+                        balance += (amount47 * 2) //even
+
+                        val update = mydatabase.updateBalance(balance)
+                        val transfer = mydatabase.transferbalancewhereId()
+                        val currentbalance = findViewById<TextView>(R.id.Balancetxt)
+                        currentbalance.setText("Balance : " + balance.toString())
+                        Toast.makeText(this, "21", Toast.LENGTH_SHORT).show()
+                        resetAllAmounts()
+                        resetAllTamounts()
+                    }
                 }
                 22 -> {
                     val endNum = RouletteResults(-1, "22", "Black")
@@ -752,6 +988,32 @@ class RouletteGame2 : AppCompatActivity() {
                     mImageView.startAnimation(animationSet)
                     degrees *= 28
                     mImageView.rotation = degrees
+
+                    var balance = mydatabase.getBalance()
+                    var amount22 = mydatabase.getTempBetAmount(22) //22
+                    var amount38 = mydatabase.getTempBetAmount(38) //13-24
+                    var amount42 = mydatabase.getTempBetAmount(42) //bottom row
+                    var amount48 = mydatabase.getTempBetAmount(48) //19-36
+                    var amount46 = mydatabase.getTempBetAmount(46) //black
+                    var amount44 = mydatabase.getTempBetAmount(44) //even
+
+                    if (amount22 != null && amount38 != null && amount42 != null && amount48 != null && amount46 != null && amount44 != null) {
+
+                        balance += (amount22 * 36) // 22
+                        balance += (amount38 * 3) //  13-24
+                        balance += (amount42 * 3) //middle row
+                        balance += (amount48 * 2) // 19-36
+                        balance += (amount46 * 2) // black
+                        balance += (amount44 * 2) //even
+
+                        val update = mydatabase.updateBalance(balance)
+                        val transfer = mydatabase.transferbalancewhereId()
+                        val currentbalance = findViewById<TextView>(R.id.Balancetxt)
+                        currentbalance.setText("Balance : " + balance.toString())
+                        Toast.makeText(this, "22", Toast.LENGTH_SHORT).show()
+                        resetAllAmounts()
+                        resetAllTamounts()
+                    }
                 }
                 23 -> {
                     val endNum = RouletteResults(-1, "23", "Red")
@@ -761,6 +1023,32 @@ class RouletteGame2 : AppCompatActivity() {
                     mImageView.startAnimation(animationSet)
                     degrees *= 17
                     mImageView.rotation = degrees
+
+                    var balance = mydatabase.getBalance()
+                    var amount23 = mydatabase.getTempBetAmount(23) //23
+                    var amount38 = mydatabase.getTempBetAmount(38) //13-24
+                    var amount41 = mydatabase.getTempBetAmount(41) //middle row
+                    var amount48 = mydatabase.getTempBetAmount(48) //19-36
+                    var amount45 = mydatabase.getTempBetAmount(45) //red
+                    var amount47 = mydatabase.getTempBetAmount(47) //odd
+
+                    if (amount23 != null && amount38 != null && amount41 != null && amount48 != null && amount45 != null && amount47 != null) {
+
+                        balance += (amount23 * 36) //21
+                        balance += (amount38 * 3) //13-24
+                        balance += (amount41 * 3) //middle row
+                        balance += (amount48 * 2) //19-36
+                        balance += (amount45 * 2) //red
+                        balance += (amount47 * 2) //even
+
+                        val update = mydatabase.updateBalance(balance)
+                        val transfer = mydatabase.transferbalancewhereId()
+                        val currentbalance = findViewById<TextView>(R.id.Balancetxt)
+                        currentbalance.setText("Balance : " + balance.toString())
+                        Toast.makeText(this, "23", Toast.LENGTH_SHORT).show()
+                        resetAllAmounts()
+                        resetAllTamounts()
+                    }
                 }
                 24 -> {
                     val endNum = RouletteResults(-1, "24", "Black")
@@ -770,6 +1058,32 @@ class RouletteGame2 : AppCompatActivity() {
                     mImageView.startAnimation(animationSet)
                     degrees *= 20
                     mImageView.rotation = degrees
+
+                    var balance = mydatabase.getBalance()
+                    var amount24 = mydatabase.getTempBetAmount(24) //24
+                    var amount38 = mydatabase.getTempBetAmount(38) //13-24
+                    var amount40 = mydatabase.getTempBetAmount(40) //top row
+                    var amount48 = mydatabase.getTempBetAmount(48) //19-36
+                    var amount46 = mydatabase.getTempBetAmount(46) //black
+                    var amount44 = mydatabase.getTempBetAmount(44) //even
+
+                    if (amount24 != null && amount38 != null && amount40 != null && amount48 != null && amount46 != null && amount44 != null) {
+
+                        balance += (amount24 * 36) // 24
+                        balance += (amount38 * 3) //  13-24
+                        balance += (amount40 * 3) //top row
+                        balance += (amount48 * 2) // 19-36
+                        balance += (amount46 * 2) // black
+                        balance += (amount44 * 2) //even
+
+                        val update = mydatabase.updateBalance(balance)
+                        val transfer = mydatabase.transferbalancewhereId()
+                        val currentbalance = findViewById<TextView>(R.id.Balancetxt)
+                        currentbalance.setText("Balance : " + balance.toString())
+                        Toast.makeText(this, "24", Toast.LENGTH_SHORT).show()
+                        resetAllAmounts()
+                        resetAllTamounts()
+                    }
                 }
                 25 -> {
                     val endNum = RouletteResults(-1, "25", "Red")
@@ -779,6 +1093,32 @@ class RouletteGame2 : AppCompatActivity() {
                     mImageView.startAnimation(animationSet)
                     degrees *= 7
                     mImageView.rotation = degrees
+                    var balance = mydatabase.getBalance()
+
+                    var amount25 = mydatabase.getTempBetAmount(25) //25
+                    var amount39 = mydatabase.getTempBetAmount(39) //25-36
+                    var amount42 = mydatabase.getTempBetAmount(42) //bottom row
+                    var amount48 = mydatabase.getTempBetAmount(48) //19-36
+                    var amount45 = mydatabase.getTempBetAmount(45) //red
+                    var amount47 = mydatabase.getTempBetAmount(47) //odd
+
+                    if (amount25 != null && amount39 != null && amount42 != null && amount48 != null && amount45 != null && amount47 != null) {
+
+                        balance += (amount25 * 36) //25
+                        balance += (amount39 * 3) //25-36
+                        balance += (amount42 * 3) //bottom row
+                        balance += (amount48 * 2) // 19-36
+                        balance += (amount45 * 2) // red
+                        balance += (amount47 * 2) //odd
+
+                        val update = mydatabase.updateBalance(balance)
+                        val transfer = mydatabase.transferbalancewhereId()
+                        val currentbalance = findViewById<TextView>(R.id.Balancetxt)
+                        currentbalance.setText("Balance : " + balance.toString())
+                        Toast.makeText(this, "25", Toast.LENGTH_SHORT).show()
+                        resetAllAmounts()
+                        resetAllTamounts()
+                    }
                 }
                 26 -> {
                     val endNum = RouletteResults(-1, "26", "Black")
@@ -788,6 +1128,32 @@ class RouletteGame2 : AppCompatActivity() {
                     mImageView.startAnimation(animationSet)
                     degrees *= 36
                     mImageView.rotation = degrees
+
+                    var balance = mydatabase.getBalance()
+                    var amount26 = mydatabase.getTempBetAmount(26) //26
+                    var amount39 = mydatabase.getTempBetAmount(39) //13-24
+                    var amount41 = mydatabase.getTempBetAmount(41) //middle row
+                    var amount48 = mydatabase.getTempBetAmount(48) //19-36
+                    var amount46 = mydatabase.getTempBetAmount(46) //black
+                    var amount44 = mydatabase.getTempBetAmount(44) //even
+
+                    if (amount26 != null && amount39 != null && amount41 != null && amount48 != null && amount46 != null && amount44 != null) {
+
+                        balance += (amount26 * 36) // 26
+                        balance += (amount39 * 3) //  25-36
+                        balance += (amount41 * 3) //middle row
+                        balance += (amount48 * 2) // 19-36
+                        balance += (amount46 * 2) // black
+                        balance += (amount44 * 2) //even
+
+                        val update = mydatabase.updateBalance(balance)
+                        val transfer = mydatabase.transferbalancewhereId()
+                        val currentbalance = findViewById<TextView>(R.id.Balancetxt)
+                        currentbalance.setText("Balance : " + balance.toString())
+                        Toast.makeText(this, "26", Toast.LENGTH_SHORT).show()
+                        resetAllAmounts()
+                        resetAllTamounts()
+                    }
                 }
                 27 -> {
                     val endNum = RouletteResults(-1, "27", "Red")
@@ -797,6 +1163,33 @@ class RouletteGame2 : AppCompatActivity() {
                     mImageView.startAnimation(animationSet)
                     degrees *= 11
                     mImageView.rotation = degrees
+
+                    var balance = mydatabase.getBalance()
+
+                    var amount27 = mydatabase.getTempBetAmount(27) //27
+                    var amount39 = mydatabase.getTempBetAmount(39) //25-36
+                    var amount40 = mydatabase.getTempBetAmount(40) //top row
+                    var amount48 = mydatabase.getTempBetAmount(48) //19-36
+                    var amount45 = mydatabase.getTempBetAmount(45) //red
+                    var amount47 = mydatabase.getTempBetAmount(47) //odd
+
+                    if (amount27 != null && amount39 != null && amount40 != null && amount48 != null && amount45 != null && amount47 != null) {
+
+                        balance += (amount27 * 36) //27
+                        balance += (amount39 * 3) //25-36
+                        balance += (amount40 * 3) //top row
+                        balance += (amount48 * 2) // 19-36
+                        balance += (amount45 * 2) // red
+                        balance += (amount47 * 2) //odd
+
+                        val update = mydatabase.updateBalance(balance)
+                        val transfer = mydatabase.transferbalancewhereId()
+                        val currentbalance = findViewById<TextView>(R.id.Balancetxt)
+                        currentbalance.setText("Balance : " + balance.toString())
+                        Toast.makeText(this, "27", Toast.LENGTH_SHORT).show()
+                        resetAllAmounts()
+                        resetAllTamounts()
+                    }
                 }
                 28 -> {
                     val endNum = RouletteResults(-1, "28", "Black")
@@ -806,6 +1199,32 @@ class RouletteGame2 : AppCompatActivity() {
                     mImageView.startAnimation(animationSet)
                     degrees *= 32
                     mImageView.rotation = degrees
+
+                    var balance = mydatabase.getBalance()
+                    var amount28 = mydatabase.getTempBetAmount(28) //28
+                    var amount39 = mydatabase.getTempBetAmount(39) //25-36
+                    var amount42 = mydatabase.getTempBetAmount(42) //bottom row
+                    var amount48 = mydatabase.getTempBetAmount(48) //19-36
+                    var amount46 = mydatabase.getTempBetAmount(46) //black
+                    var amount44 = mydatabase.getTempBetAmount(44) //even
+
+                    if (amount28 != null && amount39 != null && amount42 != null && amount48 != null && amount46 != null && amount44 != null) {
+
+                        balance += (amount28 * 36) // 28
+                        balance += (amount39 * 3) //  25-36
+                        balance += (amount42 * 3) //bottom row
+                        balance += (amount48 * 2) // 19-36
+                        balance += (amount46 * 2) // black
+                        balance += (amount44 * 2) //even
+
+                        val update = mydatabase.updateBalance(balance)
+                        val transfer = mydatabase.transferbalancewhereId()
+                        val currentbalance = findViewById<TextView>(R.id.Balancetxt)
+                        currentbalance.setText("Balance : " + balance.toString())
+                        Toast.makeText(this, "28", Toast.LENGTH_SHORT).show()
+                        resetAllAmounts()
+                        resetAllTamounts()
+                    }
                 }
                 29 -> {
                     val endNum = RouletteResults(-1, "29", "Black")
@@ -815,6 +1234,32 @@ class RouletteGame2 : AppCompatActivity() {
                     mImageView.startAnimation(animationSet)
                     degrees *= 30
                     mImageView.rotation = degrees
+
+                    var balance = mydatabase.getBalance()
+                    var amount29 = mydatabase.getTempBetAmount(29) //29
+                    var amount39 = mydatabase.getTempBetAmount(39) //25-36
+                    var amount41 = mydatabase.getTempBetAmount(41) //middle row
+                    var amount48 = mydatabase.getTempBetAmount(48) //19-36
+                    var amount46 = mydatabase.getTempBetAmount(46) //black
+                    var amount47 = mydatabase.getTempBetAmount(47) //odd
+
+                    if (amount29 != null && amount39 != null && amount41 != null && amount48 != null && amount46 != null && amount47 != null) {
+
+                        balance += (amount29 * 36) //29
+                        balance += (amount39 * 3) //25-36
+                        balance += (amount41 * 3) //bottom row
+                        balance += (amount48 * 2) // 19-36
+                        balance += (amount46 * 2) // black
+                        balance += (amount47 * 2) //odd
+
+                        val update = mydatabase.updateBalance(balance)
+                        val transfer = mydatabase.transferbalancewhereId()
+                        val currentbalance = findViewById<TextView>(R.id.Balancetxt)
+                        currentbalance.setText("Balance : " + balance.toString())
+                        Toast.makeText(this, "33", Toast.LENGTH_SHORT).show()
+                        resetAllAmounts()
+                        resetAllTamounts()
+                    }
                 }
                 30 -> {
                     val endNum = RouletteResults(-1, "30", "Red")
@@ -824,6 +1269,33 @@ class RouletteGame2 : AppCompatActivity() {
                     mImageView.startAnimation(animationSet)
                     degrees *= 15
                     mImageView.rotation = degrees
+
+                    var balance = mydatabase.getBalance()
+
+                    var amount30 = mydatabase.getTempBetAmount(30) //30
+                    var amount39 = mydatabase.getTempBetAmount(39) //25-36
+                    var amount40 = mydatabase.getTempBetAmount(40) //top row
+                    var amount48 = mydatabase.getTempBetAmount(48) //19-36
+                    var amount45 = mydatabase.getTempBetAmount(45) //red
+                    var amount44 = mydatabase.getTempBetAmount(44) //even
+
+                    if (amount30 != null && amount39 != null && amount40 != null && amount48 != null && amount45 != null && amount44 != null) {
+
+                        balance += (amount30 * 36) //30
+                        balance += (amount39 * 3) //25-36
+                        balance += (amount40 * 3) //top row
+                        balance += (amount48 * 2) // 19-36
+                        balance += (amount45 * 2) // red
+                        balance += (amount44 * 2) //even
+
+                        val update = mydatabase.updateBalance(balance)
+                        val transfer = mydatabase.transferbalancewhereId()
+                        val currentbalance = findViewById<TextView>(R.id.Balancetxt)
+                        currentbalance.setText("Balance : " + balance.toString())
+                        Toast.makeText(this, "30", Toast.LENGTH_SHORT).show()
+                        resetAllAmounts()
+                        resetAllTamounts()
+                    }
                 }
                 31 -> {
                     val endNum = RouletteResults(-1, "31", "Black")
@@ -833,6 +1305,34 @@ class RouletteGame2 : AppCompatActivity() {
                     mImageView.startAnimation(animationSet)
                     degrees *= 26
                     mImageView.rotation = degrees
+
+                    var balance = mydatabase.getBalance()
+                    var amount31 = mydatabase.getTempBetAmount(31) //31
+                    var amount39 = mydatabase.getTempBetAmount(39) //25-36
+                    var amount42 = mydatabase.getTempBetAmount(42) //bottom row
+                    var amount48 = mydatabase.getTempBetAmount(48) //19-36
+                    var amount46 = mydatabase.getTempBetAmount(46) //black
+                    var amount47 = mydatabase.getTempBetAmount(47) //odd
+
+                    if (amount31 != null && amount39 != null && amount42 != null && amount48 != null && amount46 != null && amount47 != null) {
+
+                        balance += (amount31 * 36) //33
+                        balance += (amount39 * 3) //25-36
+                        balance += (amount42 * 3) //bottom row
+                        balance += (amount48 * 2) // 19-36
+                        balance += (amount46 * 2) // black
+                        balance += (amount47 * 2) //odd
+
+                        val update = mydatabase.updateBalance(balance)
+                        val transfer = mydatabase.transferbalancewhereId()
+                        val currentbalance = findViewById<TextView>(R.id.Balancetxt)
+                        currentbalance.setText("Balance : " + balance.toString())
+                        Toast.makeText(this, "31", Toast.LENGTH_SHORT).show()
+                        resetAllAmounts()
+                        resetAllTamounts()
+                    }
+
+
                 }
                 32 -> {
                     val endNum = RouletteResults(-1, "32", "Black")
@@ -842,6 +1342,32 @@ class RouletteGame2 : AppCompatActivity() {
                     mImageView.startAnimation(animationSet)
                     degrees *= 1
                     mImageView.rotation = degrees
+
+                    var balance = mydatabase.getBalance()
+                    var amount32 = mydatabase.getTempBetAmount(32) //36
+                    var amount39 = mydatabase.getTempBetAmount(39) //25-36
+                    var amount41 = mydatabase.getTempBetAmount(41) //middle row
+                    var amount48 = mydatabase.getTempBetAmount(48) //19-36
+                    var amount45 = mydatabase.getTempBetAmount(45) //red
+                    var amount44 = mydatabase.getTempBetAmount(44) //even
+
+                    if (amount32 != null && amount39 != null && amount41 != null && amount48 != null && amount45 != null && amount44 != null) {
+
+                        balance += (amount32 * 36) //36
+                        balance += (amount39 * 3) //25-36
+                        balance += (amount41 * 3) //middle row
+                        balance += (amount48 * 2) // 19-36
+                        balance += (amount45 * 2) // red
+                        balance += (amount44 * 2) //even
+
+                        val update = mydatabase.updateBalance(balance)
+                        val transfer = mydatabase.transferbalancewhereId()
+                        val currentbalance = findViewById<TextView>(R.id.Balancetxt)
+                        currentbalance.setText("Balance : " + balance.toString())
+                        Toast.makeText(this, "32", Toast.LENGTH_SHORT).show()
+                        resetAllAmounts()
+                        resetAllTamounts()
+                    }
                 }
                 33 -> {
                     val endNum = RouletteResults(-1, "33", "Black")
@@ -851,6 +1377,32 @@ class RouletteGame2 : AppCompatActivity() {
                     mImageView.startAnimation(animationSet)
                     degrees *= 22
                     mImageView.rotation = degrees
+
+                    var balance = mydatabase.getBalance()
+                    var amount33 = mydatabase.getTempBetAmount(33) //9
+                    var amount39 = mydatabase.getTempBetAmount(39) //25-36
+                    var amount42 = mydatabase.getTempBetAmount(42) //bottom row
+                    var amount48 = mydatabase.getTempBetAmount(48) //1-36
+                    var amount46 = mydatabase.getTempBetAmount(46) //black
+                    var amount47 = mydatabase.getTempBetAmount(47) //odd
+
+                    if (amount33 != null && amount39 != null && amount42 != null && amount48 != null && amount46 != null && amount47 != null) {
+
+                        balance += (amount33 * 36) //33
+                        balance += (amount39 * 3) //25-36
+                        balance += (amount42 * 3) //bottom row
+                        balance += (amount48 * 2) // 19-36
+                        balance += (amount46 * 2) // black
+                        balance += (amount47 * 2) //odd
+
+                        val update = mydatabase.updateBalance(balance)
+                        val transfer = mydatabase.transferbalancewhereId()
+                        val currentbalance = findViewById<TextView>(R.id.Balancetxt)
+                        currentbalance.setText("Balance : " + balance.toString())
+                        Toast.makeText(this, "33", Toast.LENGTH_SHORT).show()
+                        resetAllAmounts()
+                        resetAllTamounts()
+                    }
                 }
                 34 -> {
                     val endNum = RouletteResults(-1, "34", "Red")
@@ -860,6 +1412,32 @@ class RouletteGame2 : AppCompatActivity() {
                     mImageView.startAnimation(animationSet)
                     degrees *= 9
                     mImageView.rotation = degrees
+
+                    var balance = mydatabase.getBalance()
+                    var amount34 = mydatabase.getTempBetAmount(34) //34
+                    var amount39 = mydatabase.getTempBetAmount(39) //25-36
+                    var amount42 = mydatabase.getTempBetAmount(42) //bottom row
+                    var amount48 = mydatabase.getTempBetAmount(48) //19-36
+                    var amount45 = mydatabase.getTempBetAmount(45) //red
+                    var amount44 = mydatabase.getTempBetAmount(44) //even
+
+                    if (amount34 != null && amount39 != null && amount42 != null && amount48 != null && amount45 != null && amount44 != null) {
+
+                        balance += (amount34 * 36) //36
+                        balance += (amount39 * 3) //25-36
+                        balance += (amount42 * 3) //bottom row
+                        balance += (amount48 * 2) // 19-36
+                        balance += (amount45 * 2) // red
+                        balance += (amount44 * 2) //even
+
+                        val update = mydatabase.updateBalance(balance)
+                        val transfer = mydatabase.transferbalancewhereId()
+                        val currentbalance = findViewById<TextView>(R.id.Balancetxt)
+                        currentbalance.setText("Balance : " + balance.toString())
+                        Toast.makeText(this, "34", Toast.LENGTH_SHORT).show()
+                        resetAllAmounts()
+                        resetAllTamounts()
+                    }
                 }
                 35 -> {
                     val endNum = RouletteResults(-1, "35", "Black")
@@ -869,6 +1447,33 @@ class RouletteGame2 : AppCompatActivity() {
                     mImageView.startAnimation(animationSet)
                     degrees *= 34
                     mImageView.rotation = degrees
+
+                    var balance = mydatabase.getBalance()
+
+                    var amount35 = mydatabase.getTempBetAmount(35) //35
+                    var amount39 = mydatabase.getTempBetAmount(39) //25-36
+                    var amount41 = mydatabase.getTempBetAmount(41) //middle row
+                    var amount48 = mydatabase.getTempBetAmount(48) //1-36
+                    var amount46 = mydatabase.getTempBetAmount(46) //black
+                    var amount47 = mydatabase.getTempBetAmount(47) //odd
+
+                    if (amount35 != null && amount39 != null && amount41 != null && amount48 != null && amount46 != null && amount47 != null) {
+
+                        balance += (amount35 * 36) //33
+                        balance += (amount39 * 3) //25-36
+                        balance += (amount41 * 3) //middle row
+                        balance += (amount48 * 2) // 19-36
+                        balance += (amount46 * 2) // black
+                        balance += (amount47 * 2) //odd
+
+                        val update = mydatabase.updateBalance(balance)
+                        val transfer = mydatabase.transferbalancewhereId()
+                        val currentbalance = findViewById<TextView>(R.id.Balancetxt)
+                        currentbalance.setText("Balance : " + balance.toString())
+                        Toast.makeText(this, "35", Toast.LENGTH_SHORT).show()
+                        resetAllAmounts()
+                        resetAllTamounts()
+                    }
                 }
                 36 -> {
                     val endNum = RouletteResults(-1, "36", "Red")
@@ -878,6 +1483,32 @@ class RouletteGame2 : AppCompatActivity() {
                     mImageView.startAnimation(animationSet)
                     degrees *= 13
                     mImageView.rotation = degrees
+
+                    var balance = mydatabase.getBalance()
+                    var amount36 = mydatabase.getTempBetAmount(36) //36
+                    var amount39 = mydatabase.getTempBetAmount(39) //25-36
+                    var amount40 = mydatabase.getTempBetAmount(40) //top row
+                    var amount48 = mydatabase.getTempBetAmount(48) //19-36
+                    var amount45 = mydatabase.getTempBetAmount(45) //red
+                    var amount44 = mydatabase.getTempBetAmount(44) //even
+
+                    if (amount36 != null && amount39 != null && amount40 != null && amount48 != null && amount45 != null && amount44 != null) {
+
+                        balance += (amount36 * 36) //36
+                        balance += (amount39 * 3) //25-36
+                        balance += (amount40 * 3) //top row
+                        balance += (amount48 * 2) // 19-36
+                        balance += (amount45 * 2) // red
+                        balance += (amount44 * 2) //even
+
+                        val update = mydatabase.updateBalance(balance)
+                        val transfer = mydatabase.transferbalancewhereId()
+                        val currentbalance = findViewById<TextView>(R.id.Balancetxt)
+                        currentbalance.setText("Balance : " + balance.toString())
+                        Toast.makeText(this, "36", Toast.LENGTH_SHORT).show()
+                        resetAllAmounts()
+                        resetAllTamounts()
+                    }
                 }
                 37 -> {
                     val endNum = RouletteResults(-1, "0", "Green")
