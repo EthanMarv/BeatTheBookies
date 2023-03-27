@@ -14,6 +14,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import com.google.android.material.bottomappbar.BottomAppBar
 
 class RouletteGame2 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -213,7 +214,7 @@ class RouletteGame2 : AppCompatActivity() {
         startActivity(intent)
     }
     fun RouletteHistory(view: View){
-        val intent = Intent(this, RouletteStatisticsPage::class.java)
+        val intent = Intent(this, RouletteHistoryPage::class.java)
         startActivity(intent)
     }
 
@@ -261,7 +262,7 @@ class RouletteGame2 : AppCompatActivity() {
             var a1To12Steak = mydatabase.getStreaksById(38)
             var a13To24Steak = mydatabase.getStreaksById(39)
             var a25To36Steak = mydatabase.getStreaksById(40)
-            val TopRowStreak = mydatabase.getStreaksById(41)
+            var TopRowStreak = mydatabase.getStreaksById(41)
             var MiddleRowStreak = mydatabase.getStreaksById(42)
             var BottomRowStreak = mydatabase.getStreaksById(43)
             var a1To18Streak = mydatabase.getStreaksById(44)
@@ -294,7 +295,7 @@ class RouletteGame2 : AppCompatActivity() {
             var degrees: Float = -9.729729F  // 360 degrees of a circle divided by the 37 sections
 
 
-            when ((1..1).random()) {
+            when ((1..37).random()) {
                 1 -> if (OneStreak != null && a1To12Steak != null && BottomRowStreak != null  && a1To18Streak != null && RedStreak != null && oddStreak != null) {
                     val endNum = RouletteResults(-1, "1", "Red")
                     val mydatabase = DataBaseHelper(this)
@@ -359,6 +360,20 @@ class RouletteGame2 : AppCompatActivity() {
 
                     var balance = mydatabase.getBalance()
 
+                    TwoStreak += 1
+                    a1To12Steak += 1
+                    MiddleRowStreak += 1
+                    a1To18Streak += 1
+                    BlackStreak += 1
+                    EvenStreak += 1
+
+                    val update1 = mydatabase.updateCounter(2,TwoStreak)
+                    val update2 = mydatabase.updateCounter(38,a1To12Steak)
+                    val update3 = mydatabase.updateCounter(42,MiddleRowStreak)
+                    val update4 = mydatabase.updateCounter(44,a1To18Streak)
+                    val update5 = mydatabase.updateCounter(47,BlackStreak)
+                    val update6 = mydatabase.updateCounter(45,EvenStreak)
+
                     var amount2 = mydatabase.getTempBetAmount(2) //2
                     var amount37 = mydatabase.getTempBetAmount(37) //1-12
                     var amount41 = mydatabase.getTempBetAmount(41) //middle row
@@ -375,6 +390,7 @@ class RouletteGame2 : AppCompatActivity() {
                         balance += (amount46 * 2) // black
                         balance += (amount44 * 2) //even
 
+                        val resetstreaks = mydatabase.resetStreaks(2,38,42,44,47,45)
                         val update = mydatabase.updateBalance(balance)
                         val transfer = mydatabase.transferbalancewhereId()
                         val currentbalance = findViewById<TextView>(R.id.Balancetxt)
@@ -394,6 +410,22 @@ class RouletteGame2 : AppCompatActivity() {
                     mImageView.rotation = degrees
 
                     var balance = mydatabase.getBalance()
+
+                    ThreeStreak += 1
+                    a1To12Steak += 1
+                    TopRowStreak += 1
+                    a1To18Streak += 1
+                    RedStreak += 1
+                    oddStreak += 1
+
+                    val update1 = mydatabase.updateCounter(3,ThreeStreak)
+                    val update2 = mydatabase.updateCounter(38,a1To12Steak)
+                    val update3 = mydatabase.updateCounter(41,TopRowStreak)
+                    val update4 = mydatabase.updateCounter(44,a1To18Streak)
+                    val update5 = mydatabase.updateCounter(46,RedStreak)
+                    val update6 = mydatabase.updateCounter(48,oddStreak)
+
+                    val resetstreaks = mydatabase.resetStreaks(3,38,41,44,46,48)
 
                     var amount3 = mydatabase.getTempBetAmount(3) //1
                     var amount37 = mydatabase.getTempBetAmount(37) //1-12
@@ -431,6 +463,22 @@ class RouletteGame2 : AppCompatActivity() {
 
                     var balance = mydatabase.getBalance()
 
+                    FourStreak += 1
+                    a1To12Steak += 1
+                    BottomRowStreak += 1
+                    a1To18Streak += 1
+                    BlackStreak += 1
+                    EvenStreak += 1
+
+                    val update1 = mydatabase.updateCounter(4,FourStreak)
+                    val update2 = mydatabase.updateCounter(38,a1To12Steak)
+                    val update3 = mydatabase.updateCounter(43,BottomRowStreak)
+                    val update4 = mydatabase.updateCounter(44,a1To18Streak)
+                    val update5 = mydatabase.updateCounter(47,BlackStreak)
+                    val update6 = mydatabase.updateCounter(45,EvenStreak)
+
+                    val resetstreaks = mydatabase.resetStreaks(4,38,43,44,47,45)
+
                     var amount4 = mydatabase.getTempBetAmount(4) //4
                     var amount37 = mydatabase.getTempBetAmount(37) //1-12
                     var amount42 = mydatabase.getTempBetAmount(42) //bottom row
@@ -466,6 +514,22 @@ class RouletteGame2 : AppCompatActivity() {
                     mImageView.rotation = degrees
 
                     var balance = mydatabase.getBalance()
+
+                    FiveStreak += 1
+                    a1To12Steak += 1
+                    MiddleRowStreak += 1
+                    a1To18Streak += 1
+                    RedStreak += 1
+                    oddStreak += 1
+
+                    val update1 = mydatabase.updateCounter(5, FiveStreak)
+                    val update2 = mydatabase.updateCounter(38,a1To12Steak)
+                    val update3 = mydatabase.updateCounter(42,MiddleRowStreak)
+                    val update4 = mydatabase.updateCounter(44,a1To18Streak)
+                    val update5 = mydatabase.updateCounter(46,RedStreak)
+                    val update6 = mydatabase.updateCounter(48,oddStreak)
+
+                    val resetstreaks = mydatabase.resetStreaks(5,38,42,44,46,48)
 
                     var amount5 = mydatabase.getTempBetAmount(5) //1
                     var amount37 = mydatabase.getTempBetAmount(37) //1-12
@@ -503,6 +567,22 @@ class RouletteGame2 : AppCompatActivity() {
 
                     var balance = mydatabase.getBalance()
 
+                    SixStreak += 1
+                    a1To12Steak += 1
+                    TopRowStreak += 1
+                    a1To18Streak += 1
+                    BlackStreak += 1
+                    EvenStreak += 1
+
+                    val update1 = mydatabase.updateCounter(6,SixStreak)
+                    val update2 = mydatabase.updateCounter(38,a1To12Steak)
+                    val update3 = mydatabase.updateCounter(41,TopRowStreak)
+                    val update4 = mydatabase.updateCounter(44,a1To18Streak)
+                    val update5 = mydatabase.updateCounter(47,BlackStreak)
+                    val update6 = mydatabase.updateCounter(45,EvenStreak)
+
+                    val resetstreaks = mydatabase.resetStreaks(6,38,41,44,47,48)
+
                     var amount6 = mydatabase.getTempBetAmount(6) //6
                     var amount37 = mydatabase.getTempBetAmount(37) //1-12
                     var amount40 = mydatabase.getTempBetAmount(40) //top row
@@ -539,6 +619,22 @@ class RouletteGame2 : AppCompatActivity() {
 
                     var balance = mydatabase.getBalance()
 
+                    SevenStreak += 1
+                    a1To12Steak += 1
+                    BottomRowStreak += 1
+                    a1To18Streak += 1
+                    RedStreak += 1
+                    oddStreak += 1
+
+                    val update1 = mydatabase.updateCounter(7,SevenStreak)
+                    val update2 = mydatabase.updateCounter(38,a1To12Steak)
+                    val update3 = mydatabase.updateCounter(43,BottomRowStreak)
+                    val update4 = mydatabase.updateCounter(44,a1To18Streak)
+                    val update5 = mydatabase.updateCounter(47,RedStreak)
+                    val update6 = mydatabase.updateCounter(48,oddStreak)
+
+                    val resetstreaks = mydatabase.resetStreaks(7,38,43,44,47,48)
+
                     var amount7 = mydatabase.getTempBetAmount(7) //1
                     var amount37 = mydatabase.getTempBetAmount(37) //1-12
                     var amount42 = mydatabase.getTempBetAmount(42) //bottom row
@@ -572,6 +668,22 @@ class RouletteGame2 : AppCompatActivity() {
                     mImageView.startAnimation(animationSet)
                     degrees *= 16
                     mImageView.rotation = degrees
+
+                    EightStreak += 1
+                    a1To12Steak += 1
+                    MiddleRowStreak += 1
+                    a1To18Streak += 1
+                    BlackStreak += 1
+                    EvenStreak += 1
+
+                    val update1 = mydatabase.updateCounter(8,EightStreak)
+                    val update2 = mydatabase.updateCounter(38,a1To12Steak)
+                    val update3 = mydatabase.updateCounter(42,MiddleRowStreak)
+                    val update4 = mydatabase.updateCounter(44,a1To18Streak)
+                    val update5 = mydatabase.updateCounter(47,BlackStreak)
+                    val update6 = mydatabase.updateCounter(45,EvenStreak)
+
+                    val resetstreaks = mydatabase.resetStreaks(8,38,42,44,47,45)
 
                     var balance = mydatabase.getBalance()
                     var amount8 = mydatabase.getTempBetAmount(8) //2
@@ -610,6 +722,22 @@ class RouletteGame2 : AppCompatActivity() {
 
                     var balance = mydatabase.getBalance()
 
+                    NineStreak += 1
+                    a1To12Steak += 1
+                    TopRowStreak += 1
+                    a1To18Streak += 1
+                    RedStreak += 1
+                    oddStreak += 1
+
+                    val update1 = mydatabase.updateCounter(9,NineStreak)
+                    val update2 = mydatabase.updateCounter(38,a1To12Steak)
+                    val update3 = mydatabase.updateCounter(41,TopRowStreak)
+                    val update4 = mydatabase.updateCounter(44,a1To18Streak)
+                    val update5 = mydatabase.updateCounter(47,RedStreak)
+                    val update6 = mydatabase.updateCounter(48,oddStreak)
+
+                    val resetstreaks = mydatabase.resetStreaks(9,38,41,44,47,48)
+
                     var amount9 = mydatabase.getTempBetAmount(9) //9
                     var amount37 = mydatabase.getTempBetAmount(37) //1-12
                     var amount40 = mydatabase.getTempBetAmount(40) //top row
@@ -645,6 +773,22 @@ class RouletteGame2 : AppCompatActivity() {
                     mImageView.rotation = degrees
 
                     var balance = mydatabase.getBalance()
+
+                    TenStreak += 1
+                    a1To12Steak += 1
+                    BottomRowStreak += 1
+                    a1To18Streak += 1
+                    BlackStreak += 1
+                    EvenStreak += 1
+
+                    val update1 = mydatabase.updateCounter(10,TenStreak)
+                    val update2 = mydatabase.updateCounter(38,a1To12Steak)
+                    val update3 = mydatabase.updateCounter(43,BottomRowStreak)
+                    val update4 = mydatabase.updateCounter(44,a1To18Streak)
+                    val update5 = mydatabase.updateCounter(47,BlackStreak)
+                    val update6 = mydatabase.updateCounter(45,EvenStreak)
+
+                    val resetstreaks = mydatabase.resetStreaks(10,38,43,44,47,45)
 
                     var amount10 = mydatabase.getTempBetAmount(10) //2
                     var amount37 = mydatabase.getTempBetAmount(37) //1-12
@@ -682,6 +826,22 @@ class RouletteGame2 : AppCompatActivity() {
 
                     var balance = mydatabase.getBalance()
 
+                    ElevenStreak += 1
+                    a1To12Steak += 1
+                    MiddleRowStreak += 1
+                    a1To18Streak += 1
+                    BlackStreak += 1
+                    oddStreak += 1
+
+                    val update1 = mydatabase.updateCounter(11,ElevenStreak)
+                    val update2 = mydatabase.updateCounter(38,a1To12Steak)
+                    val update3 = mydatabase.updateCounter(42,MiddleRowStreak)
+                    val update4 = mydatabase.updateCounter(44,a1To18Streak)
+                    val update5 = mydatabase.updateCounter(47,BlackStreak)
+                    val update6 = mydatabase.updateCounter(48,oddStreak)
+
+                    val resetstreaks = mydatabase.resetStreaks(11,38,42,44,47,48)
+
                     var amount11 = mydatabase.getTempBetAmount(11) //2
                     var amount37 = mydatabase.getTempBetAmount(37) //1-12
                     var amount41 = mydatabase.getTempBetAmount(41) //bottom row
@@ -715,7 +875,24 @@ class RouletteGame2 : AppCompatActivity() {
                     mImageView.startAnimation(animationSet)
                     degrees *= 33
                     mImageView.rotation = degrees
+
                     var balance = mydatabase.getBalance()
+
+                    TwelveStreak += 1
+                    a1To12Steak += 1
+                    TopRowStreak += 1
+                    a1To18Streak += 1
+                    RedStreak += 1
+                    EvenStreak += 1
+
+                    val update1 = mydatabase.updateCounter(12,TwelveStreak)
+                    val update2 = mydatabase.updateCounter(38,a1To12Steak)
+                    val update3 = mydatabase.updateCounter(41,TopRowStreak)
+                    val update4 = mydatabase.updateCounter(44,a1To18Streak)
+                    val update5 = mydatabase.updateCounter(47,RedStreak)
+                    val update6 = mydatabase.updateCounter(45,EvenStreak)
+
+                    val resetstreaks = mydatabase.resetStreaks(12,38,41,44,47,45)
 
                     var amount12 = mydatabase.getTempBetAmount(12) //9
                     var amount37 = mydatabase.getTempBetAmount(37) //1-12
@@ -752,6 +929,23 @@ class RouletteGame2 : AppCompatActivity() {
                     mImageView.rotation = degrees
 
                     var balance = mydatabase.getBalance()
+
+                    ThirteenStreak += 1
+                    a13To24Steak += 1
+                    BottomRowStreak += 1
+                    a1To18Streak += 1
+                    BlackStreak += 1
+                    oddStreak += 1
+
+                    val update1 = mydatabase.updateCounter(13,ThirteenStreak)
+                    val update2 = mydatabase.updateCounter(39,a13To24Steak)
+                    val update3 = mydatabase.updateCounter(43,BottomRowStreak)
+                    val update4 = mydatabase.updateCounter(44,a1To18Streak)
+                    val update5 = mydatabase.updateCounter(47,BlackStreak)
+                    val update6 = mydatabase.updateCounter(48,oddStreak)
+
+                    val resetstreaks = mydatabase.resetStreaks(13,39,43,44,47,48)
+
                     var amount13 = mydatabase.getTempBetAmount(13) //13
                     var amount38 = mydatabase.getTempBetAmount(38) //13-24
                     var amount42 = mydatabase.getTempBetAmount(42) //bottom row
@@ -786,6 +980,22 @@ class RouletteGame2 : AppCompatActivity() {
                     degrees *= 25
                     mImageView.rotation = degrees
 
+
+                    FourteenStreak += 1
+                    a13To24Steak += 1
+                    MiddleRowStreak += 1
+                    a1To18Streak += 1
+                    RedStreak += 1
+                    EvenStreak += 1
+
+                    val update1 = mydatabase.updateCounter(14,FourteenStreak)
+                    val update2 = mydatabase.updateCounter(39,a13To24Steak)
+                    val update3 = mydatabase.updateCounter(42,MiddleRowStreak)
+                    val update4 = mydatabase.updateCounter(44,a1To18Streak)
+                    val update5 = mydatabase.updateCounter(46,RedStreak)
+                    val update6 = mydatabase.updateCounter(45,EvenStreak)
+
+                    val resetstreaks = mydatabase.resetStreaks(14,39,43,44,46,45)
 
                     var balance = mydatabase.getBalance()
                     var amount14 = mydatabase.getTempBetAmount(14) //14
@@ -824,6 +1034,22 @@ class RouletteGame2 : AppCompatActivity() {
 
                     var balance = mydatabase.getBalance()
 
+                    FifteenStreak += 1
+                    a13To24Steak += 1
+                    TopRowStreak += 1
+                    a1To18Streak += 1
+                    BlackStreak += 1
+                    oddStreak += 1
+
+                    val update1 = mydatabase.updateCounter(15,FifteenStreak)
+                    val update2 = mydatabase.updateCounter(39,a13To24Steak)
+                    val update3 = mydatabase.updateCounter(41,TopRowStreak)
+                    val update4 = mydatabase.updateCounter(44,a1To18Streak)
+                    val update5 = mydatabase.updateCounter(47,BlackStreak)
+                    val update6 = mydatabase.updateCounter(48,oddStreak)
+
+                    val resetstreaks = mydatabase.resetStreaks(15,39,41,44,47,48)
+
                     var amount15 = mydatabase.getTempBetAmount(15) //15
                     var amount38 = mydatabase.getTempBetAmount(38) //25-36
                     var amount40 = mydatabase.getTempBetAmount(40) //top row
@@ -857,6 +1083,22 @@ class RouletteGame2 : AppCompatActivity() {
                     mImageView.startAnimation(animationSet)
                     degrees *= 21
                     mImageView.rotation = degrees
+
+                    SixteenStreak += 1
+                    a13To24Steak += 1
+                    BottomRowStreak += 1
+                    a1To18Streak += 1
+                    RedStreak += 1
+                    EvenStreak += 1
+
+                    val update1 = mydatabase.updateCounter(16,SixteenStreak)
+                    val update2 = mydatabase.updateCounter(39,a13To24Steak)
+                    val update3 = mydatabase.updateCounter(43,BottomRowStreak)
+                    val update4 = mydatabase.updateCounter(44,a1To18Streak)
+                    val update5 = mydatabase.updateCounter(46,RedStreak)
+                    val update6 = mydatabase.updateCounter(45,EvenStreak)
+
+                    val resetstreaks = mydatabase.resetStreaks(16,39,43,44,46,45)
 
                     var balance = mydatabase.getBalance()
                     var amount16 = mydatabase.getTempBetAmount(16) //16
@@ -895,6 +1137,22 @@ class RouletteGame2 : AppCompatActivity() {
 
                     var balance = mydatabase.getBalance()
 
+                    SeventeenStreak += 1
+                    a13To24Steak += 1
+                    MiddleRowStreak += 1
+                    a1To18Streak += 1
+                    BlackStreak += 1
+                    oddStreak += 1
+
+                    val update1 = mydatabase.updateCounter(17,SeventeenStreak)
+                    val update2 = mydatabase.updateCounter(39,a13To24Steak)
+                    val update3 = mydatabase.updateCounter(42,MiddleRowStreak)
+                    val update4 = mydatabase.updateCounter(44,a1To18Streak)
+                    val update5 = mydatabase.updateCounter(47,BlackStreak)
+                    val update6 = mydatabase.updateCounter(48,oddStreak)
+
+                    val resetstreaks = mydatabase.resetStreaks(17,39,42,44,47,48)
+
                     var amount17 = mydatabase.getTempBetAmount(17) //17
                     var amount38 = mydatabase.getTempBetAmount(38) //13-24
                     var amount41 = mydatabase.getTempBetAmount(41) //middle row
@@ -928,6 +1186,22 @@ class RouletteGame2 : AppCompatActivity() {
                     mImageView.startAnimation(animationSet)
                     degrees *= 29
                     mImageView.rotation = degrees
+
+                    EighteenStreak += 1
+                    a13To24Steak += 1
+                    TopRowStreak += 1
+                    a1To18Streak += 1
+                    RedStreak += 1
+                    EvenStreak += 1
+
+                    val update1 = mydatabase.updateCounter(18,EighteenStreak)
+                    val update2 = mydatabase.updateCounter(39,a13To24Steak)
+                    val update3 = mydatabase.updateCounter(41,TopRowStreak)
+                    val update4 = mydatabase.updateCounter(44,a1To18Streak)
+                    val update5 = mydatabase.updateCounter(46,RedStreak)
+                    val update6 = mydatabase.updateCounter(45,EvenStreak)
+
+                    val resetstreaks = mydatabase.resetStreaks(18,39,41,44,46,45)
 
                     var balance = mydatabase.getBalance()
                     var amount18 = mydatabase.getTempBetAmount(18) //18
@@ -964,6 +1238,22 @@ class RouletteGame2 : AppCompatActivity() {
                     degrees *= 3
                     mImageView.rotation = degrees
 
+                    NineteenStreak += 1
+                    a13To24Steak += 1
+                    BottomRowStreak += 1
+                    a19To36Streak += 1
+                    RedStreak += 1
+                    oddStreak += 1
+
+                    val update1 = mydatabase.updateCounter(19,NineteenStreak)
+                    val update2 = mydatabase.updateCounter(39,a13To24Steak)
+                    val update3 = mydatabase.updateCounter(43,BottomRowStreak)
+                    val update4 = mydatabase.updateCounter(50,a19To36Streak)
+                    val update5 = mydatabase.updateCounter(46,RedStreak)
+                    val update6 = mydatabase.updateCounter(48,oddStreak)
+
+                    val resetstreaks = mydatabase.resetStreaks(19,39,43,50,46,48)
+
                     var balance = mydatabase.getBalance()
                     var amount19 = mydatabase.getTempBetAmount(19) //19
                     var amount38 = mydatabase.getTempBetAmount(38) //13-24
@@ -998,6 +1288,22 @@ class RouletteGame2 : AppCompatActivity() {
                     mImageView.startAnimation(animationSet)
                     degrees *= 24
                     mImageView.rotation = degrees
+
+                    TwentyStreak += 1
+                    a13To24Steak += 1
+                    MiddleRowStreak += 1
+                    a19To36Streak += 1
+                    BlackStreak += 1
+                    EvenStreak += 1
+
+                    val update1 = mydatabase.updateCounter(20,TwentyStreak)
+                    val update2 = mydatabase.updateCounter(39,a13To24Steak)
+                    val update3 = mydatabase.updateCounter(42,MiddleRowStreak)
+                    val update4 = mydatabase.updateCounter(50,a19To36Streak)
+                    val update5 = mydatabase.updateCounter(47,BlackStreak)
+                    val update6 = mydatabase.updateCounter(45,EvenStreak)
+
+                    val resetstreaks = mydatabase.resetStreaks(20,39,42,50,47,45)
 
                     var balance = mydatabase.getBalance()
                     var amount20 = mydatabase.getTempBetAmount(20) //20
@@ -1034,6 +1340,23 @@ class RouletteGame2 : AppCompatActivity() {
                     degrees *= 5
                     mImageView.rotation = degrees
 
+                    TwentyOneStreak += 1
+                    a13To24Steak += 1
+                    TopRowStreak += 1
+                    a19To36Streak += 1
+                    RedStreak += 1
+                    oddStreak += 1
+
+                    val update1 = mydatabase.updateCounter(21,TwentyOneStreak)
+                    val update2 = mydatabase.updateCounter(39,a13To24Steak)
+                    val update3 = mydatabase.updateCounter(41,TopRowStreak)
+                    val update4 = mydatabase.updateCounter(50,a19To36Streak)
+                    val update5 = mydatabase.updateCounter(46,RedStreak)
+                    val update6 = mydatabase.updateCounter(48,oddStreak)
+
+
+                    val resetstreaks = mydatabase.resetStreaks(21,39,41,50,46,48)
+
                     var balance = mydatabase.getBalance()
                     var amount21 = mydatabase.getTempBetAmount(21) //21
                     var amount38 = mydatabase.getTempBetAmount(38) //13-24
@@ -1068,6 +1391,22 @@ class RouletteGame2 : AppCompatActivity() {
                     mImageView.startAnimation(animationSet)
                     degrees *= 28
                     mImageView.rotation = degrees
+
+                    TwentyTwoStreak += 1
+                    a13To24Steak += 1
+                    BottomRowStreak += 1
+                    a19To36Streak += 1
+                    BlackStreak += 1
+                    EvenStreak += 1
+
+                    val update1 = mydatabase.updateCounter(22,TwentyTwoStreak)
+                    val update2 = mydatabase.updateCounter(39,a13To24Steak)
+                    val update3 = mydatabase.updateCounter(43,BottomRowStreak)
+                    val update4 = mydatabase.updateCounter(50,a19To36Streak)
+                    val update5 = mydatabase.updateCounter(47,BlackStreak)
+                    val update6 = mydatabase.updateCounter(45,EvenStreak)
+
+                    val resetstreaks = mydatabase.resetStreaks(22,39,43,50,47,45)
 
                     var balance = mydatabase.getBalance()
                     var amount22 = mydatabase.getTempBetAmount(22) //22
@@ -1104,6 +1443,21 @@ class RouletteGame2 : AppCompatActivity() {
                     degrees *= 17
                     mImageView.rotation = degrees
 
+                    TwentyThreeStreak += 1
+                    a13To24Steak += 1
+                    MiddleRowStreak += 1
+                    a19To36Streak += 1
+                    RedStreak += 1
+                    oddStreak += 1
+
+                    val update1 = mydatabase.updateCounter(23,TwentyThreeStreak)
+                    val update2 = mydatabase.updateCounter(39,a13To24Steak)
+                    val update3 = mydatabase.updateCounter(42,MiddleRowStreak)
+                    val update4 = mydatabase.updateCounter(50,a19To36Streak)
+                    val update5 = mydatabase.updateCounter(46,RedStreak)
+                    val update6 = mydatabase.updateCounter(48,oddStreak)
+
+                    val resetstreaks = mydatabase.resetStreaks(23,39,42,50,46,48)
                     var balance = mydatabase.getBalance()
                     var amount23 = mydatabase.getTempBetAmount(23) //23
                     var amount38 = mydatabase.getTempBetAmount(38) //13-24
@@ -1138,6 +1492,22 @@ class RouletteGame2 : AppCompatActivity() {
                     mImageView.startAnimation(animationSet)
                     degrees *= 20
                     mImageView.rotation = degrees
+
+                    TwentyFourStreak += 1
+                    a13To24Steak += 1
+                    TopRowStreak += 1
+                    a19To36Streak += 1
+                    BlackStreak += 1
+                    EvenStreak += 1
+
+                    val update1 = mydatabase.updateCounter(24,TwentyFourStreak)
+                    val update2 = mydatabase.updateCounter(39,a13To24Steak)
+                    val update3 = mydatabase.updateCounter(41,TopRowStreak)
+                    val update4 = mydatabase.updateCounter(50,a19To36Streak)
+                    val update5 = mydatabase.updateCounter(47,BlackStreak)
+                    val update6 = mydatabase.updateCounter(45,EvenStreak)
+
+                    val resetstreaks = mydatabase.resetStreaks(24,39,41,50,47,45)
 
                     var balance = mydatabase.getBalance()
                     var amount24 = mydatabase.getTempBetAmount(24) //24
@@ -1175,6 +1545,22 @@ class RouletteGame2 : AppCompatActivity() {
                     mImageView.rotation = degrees
                     var balance = mydatabase.getBalance()
 
+                    TwentyFiveStreak += 1
+                    a25To36Steak += 1
+                    BottomRowStreak += 1
+                    a19To36Streak += 1
+                    RedStreak += 1
+                    oddStreak += 1
+
+                    val update1 = mydatabase.updateCounter(25,TwentyFiveStreak)
+                    val update2 = mydatabase.updateCounter(40,a25To36Steak)
+                    val update3 = mydatabase.updateCounter(43,BottomRowStreak)
+                    val update4 = mydatabase.updateCounter(50,a19To36Streak)
+                    val update5 = mydatabase.updateCounter(46,RedStreak)
+                    val update6 = mydatabase.updateCounter(48,oddStreak)
+
+                    val resetstreaks = mydatabase.resetStreaks(25,40,43,50,46,48)
+
                     var amount25 = mydatabase.getTempBetAmount(25) //25
                     var amount39 = mydatabase.getTempBetAmount(39) //25-36
                     var amount42 = mydatabase.getTempBetAmount(42) //bottom row
@@ -1208,6 +1594,22 @@ class RouletteGame2 : AppCompatActivity() {
                     mImageView.startAnimation(animationSet)
                     degrees *= 36
                     mImageView.rotation = degrees
+
+                    TwentySixStreak += 1
+                    a25To36Steak += 1
+                    MiddleRowStreak += 1
+                    a19To36Streak += 1
+                    BlackStreak += 1
+                    EvenStreak += 1
+
+                    val update1 = mydatabase.updateCounter(26,TwentySixStreak)
+                    val update2 = mydatabase.updateCounter(40,a25To36Steak)
+                    val update3 = mydatabase.updateCounter(42,MiddleRowStreak)
+                    val update4 = mydatabase.updateCounter(50,a19To36Streak)
+                    val update5 = mydatabase.updateCounter(47,BlackStreak)
+                    val update6 = mydatabase.updateCounter(45,EvenStreak)
+
+                    val resetstreaks = mydatabase.resetStreaks(26,40,42,50,47,45)
 
                     var balance = mydatabase.getBalance()
                     var amount26 = mydatabase.getTempBetAmount(26) //26
@@ -1243,6 +1645,22 @@ class RouletteGame2 : AppCompatActivity() {
                     mImageView.startAnimation(animationSet)
                     degrees *= 11
                     mImageView.rotation = degrees
+
+                    TwentySevenStreak += 1
+                    a25To36Steak += 1
+                    TopRowStreak += 1
+                    a19To36Streak += 1
+                    RedStreak += 1
+                    oddStreak += 1
+
+                    val update1 = mydatabase.updateCounter(27,TwentySevenStreak)
+                    val update2 = mydatabase.updateCounter(40,a25To36Steak)
+                    val update3 = mydatabase.updateCounter(41,TopRowStreak)
+                    val update4 = mydatabase.updateCounter(50,a19To36Streak)
+                    val update5 = mydatabase.updateCounter(46,RedStreak)
+                    val update6 = mydatabase.updateCounter(48,oddStreak)
+
+                    val resetstreaks = mydatabase.resetStreaks(27,40,41,50,46,48)
 
                     var balance = mydatabase.getBalance()
 
@@ -1280,6 +1698,22 @@ class RouletteGame2 : AppCompatActivity() {
                     degrees *= 32
                     mImageView.rotation = degrees
 
+                    TwentyEightStreak += 1
+                    a25To36Steak += 1
+                    BottomRowStreak += 1
+                    a19To36Streak += 1
+                    BlackStreak += 1
+                    EvenStreak += 1
+
+                    val update1 = mydatabase.updateCounter(28,TwentyEightStreak)
+                    val update2 = mydatabase.updateCounter(40,a25To36Steak)
+                    val update3 = mydatabase.updateCounter(43,BottomRowStreak)
+                    val update4 = mydatabase.updateCounter(50,a19To36Streak)
+                    val update5 = mydatabase.updateCounter(47,BlackStreak)
+                    val update6 = mydatabase.updateCounter(45,EvenStreak)
+
+                    val resetstreaks = mydatabase.resetStreaks(28,40,43,50,47,45)
+
                     var balance = mydatabase.getBalance()
                     var amount28 = mydatabase.getTempBetAmount(28) //28
                     var amount39 = mydatabase.getTempBetAmount(39) //25-36
@@ -1314,6 +1748,22 @@ class RouletteGame2 : AppCompatActivity() {
                     mImageView.startAnimation(animationSet)
                     degrees *= 30
                     mImageView.rotation = degrees
+
+                    TwentyNineStreak += 1
+                    a25To36Steak += 1
+                    MiddleRowStreak += 1
+                    a19To36Streak += 1
+                    BlackStreak += 1
+                    oddStreak += 1
+
+                    val update1 = mydatabase.updateCounter(29,TwentyNineStreak)
+                    val update2 = mydatabase.updateCounter(40,a25To36Steak)
+                    val update3 = mydatabase.updateCounter(42,MiddleRowStreak)
+                    val update4 = mydatabase.updateCounter(50,a19To36Streak)
+                    val update5 = mydatabase.updateCounter(47,BlackStreak)
+                    val update6 = mydatabase.updateCounter(48,oddStreak)
+
+                    val resetstreaks = mydatabase.resetStreaks(29,40,42,50,47,48)
 
                     var balance = mydatabase.getBalance()
                     var amount29 = mydatabase.getTempBetAmount(29) //29
@@ -1350,6 +1800,22 @@ class RouletteGame2 : AppCompatActivity() {
                     degrees *= 15
                     mImageView.rotation = degrees
 
+                    ThirtyStreak += 1
+                    a25To36Steak += 1
+                    TopRowStreak += 1
+                    a19To36Streak += 1
+                    RedStreak += 1
+                    EvenStreak += 1
+
+                    val update1 = mydatabase.updateCounter(30,ThirtyStreak)
+                    val update2 = mydatabase.updateCounter(40,a25To36Steak)
+                    val update3 = mydatabase.updateCounter(41,TopRowStreak)
+                    val update4 = mydatabase.updateCounter(50,a19To36Streak)
+                    val update5 = mydatabase.updateCounter(46,RedStreak)
+                    val update6 = mydatabase.updateCounter(45,EvenStreak)
+
+                    val resetstreaks = mydatabase.resetStreaks(30,40,41,50,46,45)
+
                     var balance = mydatabase.getBalance()
 
                     var amount30 = mydatabase.getTempBetAmount(30) //30
@@ -1385,6 +1851,22 @@ class RouletteGame2 : AppCompatActivity() {
                     mImageView.startAnimation(animationSet)
                     degrees *= 26
                     mImageView.rotation = degrees
+
+                    ThirtyOneStreak += 1
+                    a25To36Steak += 1
+                    BottomRowStreak += 1
+                    a19To36Streak += 1
+                    BlackStreak += 1
+                    oddStreak += 1
+
+                    val update1 = mydatabase.updateCounter(31,ThirtyOneStreak)
+                    val update2 = mydatabase.updateCounter(40,a25To36Steak)
+                    val update3 = mydatabase.updateCounter(43,BottomRowStreak)
+                    val update4 = mydatabase.updateCounter(50,a19To36Streak)
+                    val update5 = mydatabase.updateCounter(47,BlackStreak)
+                    val update6 = mydatabase.updateCounter(48,oddStreak)
+
+                    val resetstreaks = mydatabase.resetStreaks(31,40,43,50,47,48)
 
                     var balance = mydatabase.getBalance()
                     var amount31 = mydatabase.getTempBetAmount(31) //31
@@ -1423,6 +1905,22 @@ class RouletteGame2 : AppCompatActivity() {
                     degrees *= 1
                     mImageView.rotation = degrees
 
+                    ThirtyTwoStreak += 1
+                    a25To36Steak += 1
+                    MiddleRowStreak += 1
+                    a19To36Streak += 1
+                    RedStreak += 1
+                    EvenStreak += 1
+
+                    val update1 = mydatabase.updateCounter(32,ThirtyTwoStreak)
+                    val update2 = mydatabase.updateCounter(40,a25To36Steak)
+                    val update3 = mydatabase.updateCounter(42,MiddleRowStreak)
+                    val update4 = mydatabase.updateCounter(50,a19To36Streak)
+                    val update5 = mydatabase.updateCounter(46,RedStreak)
+                    val update6 = mydatabase.updateCounter(45,EvenStreak)
+
+                    val resetstreaks = mydatabase.resetStreaks(32,40,42,50,46,45)
+
                     var balance = mydatabase.getBalance()
                     var amount32 = mydatabase.getTempBetAmount(32) //36
                     var amount39 = mydatabase.getTempBetAmount(39) //25-36
@@ -1457,6 +1955,22 @@ class RouletteGame2 : AppCompatActivity() {
                     mImageView.startAnimation(animationSet)
                     degrees *= 22
                     mImageView.rotation = degrees
+
+                    ThirtyThreeStreak += 1
+                    a25To36Steak += 1
+                    TopRowStreak += 1
+                    a19To36Streak += 1
+                    BlackStreak += 1
+                    oddStreak += 1
+
+                    val update1 = mydatabase.updateCounter(33,ThirtyThreeStreak)
+                    val update2 = mydatabase.updateCounter(40,a25To36Steak)
+                    val update3 = mydatabase.updateCounter(41,TopRowStreak)
+                    val update4 = mydatabase.updateCounter(50,a19To36Streak)
+                    val update5 = mydatabase.updateCounter(47,BlackStreak)
+                    val update6 = mydatabase.updateCounter(48,oddStreak)
+
+                    val resetstreaks = mydatabase.resetStreaks(33,40,41,50,47,48)
 
                     var balance = mydatabase.getBalance()
                     var amount33 = mydatabase.getTempBetAmount(33) //9
@@ -1493,6 +2007,22 @@ class RouletteGame2 : AppCompatActivity() {
                     degrees *= 9
                     mImageView.rotation = degrees
 
+                    ThirtyFourStreak += 1
+                    a25To36Steak += 1
+                    BottomRowStreak += 1
+                    a19To36Streak += 1
+                    RedStreak += 1
+                    EvenStreak += 1
+
+                    val update1 = mydatabase.updateCounter(34,ThirtyFourStreak)
+                    val update2 = mydatabase.updateCounter(40,a25To36Steak)
+                    val update3 = mydatabase.updateCounter(43,BottomRowStreak)
+                    val update4 = mydatabase.updateCounter(50,a19To36Streak)
+                    val update5 = mydatabase.updateCounter(46,RedStreak)
+                    val update6 = mydatabase.updateCounter(45,EvenStreak)
+
+                    val resetstreaks = mydatabase.resetStreaks(34,40,43,50,46,45)
+
                     var balance = mydatabase.getBalance()
                     var amount34 = mydatabase.getTempBetAmount(34) //34
                     var amount39 = mydatabase.getTempBetAmount(39) //25-36
@@ -1527,6 +2057,22 @@ class RouletteGame2 : AppCompatActivity() {
                     mImageView.startAnimation(animationSet)
                     degrees *= 34
                     mImageView.rotation = degrees
+
+                    ThirtyFiveStreak += 1
+                    a25To36Steak += 1
+                    MiddleRowStreak += 1
+                    a19To36Streak += 1
+                    BlackStreak += 1
+                    oddStreak += 1
+
+                    val update1 = mydatabase.updateCounter(35,ThirtyFiveStreak)
+                    val update2 = mydatabase.updateCounter(40,a25To36Steak)
+                    val update3 = mydatabase.updateCounter(42,MiddleRowStreak)
+                    val update4 = mydatabase.updateCounter(50,a19To36Streak)
+                    val update5 = mydatabase.updateCounter(47,BlackStreak)
+                    val update6 = mydatabase.updateCounter(48,oddStreak)
+
+                    val resetstreaks = mydatabase.resetStreaks(35,40,42,50,47,48)
 
                     var balance = mydatabase.getBalance()
 
@@ -1564,6 +2110,22 @@ class RouletteGame2 : AppCompatActivity() {
                     degrees *= 13
                     mImageView.rotation = degrees
 
+                    ThirtySixStreak += 1
+                    a25To36Steak += 1
+                    TopRowStreak += 1
+                    a19To36Streak += 1
+                    RedStreak += 1
+                    EvenStreak += 1
+
+                    val update1 = mydatabase.updateCounter(36,ThirtySixStreak)
+                    val update2 = mydatabase.updateCounter(40,a25To36Steak)
+                    val update3 = mydatabase.updateCounter(41,TopRowStreak)
+                    val update4 = mydatabase.updateCounter(50,a19To36Streak)
+                    val update5 = mydatabase.updateCounter(46,RedStreak)
+                    val update6 = mydatabase.updateCounter(45,EvenStreak)
+
+                    val resetstreaks = mydatabase.resetStreaks(36,40,41,50,46,45)
+
                     var balance = mydatabase.getBalance()
                     var amount36 = mydatabase.getTempBetAmount(36) //36
                     var amount39 = mydatabase.getTempBetAmount(39) //25-36
@@ -1600,6 +2162,12 @@ class RouletteGame2 : AppCompatActivity() {
                     mImageView.rotation = degrees
 
                     var balance = mydatabase.getBalance()
+
+                    ZeroStreak += 1
+
+                    val update1 = mydatabase.updateCounter(37,ZeroStreak)
+
+                    val resetstreaks = mydatabase.resetStreaks(0)
                     var sum = mydatabase.getBetAmountSum()
                     var amount0 = mydatabase.getBetAmount(37)
 
