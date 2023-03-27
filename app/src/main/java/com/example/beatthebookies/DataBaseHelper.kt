@@ -7,6 +7,7 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
 import android.database.sqlite.SQLiteOpenHelper
+import android.graphics.Color
 import java.sql.Connection
 import java.time.temporal.TemporalAmount
 
@@ -42,6 +43,15 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, DataBaseName,
     private val BetAmount_Amount = "Amount"
     private val BetAmount_TempAmount = "TempAmount"
 
+    private val Last10_Table ="Last10"
+    private val Last10_Id = "Id"
+    private val Last10_Colour = "Colour"
+    private val Last10_Number = "Number"
+
+    private val Streak_table = "Streaks"
+    private val Streak_Id = "Id"
+    private val Streak_Name = "Name"
+    private val Streak_Counter = "Counter"
 
     override fun onCreate(db: SQLiteDatabase?) {
         try {
@@ -400,4 +410,104 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, DataBaseName,
 
         return ResultsList
     }
+
+
+
+    fun updateColourNumberWhereId(Color: String, Number: Int, Id: Int) {
+        val db = this.writableDatabase
+        val cv = ContentValues()
+
+        cv.put("Color",Color)
+        cv.put("Number",Number)
+
+        val selection = "Id = ?"
+        val selectionArgs = arrayOf(Id.toString())
+        db.update("Last10", cv, null, null)
+    }
+
+    fun getColorById(id: Int): String? {
+        val db = this.readableDatabase
+        val cursor: Cursor? = db.query(
+            Last10_Table, arrayOf(Last10_Colour),
+            "$COLUMN_ID=?", arrayOf(id.toString()),
+            null, null, null
+        )
+
+        var color: String? = null
+
+        cursor?.use {
+            if (cursor.moveToFirst()) {
+                color = cursor.getString(1)
+            }
+        }
+        return color
+    }
+
+    fun getNumberById(id: Int): Int? {
+        val db = this.readableDatabase
+        val cursor: Cursor? = db.query(
+            Last10_Table, arrayOf(Last10_Number),
+            "$COLUMN_ID=?", arrayOf(id.toString()),
+            null, null, null
+        )
+
+        var number: Int? = null
+
+        cursor?.use {
+            if (cursor.moveToFirst()) {
+                number = cursor.getInt(2)
+            }
+        }
+        return number
+    }
+
+    fun getStreak(id: Int): Int? {
+        val db = this.readableDatabase
+        val cursor: Cursor? = db.query(
+            Streak_table, arrayOf(Streak_Counter),
+            "$COLUMN_ID=?", arrayOf(id.toString()),
+            null, null, null
+        )
+
+        var number: Int? = null
+
+        cursor?.use {
+            if (cursor.moveToFirst()) {
+                number = cursor.getInt(2)
+            }
+        }
+        return number
+    }
+
+    fun getStreaksById(id: Int): Int? {
+        val query = "SELECT Counter FROM Streaks WHERE Id = ?"
+        val db = this.readableDatabase
+        val cursor = db.rawQuery(query, arrayOf(id.toString()))
+        val streak = if (cursor.moveToFirst()) cursor.getInt(0) else null
+        cursor.close()
+        db.close()
+        return streak
+    }
+
+    fun updateCounter(id: Int, Counter: Int) {
+        val db = this.writableDatabase
+        val cv = ContentValues()
+
+        cv.put("Counter", Counter)
+        val selection = "Id = ?"
+        val selectionArgs = arrayOf(id.toString())
+        db.update("Streaks", cv, selection, selectionArgs)
+    }
+
+    fun resetStreaks(vararg keepIds: Int) {
+        val keepIdsStr = keepIds.joinToString { it.toString() }
+        val query = "UPDATE Streaks SET Counter = 0 WHERE Id NOT IN ($keepIdsStr)"
+        val db = this.writableDatabase
+        db.execSQL(query)
+        db.close()
+    }
+
+
+
+
 }

@@ -16,7 +16,36 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="54dp"
-            android:orientation="horizontal"></LinearLayout>
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/HomeBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:onClick="ReturnHome"
+                app:srcCompat="@drawable/baseline_home_24"
+                android:layout_marginRight="50dp"
+                />
+
+            <ImageButton
+                android:id="@+id/HistoryBtn"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:onClick="RouletteHistory"
+                app:srcCompat="@drawable/history"
+                android:scaleType="centerCrop"
+                android:layout_marginRight="50dp"
+                android:background="?android:attr/selectableItemBackground"/>
+
+            <ImageButton
+                android:id="@+id/last10BTN"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:onClick="RouletteHistory"
+                app:srcCompat="@drawable/last10"
+                android:scaleType="centerCrop"
+                android:background="?android:attr/selectableItemBackground"/>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

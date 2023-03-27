@@ -1,5 +1,6 @@
 package com.example.beatthebookies
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -9,6 +10,7 @@ import android.view.animation.LinearInterpolator
 import android.view.animation.RotateAnimation
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -52,6 +54,7 @@ class RouletteGame2 : AppCompatActivity() {
                 buttonclick(mydatabase, i, betRange)
             }
         }
+
     }
 
     private fun buttonclick(mydatabase: DataBaseHelper, buttonIndex: Int, betRange: String) {
@@ -205,8 +208,69 @@ class RouletteGame2 : AppCompatActivity() {
         currentbalance.setText("Balance : " + balance.toString())
     }
 
+    fun ReturnHome(view: View){
+        val intent = Intent(this, HomeScreen::class.java)
+        startActivity(intent)
+    }
+    fun RouletteHistory(view: View){
+        val intent = Intent(this, RouletteStatisticsPage::class.java)
+        startActivity(intent)
+    }
+
 
         fun spin(view:View){
+            val mydatabase = DataBaseHelper(this)
+
+            var ZeroStreak = mydatabase.getStreaksById(37)
+            var OneStreak = mydatabase.getStreaksById(1)
+            var TwoStreak = mydatabase.getStreaksById(2)
+            var ThreeStreak = mydatabase.getStreaksById(3)
+            var FourStreak = mydatabase.getStreaksById(4)
+            var FiveStreak = mydatabase.getStreaksById(5)
+            var SixStreak = mydatabase.getStreaksById(6)
+            var SevenStreak = mydatabase.getStreaksById(7)
+            var EightStreak = mydatabase.getStreaksById(8)
+            var NineStreak = mydatabase.getStreaksById(9)
+            var TenStreak = mydatabase.getStreaksById(10)
+            var ElevenStreak = mydatabase.getStreaksById(11)
+            var TwelveStreak = mydatabase.getStreaksById(12)
+            var ThirteenStreak = mydatabase.getStreaksById(13)
+            var FourteenStreak = mydatabase.getStreaksById(14)
+            var FifteenStreak = mydatabase.getStreaksById(15)
+            var SixteenStreak = mydatabase.getStreaksById(16)
+            var SeventeenStreak = mydatabase.getStreaksById(17)
+            var EighteenStreak = mydatabase.getStreaksById(18)
+            var NineteenStreak = mydatabase.getStreaksById(19)
+            var TwentyStreak = mydatabase.getStreaksById(20)
+            var TwentyOneStreak = mydatabase.getStreaksById(21)
+            var TwentyTwoStreak = mydatabase.getStreaksById(22)
+            var TwentyThreeStreak = mydatabase.getStreaksById(23)
+            var TwentyFourStreak = mydatabase.getStreaksById(24)
+            var TwentyFiveStreak = mydatabase.getStreaksById(25)
+            var TwentySixStreak = mydatabase.getStreaksById(26)
+            var TwentySevenStreak = mydatabase.getStreaksById(27)
+            var TwentyEightStreak = mydatabase.getStreaksById(28)
+            var TwentyNineStreak = mydatabase.getStreaksById(29)
+            var ThirtyStreak = mydatabase.getStreaksById(30)
+            var ThirtyOneStreak = mydatabase.getStreaksById(31)
+            var ThirtyTwoStreak = mydatabase.getStreaksById(32)
+            var ThirtyThreeStreak = mydatabase.getStreaksById(33)
+            var ThirtyFourStreak = mydatabase.getStreaksById(34)
+            var ThirtyFiveStreak = mydatabase.getStreaksById(35)
+            var ThirtySixStreak = mydatabase.getStreaksById(36)
+            var a1To12Steak = mydatabase.getStreaksById(38)
+            var a13To24Steak = mydatabase.getStreaksById(39)
+            var a25To36Steak = mydatabase.getStreaksById(40)
+            val TopRowStreak = mydatabase.getStreaksById(41)
+            var MiddleRowStreak = mydatabase.getStreaksById(42)
+            var BottomRowStreak = mydatabase.getStreaksById(43)
+            var a1To18Streak = mydatabase.getStreaksById(44)
+            var EvenStreak = mydatabase.getStreaksById(45)
+            var RedStreak = mydatabase.getStreaksById(46)
+            var BlackStreak = mydatabase.getStreaksById(47)
+            var oddStreak = mydatabase.getStreaksById(48)
+            var a19To36Streak = mydatabase.getStreaksById(49)
+
 
             val animationSet = AnimationSet(true)
 
@@ -230,8 +294,8 @@ class RouletteGame2 : AppCompatActivity() {
             var degrees: Float = -9.729729F  // 360 degrees of a circle divided by the 37 sections
 
 
-            when ((1..37).random()) {
-                1 -> {
+            when ((1..1).random()) {
+                1 -> if (OneStreak != null && a1To12Steak != null && BottomRowStreak != null  && a1To18Streak != null && RedStreak != null && oddStreak != null) {
                     val endNum = RouletteResults(-1, "1", "Red")
                     val mydatabase = DataBaseHelper(this)
                     val databaseInput = mydatabase.addRouletteResult(endNum)
@@ -249,6 +313,21 @@ class RouletteGame2 : AppCompatActivity() {
                     var amount45 = mydatabase.getTempBetAmount(45) //red
                     var amount47 = mydatabase.getTempBetAmount(47) //odd
 
+                    OneStreak += 1
+                    a1To12Steak += 1
+                    BottomRowStreak += 1
+                    a1To18Streak += 1
+                    RedStreak += 1
+                    oddStreak += 1
+
+                    val update1 = mydatabase.updateCounter(1,OneStreak)
+                    val update2 = mydatabase.updateCounter(38,a1To12Steak)
+                    val update3 = mydatabase.updateCounter(43,BottomRowStreak)
+                    val update4 = mydatabase.updateCounter(44,a1To18Streak)
+                    val update5 = mydatabase.updateCounter(46,RedStreak)
+                    val update6 = mydatabase.updateCounter(48,oddStreak)
+
+
                     if (amount1 != null && amount37 != null && amount42 != null && amount43 != null && amount45 != null && amount47 != null) {
 
                         balance += (amount1 * 36) // 1
@@ -258,6 +337,7 @@ class RouletteGame2 : AppCompatActivity() {
                         balance += (amount45 * 2) // red
                         balance += (amount47 * 2) //odd
 
+                        val resetstreaks = mydatabase.resetStreaks(1,38,43,44,46,48)
                         val update = mydatabase.updateBalance(balance)
                         val transfer = mydatabase.transferbalancewhereId()
                         val currentbalance = findViewById<TextView>(R.id.Balancetxt)
@@ -268,7 +348,7 @@ class RouletteGame2 : AppCompatActivity() {
                     }
 
                 }
-                2 -> {
+                2 ->  if (TwoStreak != null && a1To12Steak != null && MiddleRowStreak != null  && a1To18Streak != null && BlackStreak != null && EvenStreak != null) {
                     val endNum = RouletteResults(-1, "2", "Black")
                     val mydatabase = DataBaseHelper(this)
                     val databaseInput = mydatabase.addRouletteResult(endNum)
@@ -304,7 +384,7 @@ class RouletteGame2 : AppCompatActivity() {
                         resetAllTamounts()
                     }
                 }
-                3 -> {
+                3 ->  if (ThreeStreak != null && a1To12Steak != null && TopRowStreak != null  && a1To18Streak != null && RedStreak != null && oddStreak != null) {
                     val endNum = RouletteResults(-1, "3", "Red")
                     val mydatabase = DataBaseHelper(this)
                     val databaseInput = mydatabase.addRouletteResult(endNum)
@@ -340,7 +420,7 @@ class RouletteGame2 : AppCompatActivity() {
                         resetAllTamounts()
                     }
                 }
-                4 -> {
+                4 -> if (FourStreak != null && a1To12Steak != null && BottomRowStreak != null  && a1To18Streak != null && BlackStreak != null && EvenStreak != null) {
                     val endNum = RouletteResults(-1, "4", "Black")
                     val mydatabase = DataBaseHelper(this)
                     val databaseInput = mydatabase.addRouletteResult(endNum)
@@ -376,7 +456,7 @@ class RouletteGame2 : AppCompatActivity() {
                         resetAllTamounts()
                     }
                 }
-                5 -> {
+                5 -> if (FiveStreak != null && a1To12Steak != null && MiddleRowStreak != null  && a1To18Streak != null && RedStreak != null && oddStreak != null) {
                     val endNum = RouletteResults(-1, "5", "Red")
                     val mydatabase = DataBaseHelper(this)
                     val databaseInput = mydatabase.addRouletteResult(endNum)
@@ -412,7 +492,7 @@ class RouletteGame2 : AppCompatActivity() {
                         resetAllTamounts()
                     }
                 }
-                6 -> {
+                6 -> if (SixStreak != null && a1To12Steak != null && TopRowStreak != null  && a1To18Streak != null && BlackStreak != null && EvenStreak != null){
                     val endNum = RouletteResults(-1, "6", "Black")
                     val mydatabase = DataBaseHelper(this)
                     val databaseInput = mydatabase.addRouletteResult(endNum)
@@ -448,7 +528,7 @@ class RouletteGame2 : AppCompatActivity() {
                         resetAllTamounts()
                     }
                 }
-                7 -> {
+                7 -> if (SevenStreak != null && a1To12Steak != null && BottomRowStreak != null  && a1To18Streak != null && RedStreak != null && oddStreak != null) {
                     val endNum = RouletteResults(-1, "7", "Red")
                     val mydatabase = DataBaseHelper(this)
                     val databaseInput = mydatabase.addRouletteResult(endNum)
@@ -484,7 +564,7 @@ class RouletteGame2 : AppCompatActivity() {
                         resetAllTamounts()
                     }
                 }
-                8 -> {
+                8 -> if (EightStreak != null && a1To12Steak != null && MiddleRowStreak != null  && a1To18Streak != null && BlackStreak != null && EvenStreak != null){
                     val endNum = RouletteResults(-1, "8", "Black")
                     val mydatabase = DataBaseHelper(this)
                     val databaseInput = mydatabase.addRouletteResult(endNum)
@@ -519,7 +599,7 @@ class RouletteGame2 : AppCompatActivity() {
                         resetAllTamounts()
                     }
                 }
-                9 -> {
+                9 -> if (NineStreak != null && a1To12Steak != null && TopRowStreak != null  && a1To18Streak != null && RedStreak != null && oddStreak != null) {
                     val endNum = RouletteResults(-1, "9", "Red")
                     val mydatabase = DataBaseHelper(this)
                     val databaseInput = mydatabase.addRouletteResult(endNum)
@@ -555,7 +635,7 @@ class RouletteGame2 : AppCompatActivity() {
                         resetAllTamounts()
                     }
                 }
-                10 -> {
+                10 -> if (TenStreak != null && a1To12Steak != null && BottomRowStreak != null  && a1To18Streak != null && BlackStreak != null && EvenStreak != null){
                     val endNum = RouletteResults(-1, "10", "Black")
                     val mydatabase = DataBaseHelper(this)
                     val databaseInput = mydatabase.addRouletteResult(endNum)
@@ -591,7 +671,7 @@ class RouletteGame2 : AppCompatActivity() {
                         resetAllTamounts()
                     }
                 }
-                11 -> {
+                11 -> if (ElevenStreak != null && a1To12Steak != null && MiddleRowStreak != null  && a1To18Streak != null && BlackStreak != null && oddStreak != null){
                     val endNum = RouletteResults(-1, "11", "Black")
                     val mydatabase = DataBaseHelper(this)
                     val databaseInput = mydatabase.addRouletteResult(endNum)
@@ -627,7 +707,7 @@ class RouletteGame2 : AppCompatActivity() {
                         resetAllTamounts()
                     }
                 }
-                12 -> {
+                12 -> if (TwelveStreak != null && a1To12Steak != null && TopRowStreak != null  && a1To18Streak != null && RedStreak != null && EvenStreak != null){
                     val endNum = RouletteResults(-1, "12", "Red")
                     val mydatabase = DataBaseHelper(this)
                     val databaseInput = mydatabase.addRouletteResult(endNum)
@@ -662,7 +742,7 @@ class RouletteGame2 : AppCompatActivity() {
                         resetAllTamounts()
                     }
                 }
-                13 -> {
+                13 -> if (ThirteenStreak != null && a13To24Steak != null && BottomRowStreak != null  && a1To18Streak != null && BlackStreak != null && oddStreak != null){
                     val endNum = RouletteResults(-1, "13", "Black")
                     val mydatabase = DataBaseHelper(this)
                     val databaseInput = mydatabase.addRouletteResult(endNum)
@@ -697,7 +777,7 @@ class RouletteGame2 : AppCompatActivity() {
                         resetAllTamounts()
                     }
                 }
-                14 -> {
+                14 -> if (FourteenStreak != null && a13To24Steak != null && MiddleRowStreak != null  && a1To18Streak != null && RedStreak != null && EvenStreak != null){
                     val endNum = RouletteResults(-1, "14", "Red")
                     val mydatabase = DataBaseHelper(this)
                     val databaseInput = mydatabase.addRouletteResult(endNum)
@@ -733,7 +813,7 @@ class RouletteGame2 : AppCompatActivity() {
                         resetAllTamounts()
                     }
                 }
-                15 -> {
+                15 -> if (FifteenStreak != null && a13To24Steak != null && TopRowStreak != null  && a1To18Streak != null && BlackStreak != null && oddStreak != null){
                     val endNum = RouletteResults(-1, "15", "Black")
                     val mydatabase = DataBaseHelper(this)
                     val databaseInput = mydatabase.addRouletteResult(endNum)
@@ -769,7 +849,7 @@ class RouletteGame2 : AppCompatActivity() {
                         resetAllTamounts()
                     }
                 }
-                16 -> {
+                16 -> if (SixteenStreak != null && a13To24Steak != null && BottomRowStreak != null  && a1To18Streak != null && RedStreak != null && EvenStreak != null){
                     val endNum = RouletteResults(-1, "16", "Red")
                     val mydatabase = DataBaseHelper(this)
                     val databaseInput = mydatabase.addRouletteResult(endNum)
@@ -804,7 +884,7 @@ class RouletteGame2 : AppCompatActivity() {
                         resetAllTamounts()
                     }
                 }
-                17 -> {
+                17 -> if (SeventeenStreak != null && a13To24Steak != null && MiddleRowStreak != null  && a1To18Streak != null && BlackStreak != null && oddStreak != null){
                     val endNum = RouletteResults(-1, "17", "Black")
                     val mydatabase = DataBaseHelper(this)
                     val databaseInput = mydatabase.addRouletteResult(endNum)
@@ -840,7 +920,7 @@ class RouletteGame2 : AppCompatActivity() {
                         resetAllTamounts()
                     }
                 }
-                18 -> {
+                18 ->if (EighteenStreak != null && a13To24Steak != null && TopRowStreak != null  && a1To18Streak != null && RedStreak != null && EvenStreak != null) {
                     val endNum = RouletteResults(-1, "18", "Red")
                     val mydatabase = DataBaseHelper(this)
                     val databaseInput = mydatabase.addRouletteResult(endNum)
@@ -875,7 +955,7 @@ class RouletteGame2 : AppCompatActivity() {
                         resetAllTamounts()
                     }
                 }
-                19 -> {
+                19 ->if (NineteenStreak != null && a13To24Steak != null && BottomRowStreak != null  && a19To36Streak != null && RedStreak != null && oddStreak != null) {
                     val endNum = RouletteResults(-1, "19", "Red")
                     val mydatabase = DataBaseHelper(this)
                     val databaseInput = mydatabase.addRouletteResult(endNum)
@@ -910,7 +990,7 @@ class RouletteGame2 : AppCompatActivity() {
                         resetAllTamounts()
                     }
                 }
-                20 -> {
+                20 ->if (TwentyStreak != null && a13To24Steak != null && MiddleRowStreak != null  && a19To36Streak != null && BlackStreak != null && EvenStreak != null) {
                     val endNum = RouletteResults(-1, "20", "Black")
                     val mydatabase = DataBaseHelper(this)
                     val databaseInput = mydatabase.addRouletteResult(endNum)
@@ -945,7 +1025,7 @@ class RouletteGame2 : AppCompatActivity() {
                         resetAllTamounts()
                     }
                 }
-                21 -> {
+                21 -> if (TwentyOneStreak != null && a13To24Steak != null && TopRowStreak != null  && a19To36Streak != null && RedStreak != null && oddStreak != null){
                     val endNum = RouletteResults(-1, "21", "Red")
                     val mydatabase = DataBaseHelper(this)
                     val databaseInput = mydatabase.addRouletteResult(endNum)
@@ -980,7 +1060,7 @@ class RouletteGame2 : AppCompatActivity() {
                         resetAllTamounts()
                     }
                 }
-                22 -> {
+                22 -> if (TwentyTwoStreak != null && a13To24Steak != null && BottomRowStreak != null  && a19To36Streak != null && BlackStreak != null && EvenStreak != null){
                     val endNum = RouletteResults(-1, "22", "Black")
                     val mydatabase = DataBaseHelper(this)
                     val databaseInput = mydatabase.addRouletteResult(endNum)
@@ -1015,7 +1095,7 @@ class RouletteGame2 : AppCompatActivity() {
                         resetAllTamounts()
                     }
                 }
-                23 -> {
+                23 -> if (TwentyThreeStreak != null && a13To24Steak != null && MiddleRowStreak != null  && a19To36Streak != null && RedStreak != null && oddStreak != null){
                     val endNum = RouletteResults(-1, "23", "Red")
                     val mydatabase = DataBaseHelper(this)
                     val databaseInput = mydatabase.addRouletteResult(endNum)
@@ -1050,7 +1130,7 @@ class RouletteGame2 : AppCompatActivity() {
                         resetAllTamounts()
                     }
                 }
-                24 -> {
+                24 ->if (TwentyFourStreak != null && a13To24Steak != null && TopRowStreak != null  && a19To36Streak != null && BlackStreak != null && EvenStreak != null) {
                     val endNum = RouletteResults(-1, "24", "Black")
                     val mydatabase = DataBaseHelper(this)
                     val databaseInput = mydatabase.addRouletteResult(endNum)
@@ -1085,7 +1165,7 @@ class RouletteGame2 : AppCompatActivity() {
                         resetAllTamounts()
                     }
                 }
-                25 -> {
+                25 -> if (TwentyFiveStreak != null && a25To36Steak != null && BottomRowStreak != null  && a19To36Streak != null && RedStreak != null && oddStreak != null){
                     val endNum = RouletteResults(-1, "25", "Red")
                     val mydatabase = DataBaseHelper(this)
                     val databaseInput = mydatabase.addRouletteResult(endNum)
@@ -1120,7 +1200,7 @@ class RouletteGame2 : AppCompatActivity() {
                         resetAllTamounts()
                     }
                 }
-                26 -> {
+                26 -> if (TwentySixStreak != null && a25To36Steak != null && MiddleRowStreak != null  && a19To36Streak != null && BlackStreak != null && EvenStreak != null){
                     val endNum = RouletteResults(-1, "26", "Black")
                     val mydatabase = DataBaseHelper(this)
                     val databaseInput = mydatabase.addRouletteResult(endNum)
@@ -1155,7 +1235,7 @@ class RouletteGame2 : AppCompatActivity() {
                         resetAllTamounts()
                     }
                 }
-                27 -> {
+                27 -> if (TwentySevenStreak != null && a25To36Steak != null && TopRowStreak != null  && a19To36Streak != null && RedStreak != null && oddStreak != null){
                     val endNum = RouletteResults(-1, "27", "Red")
                     val mydatabase = DataBaseHelper(this)
                     val databaseInput = mydatabase.addRouletteResult(endNum)
@@ -1191,7 +1271,7 @@ class RouletteGame2 : AppCompatActivity() {
                         resetAllTamounts()
                     }
                 }
-                28 -> {
+                28 -> if (TwentyEightStreak != null && a25To36Steak != null && BottomRowStreak != null  && a19To36Streak != null && BlackStreak != null && EvenStreak != null){
                     val endNum = RouletteResults(-1, "28", "Black")
                     val mydatabase = DataBaseHelper(this)
                     val databaseInput = mydatabase.addRouletteResult(endNum)
@@ -1226,7 +1306,7 @@ class RouletteGame2 : AppCompatActivity() {
                         resetAllTamounts()
                     }
                 }
-                29 -> {
+                29 -> if (TwentyNineStreak != null && a25To36Steak != null && MiddleRowStreak != null  && a19To36Streak != null && BlackStreak != null && oddStreak != null){
                     val endNum = RouletteResults(-1, "29", "Black")
                     val mydatabase = DataBaseHelper(this)
                     val databaseInput = mydatabase.addRouletteResult(endNum)
@@ -1261,7 +1341,7 @@ class RouletteGame2 : AppCompatActivity() {
                         resetAllTamounts()
                     }
                 }
-                30 -> {
+                30 -> if (ThirtyStreak != null && a25To36Steak != null && TopRowStreak != null  && a19To36Streak != null && RedStreak != null && EvenStreak != null){
                     val endNum = RouletteResults(-1, "30", "Red")
                     val mydatabase = DataBaseHelper(this)
                     val databaseInput = mydatabase.addRouletteResult(endNum)
@@ -1297,7 +1377,7 @@ class RouletteGame2 : AppCompatActivity() {
                         resetAllTamounts()
                     }
                 }
-                31 -> {
+                31 -> if (ThirtyOneStreak != null && a25To36Steak != null && BottomRowStreak != null  && a19To36Streak != null && BlackStreak != null && oddStreak != null){
                     val endNum = RouletteResults(-1, "31", "Black")
                     val mydatabase = DataBaseHelper(this)
                     val databaseInput = mydatabase.addRouletteResult(endNum)
@@ -1334,7 +1414,7 @@ class RouletteGame2 : AppCompatActivity() {
 
 
                 }
-                32 -> {
+                32 -> if (ThirtyTwoStreak != null && a25To36Steak != null && MiddleRowStreak != null  && a19To36Streak != null && RedStreak != null && EvenStreak != null){
                     val endNum = RouletteResults(-1, "32", "Black")
                     val mydatabase = DataBaseHelper(this)
                     val databaseInput = mydatabase.addRouletteResult(endNum)
@@ -1369,7 +1449,7 @@ class RouletteGame2 : AppCompatActivity() {
                         resetAllTamounts()
                     }
                 }
-                33 -> {
+                33 -> if (ThirtyThreeStreak != null && a25To36Steak != null && TopRowStreak != null  && a19To36Streak != null && BlackStreak != null && oddStreak != null){
                     val endNum = RouletteResults(-1, "33", "Black")
                     val mydatabase = DataBaseHelper(this)
                     val databaseInput = mydatabase.addRouletteResult(endNum)
@@ -1404,7 +1484,7 @@ class RouletteGame2 : AppCompatActivity() {
                         resetAllTamounts()
                     }
                 }
-                34 -> {
+                34 -> if (ThirtyFourStreak != null && a25To36Steak != null && BottomRowStreak != null  && a19To36Streak != null && RedStreak != null && EvenStreak != null){
                     val endNum = RouletteResults(-1, "34", "Red")
                     val mydatabase = DataBaseHelper(this)
                     val databaseInput = mydatabase.addRouletteResult(endNum)
@@ -1439,7 +1519,7 @@ class RouletteGame2 : AppCompatActivity() {
                         resetAllTamounts()
                     }
                 }
-                35 -> {
+                35 -> if (ThirtyFiveStreak != null && a25To36Steak != null && MiddleRowStreak != null  && a19To36Streak != null && BlackStreak != null && oddStreak != null){
                     val endNum = RouletteResults(-1, "35", "Black")
                     val mydatabase = DataBaseHelper(this)
                     val databaseInput = mydatabase.addRouletteResult(endNum)
@@ -1475,7 +1555,7 @@ class RouletteGame2 : AppCompatActivity() {
                         resetAllTamounts()
                     }
                 }
-                36 -> {
+                36 -> if (ThirtySixStreak != null && a25To36Steak != null && TopRowStreak != null  && a19To36Streak != null && RedStreak != null && EvenStreak != null){
                     val endNum = RouletteResults(-1, "36", "Red")
                     val mydatabase = DataBaseHelper(this)
                     val databaseInput = mydatabase.addRouletteResult(endNum)
@@ -1510,7 +1590,7 @@ class RouletteGame2 : AppCompatActivity() {
                         resetAllTamounts()
                     }
                 }
-                37 -> {
+                37 -> if (ZeroStreak != null){
                     val endNum = RouletteResults(-1, "0", "Green")
                     val mydatabase = DataBaseHelper(this)
                     val databaseInput = mydatabase.addRouletteResult(endNum)
