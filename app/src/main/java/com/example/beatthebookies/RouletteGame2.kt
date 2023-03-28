@@ -1178,7 +1178,7 @@ class RouletteGame2 : AppCompatActivity() {
                         resetAllTamounts()
                     }
                 }
-                18 ->if (EighteenStreak != null && a13To24Steak != null && TopRowStreak != null  && a1To18Streak != null && RedStreak != null && EvenStreak != null) {
+                18 -> if (EighteenStreak != null && a13To24Steak != null && TopRowStreak != null  && a1To18Streak != null && RedStreak != null && EvenStreak != null) {
                     val endNum = RouletteResults(-1, "18", "Red")
                     val mydatabase = DataBaseHelper(this)
                     val databaseInput = mydatabase.addRouletteResult(endNum)
@@ -1229,7 +1229,7 @@ class RouletteGame2 : AppCompatActivity() {
                         resetAllTamounts()
                     }
                 }
-                19 ->if (NineteenStreak != null && a13To24Steak != null && BottomRowStreak != null  && a19To36Streak != null && RedStreak != null && oddStreak != null) {
+                19 -> if (NineteenStreak != null && a13To24Steak != null && BottomRowStreak != null  && a19To36Streak != null && RedStreak != null && oddStreak != null) {
                     val endNum = RouletteResults(-1, "19", "Red")
                     val mydatabase = DataBaseHelper(this)
                     val databaseInput = mydatabase.addRouletteResult(endNum)
@@ -1280,7 +1280,7 @@ class RouletteGame2 : AppCompatActivity() {
                         resetAllTamounts()
                     }
                 }
-                20 ->if (TwentyStreak != null && a13To24Steak != null && MiddleRowStreak != null  && a19To36Streak != null && BlackStreak != null && EvenStreak != null) {
+                20 -> if (TwentyStreak != null && a13To24Steak != null && MiddleRowStreak != null  && a19To36Streak != null && BlackStreak != null && EvenStreak != null) {
                     val endNum = RouletteResults(-1, "20", "Black")
                     val mydatabase = DataBaseHelper(this)
                     val databaseInput = mydatabase.addRouletteResult(endNum)
