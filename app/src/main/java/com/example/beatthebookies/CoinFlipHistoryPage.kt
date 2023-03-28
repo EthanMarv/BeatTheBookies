@@ -23,7 +23,7 @@ class CoinFlipHistoryPage : AppCompatActivity() {
             var data = db.getCFResults()
             tvResult.text = ""
             for (i in 0..(data.size-1)){
-                tvResult.append(data.get(i).Id.toString() + " "  + data.get(i).Result + "\n")
+                tvResult.append(data.get(i).Id.toString() + " "  + data.get(i).Result + "\n\n")
         }
     }
 }

@@ -127,7 +127,7 @@ class RouletteGame2 : AppCompatActivity() {
         mydatabase.updateBalanceBetAmount(47, 0)
         mydatabase.updateBalanceBetAmount(48, 0)
         mydatabase.updateBalanceBetAmount(49, 0)
-        mydatabase.updateBalanceBetAmount(50, 0)
+        mydatabase.updateBalanceBetAmount(49, 0)
 
     }
 
@@ -182,7 +182,7 @@ class RouletteGame2 : AppCompatActivity() {
         mydatabase.updateTempBetAmount(47, 0)
         mydatabase.updateTempBetAmount(48, 0)
         mydatabase.updateTempBetAmount(49, 0)
-        mydatabase.updateTempBetAmount(50, 0)
+        mydatabase.updateTempBetAmount(49, 0)
     }
 
     fun ClearStake(view: View) {
@@ -218,8 +218,14 @@ class RouletteGame2 : AppCompatActivity() {
         startActivity(intent)
     }
 
+    fun Statistics(view: View){
+        val intent = Intent(this, RouletteStatisticsPage::class.java)
+        startActivity(intent)
+    }
 
-        fun spin(view:View){
+
+
+    fun spin(view:View){
             val mydatabase = DataBaseHelper(this)
 
             var ZeroStreak = mydatabase.getStreaksById(37)
@@ -283,7 +289,7 @@ class RouletteGame2 : AppCompatActivity() {
                 Animation.RELATIVE_TO_SELF,
                 0.5f
             )
-            rotateAnimation.duration = 1500
+            rotateAnimation.duration = 1490
             rotateAnimation.repeatCount = 0
             rotateAnimation.interpolator = LinearInterpolator()
 
@@ -1248,11 +1254,11 @@ class RouletteGame2 : AppCompatActivity() {
                     val update1 = mydatabase.updateCounter(19,NineteenStreak)
                     val update2 = mydatabase.updateCounter(39,a13To24Steak)
                     val update3 = mydatabase.updateCounter(43,BottomRowStreak)
-                    val update4 = mydatabase.updateCounter(50,a19To36Streak)
+                    val update4 = mydatabase.updateCounter(49,a19To36Streak)
                     val update5 = mydatabase.updateCounter(46,RedStreak)
                     val update6 = mydatabase.updateCounter(48,oddStreak)
 
-                    val resetstreaks = mydatabase.resetStreaks(19,39,43,50,46,48)
+                    val resetstreaks = mydatabase.resetStreaks(19,39,43,49,46,48)
 
                     var balance = mydatabase.getBalance()
                     var amount19 = mydatabase.getTempBetAmount(19) //19
@@ -1299,11 +1305,11 @@ class RouletteGame2 : AppCompatActivity() {
                     val update1 = mydatabase.updateCounter(20,TwentyStreak)
                     val update2 = mydatabase.updateCounter(39,a13To24Steak)
                     val update3 = mydatabase.updateCounter(42,MiddleRowStreak)
-                    val update4 = mydatabase.updateCounter(50,a19To36Streak)
+                    val update4 = mydatabase.updateCounter(49,a19To36Streak)
                     val update5 = mydatabase.updateCounter(47,BlackStreak)
                     val update6 = mydatabase.updateCounter(45,EvenStreak)
 
-                    val resetstreaks = mydatabase.resetStreaks(20,39,42,50,47,45)
+                    val resetstreaks = mydatabase.resetStreaks(20,39,42,49,47,45)
 
                     var balance = mydatabase.getBalance()
                     var amount20 = mydatabase.getTempBetAmount(20) //20
@@ -1350,12 +1356,12 @@ class RouletteGame2 : AppCompatActivity() {
                     val update1 = mydatabase.updateCounter(21,TwentyOneStreak)
                     val update2 = mydatabase.updateCounter(39,a13To24Steak)
                     val update3 = mydatabase.updateCounter(41,TopRowStreak)
-                    val update4 = mydatabase.updateCounter(50,a19To36Streak)
+                    val update4 = mydatabase.updateCounter(49,a19To36Streak)
                     val update5 = mydatabase.updateCounter(46,RedStreak)
                     val update6 = mydatabase.updateCounter(48,oddStreak)
 
 
-                    val resetstreaks = mydatabase.resetStreaks(21,39,41,50,46,48)
+                    val resetstreaks = mydatabase.resetStreaks(21,39,41,49,46,48)
 
                     var balance = mydatabase.getBalance()
                     var amount21 = mydatabase.getTempBetAmount(21) //21
@@ -1402,11 +1408,11 @@ class RouletteGame2 : AppCompatActivity() {
                     val update1 = mydatabase.updateCounter(22,TwentyTwoStreak)
                     val update2 = mydatabase.updateCounter(39,a13To24Steak)
                     val update3 = mydatabase.updateCounter(43,BottomRowStreak)
-                    val update4 = mydatabase.updateCounter(50,a19To36Streak)
+                    val update4 = mydatabase.updateCounter(49,a19To36Streak)
                     val update5 = mydatabase.updateCounter(47,BlackStreak)
                     val update6 = mydatabase.updateCounter(45,EvenStreak)
 
-                    val resetstreaks = mydatabase.resetStreaks(22,39,43,50,47,45)
+                    val resetstreaks = mydatabase.resetStreaks(22,39,43,49,47,45)
 
                     var balance = mydatabase.getBalance()
                     var amount22 = mydatabase.getTempBetAmount(22) //22
@@ -1453,11 +1459,11 @@ class RouletteGame2 : AppCompatActivity() {
                     val update1 = mydatabase.updateCounter(23,TwentyThreeStreak)
                     val update2 = mydatabase.updateCounter(39,a13To24Steak)
                     val update3 = mydatabase.updateCounter(42,MiddleRowStreak)
-                    val update4 = mydatabase.updateCounter(50,a19To36Streak)
+                    val update4 = mydatabase.updateCounter(49,a19To36Streak)
                     val update5 = mydatabase.updateCounter(46,RedStreak)
                     val update6 = mydatabase.updateCounter(48,oddStreak)
 
-                    val resetstreaks = mydatabase.resetStreaks(23,39,42,50,46,48)
+                    val resetstreaks = mydatabase.resetStreaks(23,39,42,49,46,48)
                     var balance = mydatabase.getBalance()
                     var amount23 = mydatabase.getTempBetAmount(23) //23
                     var amount38 = mydatabase.getTempBetAmount(38) //13-24
@@ -1503,11 +1509,11 @@ class RouletteGame2 : AppCompatActivity() {
                     val update1 = mydatabase.updateCounter(24,TwentyFourStreak)
                     val update2 = mydatabase.updateCounter(39,a13To24Steak)
                     val update3 = mydatabase.updateCounter(41,TopRowStreak)
-                    val update4 = mydatabase.updateCounter(50,a19To36Streak)
+                    val update4 = mydatabase.updateCounter(49,a19To36Streak)
                     val update5 = mydatabase.updateCounter(47,BlackStreak)
                     val update6 = mydatabase.updateCounter(45,EvenStreak)
 
-                    val resetstreaks = mydatabase.resetStreaks(24,39,41,50,47,45)
+                    val resetstreaks = mydatabase.resetStreaks(24,39,41,49,47,45)
 
                     var balance = mydatabase.getBalance()
                     var amount24 = mydatabase.getTempBetAmount(24) //24
@@ -1555,11 +1561,11 @@ class RouletteGame2 : AppCompatActivity() {
                     val update1 = mydatabase.updateCounter(25,TwentyFiveStreak)
                     val update2 = mydatabase.updateCounter(40,a25To36Steak)
                     val update3 = mydatabase.updateCounter(43,BottomRowStreak)
-                    val update4 = mydatabase.updateCounter(50,a19To36Streak)
+                    val update4 = mydatabase.updateCounter(49,a19To36Streak)
                     val update5 = mydatabase.updateCounter(46,RedStreak)
                     val update6 = mydatabase.updateCounter(48,oddStreak)
 
-                    val resetstreaks = mydatabase.resetStreaks(25,40,43,50,46,48)
+                    val resetstreaks = mydatabase.resetStreaks(25,40,43,49,46,48)
 
                     var amount25 = mydatabase.getTempBetAmount(25) //25
                     var amount39 = mydatabase.getTempBetAmount(39) //25-36
@@ -1605,11 +1611,11 @@ class RouletteGame2 : AppCompatActivity() {
                     val update1 = mydatabase.updateCounter(26,TwentySixStreak)
                     val update2 = mydatabase.updateCounter(40,a25To36Steak)
                     val update3 = mydatabase.updateCounter(42,MiddleRowStreak)
-                    val update4 = mydatabase.updateCounter(50,a19To36Streak)
+                    val update4 = mydatabase.updateCounter(49,a19To36Streak)
                     val update5 = mydatabase.updateCounter(47,BlackStreak)
                     val update6 = mydatabase.updateCounter(45,EvenStreak)
 
-                    val resetstreaks = mydatabase.resetStreaks(26,40,42,50,47,45)
+                    val resetstreaks = mydatabase.resetStreaks(26,40,42,49,47,45)
 
                     var balance = mydatabase.getBalance()
                     var amount26 = mydatabase.getTempBetAmount(26) //26
@@ -1656,11 +1662,11 @@ class RouletteGame2 : AppCompatActivity() {
                     val update1 = mydatabase.updateCounter(27,TwentySevenStreak)
                     val update2 = mydatabase.updateCounter(40,a25To36Steak)
                     val update3 = mydatabase.updateCounter(41,TopRowStreak)
-                    val update4 = mydatabase.updateCounter(50,a19To36Streak)
+                    val update4 = mydatabase.updateCounter(49,a19To36Streak)
                     val update5 = mydatabase.updateCounter(46,RedStreak)
                     val update6 = mydatabase.updateCounter(48,oddStreak)
 
-                    val resetstreaks = mydatabase.resetStreaks(27,40,41,50,46,48)
+                    val resetstreaks = mydatabase.resetStreaks(27,40,41,49,46,48)
 
                     var balance = mydatabase.getBalance()
 
@@ -1708,11 +1714,11 @@ class RouletteGame2 : AppCompatActivity() {
                     val update1 = mydatabase.updateCounter(28,TwentyEightStreak)
                     val update2 = mydatabase.updateCounter(40,a25To36Steak)
                     val update3 = mydatabase.updateCounter(43,BottomRowStreak)
-                    val update4 = mydatabase.updateCounter(50,a19To36Streak)
+                    val update4 = mydatabase.updateCounter(49,a19To36Streak)
                     val update5 = mydatabase.updateCounter(47,BlackStreak)
                     val update6 = mydatabase.updateCounter(45,EvenStreak)
 
-                    val resetstreaks = mydatabase.resetStreaks(28,40,43,50,47,45)
+                    val resetstreaks = mydatabase.resetStreaks(28,40,43,49,47,45)
 
                     var balance = mydatabase.getBalance()
                     var amount28 = mydatabase.getTempBetAmount(28) //28
@@ -1759,11 +1765,11 @@ class RouletteGame2 : AppCompatActivity() {
                     val update1 = mydatabase.updateCounter(29,TwentyNineStreak)
                     val update2 = mydatabase.updateCounter(40,a25To36Steak)
                     val update3 = mydatabase.updateCounter(42,MiddleRowStreak)
-                    val update4 = mydatabase.updateCounter(50,a19To36Streak)
+                    val update4 = mydatabase.updateCounter(49,a19To36Streak)
                     val update5 = mydatabase.updateCounter(47,BlackStreak)
                     val update6 = mydatabase.updateCounter(48,oddStreak)
 
-                    val resetstreaks = mydatabase.resetStreaks(29,40,42,50,47,48)
+                    val resetstreaks = mydatabase.resetStreaks(29,40,42,49,47,48)
 
                     var balance = mydatabase.getBalance()
                     var amount29 = mydatabase.getTempBetAmount(29) //29
@@ -1810,11 +1816,11 @@ class RouletteGame2 : AppCompatActivity() {
                     val update1 = mydatabase.updateCounter(30,ThirtyStreak)
                     val update2 = mydatabase.updateCounter(40,a25To36Steak)
                     val update3 = mydatabase.updateCounter(41,TopRowStreak)
-                    val update4 = mydatabase.updateCounter(50,a19To36Streak)
+                    val update4 = mydatabase.updateCounter(49,a19To36Streak)
                     val update5 = mydatabase.updateCounter(46,RedStreak)
                     val update6 = mydatabase.updateCounter(45,EvenStreak)
 
-                    val resetstreaks = mydatabase.resetStreaks(30,40,41,50,46,45)
+                    val resetstreaks = mydatabase.resetStreaks(30,40,41,49,46,45)
 
                     var balance = mydatabase.getBalance()
 
@@ -1862,11 +1868,11 @@ class RouletteGame2 : AppCompatActivity() {
                     val update1 = mydatabase.updateCounter(31,ThirtyOneStreak)
                     val update2 = mydatabase.updateCounter(40,a25To36Steak)
                     val update3 = mydatabase.updateCounter(43,BottomRowStreak)
-                    val update4 = mydatabase.updateCounter(50,a19To36Streak)
+                    val update4 = mydatabase.updateCounter(49,a19To36Streak)
                     val update5 = mydatabase.updateCounter(47,BlackStreak)
                     val update6 = mydatabase.updateCounter(48,oddStreak)
 
-                    val resetstreaks = mydatabase.resetStreaks(31,40,43,50,47,48)
+                    val resetstreaks = mydatabase.resetStreaks(31,40,43,49,47,48)
 
                     var balance = mydatabase.getBalance()
                     var amount31 = mydatabase.getTempBetAmount(31) //31
@@ -1915,11 +1921,11 @@ class RouletteGame2 : AppCompatActivity() {
                     val update1 = mydatabase.updateCounter(32,ThirtyTwoStreak)
                     val update2 = mydatabase.updateCounter(40,a25To36Steak)
                     val update3 = mydatabase.updateCounter(42,MiddleRowStreak)
-                    val update4 = mydatabase.updateCounter(50,a19To36Streak)
+                    val update4 = mydatabase.updateCounter(49,a19To36Streak)
                     val update5 = mydatabase.updateCounter(46,RedStreak)
                     val update6 = mydatabase.updateCounter(45,EvenStreak)
 
-                    val resetstreaks = mydatabase.resetStreaks(32,40,42,50,46,45)
+                    val resetstreaks = mydatabase.resetStreaks(32,40,42,49,46,45)
 
                     var balance = mydatabase.getBalance()
                     var amount32 = mydatabase.getTempBetAmount(32) //36
@@ -1966,11 +1972,11 @@ class RouletteGame2 : AppCompatActivity() {
                     val update1 = mydatabase.updateCounter(33,ThirtyThreeStreak)
                     val update2 = mydatabase.updateCounter(40,a25To36Steak)
                     val update3 = mydatabase.updateCounter(41,TopRowStreak)
-                    val update4 = mydatabase.updateCounter(50,a19To36Streak)
+                    val update4 = mydatabase.updateCounter(49,a19To36Streak)
                     val update5 = mydatabase.updateCounter(47,BlackStreak)
                     val update6 = mydatabase.updateCounter(48,oddStreak)
 
-                    val resetstreaks = mydatabase.resetStreaks(33,40,41,50,47,48)
+                    val resetstreaks = mydatabase.resetStreaks(33,40,41,49,47,48)
 
                     var balance = mydatabase.getBalance()
                     var amount33 = mydatabase.getTempBetAmount(33) //9
@@ -2017,11 +2023,11 @@ class RouletteGame2 : AppCompatActivity() {
                     val update1 = mydatabase.updateCounter(34,ThirtyFourStreak)
                     val update2 = mydatabase.updateCounter(40,a25To36Steak)
                     val update3 = mydatabase.updateCounter(43,BottomRowStreak)
-                    val update4 = mydatabase.updateCounter(50,a19To36Streak)
+                    val update4 = mydatabase.updateCounter(49,a19To36Streak)
                     val update5 = mydatabase.updateCounter(46,RedStreak)
                     val update6 = mydatabase.updateCounter(45,EvenStreak)
 
-                    val resetstreaks = mydatabase.resetStreaks(34,40,43,50,46,45)
+                    val resetstreaks = mydatabase.resetStreaks(34,40,43,49,46,45)
 
                     var balance = mydatabase.getBalance()
                     var amount34 = mydatabase.getTempBetAmount(34) //34
@@ -2068,11 +2074,11 @@ class RouletteGame2 : AppCompatActivity() {
                     val update1 = mydatabase.updateCounter(35,ThirtyFiveStreak)
                     val update2 = mydatabase.updateCounter(40,a25To36Steak)
                     val update3 = mydatabase.updateCounter(42,MiddleRowStreak)
-                    val update4 = mydatabase.updateCounter(50,a19To36Streak)
+                    val update4 = mydatabase.updateCounter(49,a19To36Streak)
                     val update5 = mydatabase.updateCounter(47,BlackStreak)
                     val update6 = mydatabase.updateCounter(48,oddStreak)
 
-                    val resetstreaks = mydatabase.resetStreaks(35,40,42,50,47,48)
+                    val resetstreaks = mydatabase.resetStreaks(35,40,42,49,47,48)
 
                     var balance = mydatabase.getBalance()
 
@@ -2120,11 +2126,11 @@ class RouletteGame2 : AppCompatActivity() {
                     val update1 = mydatabase.updateCounter(36,ThirtySixStreak)
                     val update2 = mydatabase.updateCounter(40,a25To36Steak)
                     val update3 = mydatabase.updateCounter(41,TopRowStreak)
-                    val update4 = mydatabase.updateCounter(50,a19To36Streak)
+                    val update4 = mydatabase.updateCounter(49,a19To36Streak)
                     val update5 = mydatabase.updateCounter(46,RedStreak)
                     val update6 = mydatabase.updateCounter(45,EvenStreak)
 
-                    val resetstreaks = mydatabase.resetStreaks(36,40,41,50,46,45)
+                    val resetstreaks = mydatabase.resetStreaks(36,40,41,49,46,45)
 
                     var balance = mydatabase.getBalance()
                     var amount36 = mydatabase.getTempBetAmount(36) //36
@@ -2167,7 +2173,7 @@ class RouletteGame2 : AppCompatActivity() {
 
                     val update1 = mydatabase.updateCounter(37,ZeroStreak)
 
-                    val resetstreaks = mydatabase.resetStreaks(0)
+                    val resetstreaks = mydatabase.resetStreaks(37)
                     var sum = mydatabase.getBetAmountSum()
                     var amount0 = mydatabase.getBetAmount(37)
 

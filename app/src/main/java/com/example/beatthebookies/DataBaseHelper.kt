@@ -479,15 +479,16 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, DataBaseName,
         return number
     }
 
-    fun getStreaksById(id: Int): Int? {
+    fun getStreaksById(id: Int): Int {
         val query = "SELECT Counter FROM Streaks WHERE Id = ?"
         val db = this.readableDatabase
         val cursor = db.rawQuery(query, arrayOf(id.toString()))
-        val streak = if (cursor.moveToFirst()) cursor.getInt(0) else null
+        val streak = if (cursor.moveToFirst()) cursor.getInt(0) else 0
         cursor.close()
         db.close()
         return streak
     }
+
 
     fun updateCounter(id: Int, Counter: Int) {
         val db = this.writableDatabase

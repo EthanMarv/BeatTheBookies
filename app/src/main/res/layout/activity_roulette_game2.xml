@@ -41,7 +41,7 @@
                 android:id="@+id/last10BTN"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
-                android:onClick="RouletteHistory"
+                android:onClick="Statistics"
                 app:srcCompat="@drawable/last10"
                 android:scaleType="centerCrop"
                 android:background="?android:attr/selectableItemBackground"/>

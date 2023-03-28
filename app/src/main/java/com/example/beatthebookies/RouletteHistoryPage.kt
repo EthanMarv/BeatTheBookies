@@ -27,7 +27,7 @@ class RouletteHistoryPage : AppCompatActivity() {
         tvResult.text = ""
 
         for (i in 0..(data.size-1)){
-            tvResult.append(data.get(i).Id.toString() + "                           " + data.get(i).Result + "                   " + data.get(i).Colour +  "\n")
+            tvResult.append(data.get(i).Id.toString() + "                           " + data.get(i).Result + "                   " + data.get(i).Colour +  "\n\n")
 
         }
     }
